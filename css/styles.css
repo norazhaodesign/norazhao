@@ -5,6 +5,10 @@
   src: url(../font/canela-web-thin.ttf);
 }
 @font-face {
+  font-family: "gt-regular";
+  src: url(../font/gt-america-regular.otf);
+}
+@font-face {
   font-family: "gt-thin";
   src: url(../font/gt-america-thin.otf);
 }
@@ -19,25 +23,23 @@ body {
   margin: 20px 30px;
   color: white;
   line-height: 1.2;
-}
-article {
   display: grid;
-  grid-template-columns: 1fr 2.4fr;
+  grid-template-columns: 1fr 2.6fr;
   grid-gap: 10px;
 }
 img {
-  border: 1px solid white;
+  border: 3px solid white;
   width: 100%;
 }
 h1 {
-  font-family: "gt-thin";
-  font-size: 12em;
+  font-family: "gt-regular";
+  font-size: 9em;
   text-transform: uppercase;
-  margin: 240px 0 0 0;
+  margin: 180px 0 40px 0;
 }
 h2 {
   font-family: "gt-thin";
-  font-size: 5em;
+  font-size: 3em;
   text-transform: uppercase;
   margin: 0 0 25px 0;
 }
@@ -49,12 +51,13 @@ p {
   margin: 0 0 25px 0;
 }
 a:link {
-  font-size: 2em;
-  color: magenta;
+  font-family: "canela-thin";
+  font-size: 2.2em;
+  color: white;
   text-decoration: none;
 }
 a:visited {
-  color: magenta;
+  color: white;
 }
 /*underline effect for active page*/
 nav a.active {
