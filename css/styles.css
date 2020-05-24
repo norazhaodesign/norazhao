@@ -16,6 +16,10 @@
   font-family: "source-han-serif-light";
   src: url(../font/source-han-serif-sc-light.otf);
 }
+@font-face {
+  font-family: "songti-light";
+  src: url(../font/songti-light.ttf);
+}
 html {
   display: grid;
   -webkit-text-size-adjust: 100%;
@@ -62,20 +66,10 @@ p {
   margin: 0 0 25px 0;
 }
 p:lang(zh) { /* 中文字体 */
-  font-family: "source-han-serif-light";
+  font-family: "songti-light";
   font-size: 1.672em;
   line-height: 1.65em;
 }
-span:lang(zh) {
-  font-family: "source-han-serif-light";
-  font-size: 0.76em;
-}
-br {
-  content: "";
-  margin-top: 25px;
-  display: block;
-}
-
 
 a:link {
   color: mediumslateblue;
