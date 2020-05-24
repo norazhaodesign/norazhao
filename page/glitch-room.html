@@ -11,14 +11,14 @@
 <body>
 <a-scene vr-mode-ui="enabled: false">
   <!-- camera -->
-  <a-camera position="0 0 -3"></a-camera>
+  <a-camera position="0 0 0"></a-camera>
 
   <!-- geometry -->
   <a-box
-      position="5 0 -3"
-      height="18"
-      width="18"
-      depth="18"
+      position="0 0 0"
+      height="10"
+      width="8"
+      depth="6"
       side="double"
       material="color: black"
       animation__rotation="
@@ -30,33 +30,33 @@
           loop: true;
           easing: linear;">
     <a-box
-          height="18"
-          width="18"
-          depth="18"
-          side="double"
-          material="color: blue"
-          animation__rotation="
-              property: rotation;
-              from: 0 0 0;
-              to: -0.001 0 0.001;
-              dir: alternate;
-              dur: 20000;
-              loop: true;
-              easing: linear;"> </a-box>
+      height="10"
+      width="8"
+      depth="6"
+      side="double"
+      material="color: blue"
+      animation__rotation="
+          property: rotation;
+          from: 0 0 0;
+          to: -0.001 0 0.001;
+          dir: alternate;
+          dur: 20000;
+          loop: true;
+          easing: linear;"> </a-box>
     <a-box
-          height="18"
-          width="18"
-          depth="18"
-          side="double"
-          material="color: green"
-          animation__rotation="
-              property: rotation;
-              from: 0 0 0;
-              to: 0.001 0 -0.001;
-              dir: alternate;
-              dur: 20000;
-              loop: true;
-              easing: linear;"> </a-box>
+      height="10"
+      width="8"
+      depth="6"
+      side="double"
+      material="color: green"
+      animation__rotation="
+          property: rotation;
+          from: 0 0 0;
+          to: 0.001 0 -0.001;
+          dir: alternate;
+          dur: 20000;
+          loop: true;
+          easing: linear;"> </a-box>
   </a-box>
 </a-scene>
 </body>
