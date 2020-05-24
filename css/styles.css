@@ -32,7 +32,7 @@ body {
   color: black;
   line-height: 1.2;
 }
-article {
+main {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
   grid-gap: 10px;

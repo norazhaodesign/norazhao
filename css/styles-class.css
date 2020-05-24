@@ -28,7 +28,7 @@
 
 /* mobile layout */
 @media screen and (max-width: 500px) {
-  article {
+  main {
     grid-template-columns: 1fr;
   }
   .gridxto1 {
