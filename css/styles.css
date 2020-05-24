@@ -1,16 +1,16 @@
 /* section {border: 1px solid white;} */
 
 @font-face {
-  font-family: "canela-thin";
-  src: url(../font/canela-web-thin.ttf);
+  font-family: "gt-black";
+  src: url(../font/gt-america-black.otf);
 }
 @font-face {
   font-family: "gt-regular";
   src: url(../font/gt-america-regular.otf);
 }
 @font-face {
-  font-family: "gt-thin";
-  src: url(../font/gt-america-thin.otf);
+  font-family: "canela-thin";
+  src: url(../font/canela-web-thin.ttf);
 }
 html {
   display: grid;
@@ -19,30 +19,37 @@ html {
   -ms-text-size-adjust: 100%;
 }
 body {
-  background-color: black;
-  margin: 20px 30px;
-  color: white;
+  background-color: white;
+  margin: 0;
+  color: black;
   line-height: 1.2;
+}
+article {
   display: grid;
-  grid-template-columns: 1fr 2.6fr;
+  grid-template-columns: 1fr 2.4fr;
   grid-gap: 10px;
+  margin: 40px 30px;
 }
 img {
-  border: 3px solid white;
   width: 100%;
+  margin: 25px 0;
 }
+/* big titles */
 h1 {
-  font-family: "gt-regular";
-  font-size: 9em;
+  font-family: "gt-black";
+  font-size: 12em;
   text-transform: uppercase;
-  margin: 180px 0 40px 0;
+  margin: 200px 30px 20px 30px;
 }
+/* titles on the left */
 h2 {
-  font-family: "gt-thin";
-  font-size: 3em;
+  font-family: "gt-regular";
+  font-size: 2.2em;
   text-transform: uppercase;
   margin: 0 0 25px 0;
 }
+
+/* body texts */
 p {
   max-width: 1200px;
   font-family: "canela-thin";
@@ -51,17 +58,15 @@ p {
   margin: 0 0 25px 0;
 }
 a:link {
-  font-family: "canela-thin";
-  font-size: 2.2em;
-  color: white;
+  color: mediumslateblue;
   text-decoration: none;
 }
 a:visited {
-  color: white;
+  color: mediumslateblue;
 }
 /*underline effect for active page*/
 nav a.active {
-  border-bottom: 2px solid magenta;
+  border-bottom: 2px solid mediumslateblue;
 }
 nav a {
   text-transform: uppercase;

@@ -24,14 +24,10 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
 }
-/* first line of text indentation */
-.indent {
-  text-indent: 5em;
-}
 
 /* mobile layout */
 @media screen and (max-width: 500px) {
-  body {
+  article {
     grid-template-columns: 1fr;
   }
   .gridxto1 {
