@@ -22,7 +22,7 @@
 }
 @font-face {
   font-family: "lanting-heavy";
-  src: url(font/lantinghei-pro-heavy.otf);
+  src: url(font/lantinghei-pro-heavy.ttf);
 }
 html {
   display: grid;
