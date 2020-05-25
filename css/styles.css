@@ -36,7 +36,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
   grid-gap: 10px;
-  margin: 4vh 3vw;
+  margin: 4vh 2vw;
 }
 img {
   width: 100%;
@@ -48,12 +48,12 @@ h1 {
   /* set to vw size so it won't overflow horizontally on mobile screen */
   font-size: 11vw;
   text-transform: uppercase;
-  margin: 30vh 3vw 3vh 3vw;
+  margin: 30vh 2vw 3vh 2vw;
 }
 /* titles on the left */
 h2 {
   font-family: "gt-regular";
-  font-size: 2.4vmax;
+  font-size: 2vw;
   text-transform: uppercase;
   margin: 0 0 4vh 0;
 }
@@ -61,14 +61,14 @@ h2 {
 /* body texts */
 p {
   font-family: "canela-thin";
-  font-size: 2.4vmax;
-  line-height: 3.4vmax;
+  font-size: 2vw;
+  line-height: 2.8vw;
   margin: 0 0 4vh 0;
 }
 p:lang(zh) { /* 中文字体 */
   font-family: "songti-light";
-  font-size: 2vmax;
-  line-height: 3.3vmax;
+  font-size: 1.52vw;
+  line-height: 2.6vw;
 }
 
 a:link {

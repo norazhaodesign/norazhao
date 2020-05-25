@@ -37,4 +37,16 @@
   .hideOnMobile {
     display: none;
   }
+  /* avoid text size being too small based on vw */
+  h2 {
+    font-size: 2vmax;
+  }
+  p {
+    font-size: 2vmax;
+    line-height: 2.8vmax;
+  }
+  p:lang(zh) {
+    font-size: 1.52vmax;
+    line-height: 2.6vmax;
+  }
 }
