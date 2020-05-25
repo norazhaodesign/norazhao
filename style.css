@@ -13,10 +13,6 @@
   src: url(font/canela-web-thin.ttf);
 }
 @font-face {
-  font-family: "source-han-serif-light";
-  src: url(font/source-han-serif-sc-light.otf);
-}
-@font-face {
   font-family: "songti-light";
   src: url(font/songti-light.ttf);
 }
@@ -69,7 +65,7 @@ h2 {
   text-transform: uppercase;
   margin: 0 0 0.5vmax 0;
 }
-h2:lang(zh){
+h2:lang(zh) {
   font-size: 1.8vmax;
   margin-bottom: 1.8vmax;
 }
@@ -109,6 +105,9 @@ nav a {
 
 
 /* classes -------------------------------------------------------------------- */
+.inline {
+  display: inline;
+}
 /* image gallery grid */
 .grid1 {
   display: grid;
