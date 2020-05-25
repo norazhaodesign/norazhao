@@ -62,26 +62,25 @@ h1:lang(zh) {
 /* titles on the left */
 h2 {
   font-family: "gt-regular";
-  font-size: 2vw;
+  font-size: 2vmax;
   text-transform: uppercase;
-  margin: 0 0 1vh 0;
+  margin: 0 0 1vmax 0;
 }
 h2:lang(zh){
-  font-size: 1.8vw;
-  margin: 0 0 4vh 0;
+  font-size: 1.8vmax;
+  margin: 0 0 4vmax 0;
 }
-
 /* body texts */
 p {
   font-family: "canela-thin";
-  font-size: 2vw;
-  line-height: 2.8vw;
-  margin: 0 0 4vh 0;
+  font-size: 2vmax;
+  line-height: 2.8vmax;
+  margin: 0 0 2.8vmax 0;
 }
-p:lang(zh) { /* 中文字体 */
+p:lang(zh) {
   font-family: "songti-light";
-  font-size: 1.52vw;
-  line-height: 2.6vw;
+  font-size: 1.52vmax;
+  line-height: 2.6vmax;
 }
 
 a:link {
