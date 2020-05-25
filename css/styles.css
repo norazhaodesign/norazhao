@@ -36,7 +36,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
   grid-gap: 10px;
-  margin: 40px 30px;
+  margin: 4vh 3vw;
 }
 img {
   width: 100%;
@@ -45,30 +45,30 @@ img {
 /* big titles */
 h1 {
   font-family: "gt-black";
-  font-size: 12rem;
+  /* set to vw size so it won't overflow horizontally on mobile screen */
+  font-size: 11vw;
   text-transform: uppercase;
-  margin: 300px 30px 20px 30px;
+  margin: 30vh 3vw 3vh 3vw;
 }
 /* titles on the left */
 h2 {
   font-family: "gt-regular";
-  font-size: 2.2rem;
+  font-size: 2.4vmax;
   text-transform: uppercase;
-  margin: 0 0 25px 0;
+  margin: 0 0 4vh 0;
 }
 
 /* body texts */
 p {
-  max-width: 1200px;
   font-family: "canela-thin";
-  font-size: 2.2rem;
-  line-height: 3rem;
-  margin: 0 0 25px 0;
+  font-size: 2.4vmax;
+  line-height: 3.4vmax;
+  margin: 0 0 4vh 0;
 }
 p:lang(zh) { /* 中文字体 */
   font-family: "songti-light";
-  font-size: 1.672rem;
-  line-height: 2.85rem;
+  font-size: 2vmax;
+  line-height: 3.3vmax;
 }
 
 a:link {
