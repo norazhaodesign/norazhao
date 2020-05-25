@@ -45,14 +45,14 @@ img {
 /* big titles */
 h1 {
   font-family: "gt-black";
-  font-size: 12em;
+  font-size: 12rem;
   text-transform: uppercase;
   margin: 300px 30px 20px 30px;
 }
 /* titles on the left */
 h2 {
   font-family: "gt-regular";
-  font-size: 2.2em;
+  font-size: 2.2rem;
   text-transform: uppercase;
   margin: 0 0 25px 0;
 }
@@ -61,14 +61,14 @@ h2 {
 p {
   max-width: 1200px;
   font-family: "canela-thin";
-  font-size: 2.2em;
-  line-height: 1.35em;
+  font-size: 2.2rem;
+  line-height: 3rem;
   margin: 0 0 25px 0;
 }
 p:lang(zh) { /* 中文字体 */
   font-family: "songti-light";
-  font-size: 1.672em;
-  line-height: 1.65em;
+  font-size: 1.672rem;
+  line-height: 2.85rem;
 }
 
 a:link {
