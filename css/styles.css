@@ -20,6 +20,10 @@
   font-family: "songti-light";
   src: url(../font/songti-light.ttf);
 }
+@font-face {
+  font-family: "lanting-heavy";
+  src: url(../font/lantinghei-pro-heavy.otf);
+}
 html {
   display: grid;
   -webkit-text-size-adjust: 100%;
@@ -34,7 +38,7 @@ body {
 }
 main {
   display: grid;
-  grid-template-columns: 1fr 2.4fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 10px;
   margin: 4vh 2vw;
 }
@@ -48,13 +52,22 @@ h1 {
   /* set to vw size so it won't overflow horizontally on mobile screen */
   font-size: 11vw;
   text-transform: uppercase;
-  margin: 30vh 2vw 3vh 2vw;
+  margin: 30vh 2vw 0 2vw;
+}
+h1:lang(zh) {
+  font-family: "lanting-heavy";
+  font-size: 10vw;
+  margin: 0 2vw 4vh 2vw;
 }
 /* titles on the left */
 h2 {
   font-family: "gt-regular";
   font-size: 2vw;
   text-transform: uppercase;
+  margin: 0 0 1vh 0;
+}
+h2:lang(zh){
+  font-size: 1.8vw;
   margin: 0 0 4vh 0;
 }
 

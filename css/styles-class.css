@@ -25,7 +25,6 @@
   grid-gap: 10px;
 }
 
-
 /* mobile layout */
 @media screen and (max-width: 500px) {
   main {
@@ -40,6 +39,9 @@
   /* avoid text size being too small based on vw */
   h2 {
     font-size: 2vmax;
+  }
+  h2:lang(zh){
+    font-size: 1.8vmax;
   }
   p {
     font-size: 2vmax;
