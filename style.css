@@ -2,27 +2,27 @@
 
 @font-face {
   font-family: "gt-black";
-  src: url(../font/gt-america-black.otf);
+  src: url(font/gt-america-black.otf);
 }
 @font-face {
   font-family: "gt-regular";
-  src: url(../font/gt-america-regular.otf);
+  src: url(font/gt-america-regular.otf);
 }
 @font-face {
   font-family: "canela-thin";
-  src: url(../font/canela-web-thin.ttf);
+  src: url(font/canela-web-thin.ttf);
 }
 @font-face {
   font-family: "source-han-serif-light";
-  src: url(../font/source-han-serif-sc-light.otf);
+  src: url(font/source-han-serif-sc-light.otf);
 }
 @font-face {
   font-family: "songti-light";
-  src: url(../font/songti-light.ttf);
+  src: url(font/songti-light.ttf);
 }
 @font-face {
   font-family: "lanting-heavy";
-  src: url(../font/lantinghei-pro-heavy.otf);
+  src: url(font/lantinghei-pro-heavy.otf);
 }
 html {
   display: grid;
@@ -46,11 +46,13 @@ img {
   width: 100%;
   margin: 25px 0;
 }
+
 /* big titles */
 h1 {
   font-family: "gt-black";
   /* set to vw size so it won't overflow horizontally on mobile screen */
   font-size: 11vw;
+  line-height: 12vw;
   text-transform: uppercase;
   margin: 30vh 2vw 0 2vw;
 }
@@ -59,28 +61,35 @@ h1:lang(zh) {
   font-size: 10vw;
   margin: 0 2vw 4vh 2vw;
 }
+
 /* titles on the left */
 h2 {
   font-family: "gt-regular";
   font-size: 2vmax;
   text-transform: uppercase;
-  margin: 0 0 1vmax 0;
+  margin: 0 0 0.5vmax 0;
 }
 h2:lang(zh){
   font-size: 1.8vmax;
-  margin: 0 0 4vmax 0;
+  margin-bottom: 1.8vmax;
 }
+
 /* body texts */
 p {
   font-family: "canela-thin";
   font-size: 2vmax;
   line-height: 2.8vmax;
-  margin: 0 0 2.8vmax 0;
+  margin: 0;
 }
 p:lang(zh) {
   font-family: "songti-light";
   font-size: 1.52vmax;
   line-height: 2.6vmax;
+}
+br {
+  content: "";
+  margin-bottom: 2.8vmax;
+  display: block;
 }
 
 a:link {
@@ -96,4 +105,46 @@ nav a.active {
 }
 nav a {
   text-transform: uppercase;
+}
+
+
+/* classes -------------------------------------------------------------------- */
+/* image gallery grid */
+.grid1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+.grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.grid4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.grid5 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+/* mobile layout */
+@media screen and (max-width: 500px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+  .gridxto1 {
+    grid-template-columns: 1fr;
+  }
+  .hide-on-mobile {
+    display: none;
+  }
 }
