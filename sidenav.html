@@ -1,12 +1,11 @@
 <!-- html -------------------------------------------------------------------- -->
-<div style="margin: 4vh 1vmax 2vh 1vmax;">
+<div style="margin: 4vh 2vw;">
   <!-- close button -->
   <p style="text-align: right;">
     <a href="#" id="closebtn" onclick="closeNav()">
       <img src="img/close.svg" alt="Menu" style="width: 1.8vmax;">
     </a>
   <p>
-  <br>
   <!-- contents -->
   <p><a href="index.html">Home Page</a></p>
   <br>
@@ -33,17 +32,17 @@
     position: fixed; /* stay in place */
     top: 0;
     left: 0;
-    background-color: white;
+    background-color: yellow;
     overflow-x: hidden; /* disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.8s; /* 0.5 second transition effect to slide in the sidenav */
   }
   /* When you mouse over the navigation links, change their color */
   #sidenav a:hover {
     color: blueviolet;
   }
-  /* push the page content to the right when opening the side navigation */
+  /* animation for pushing page content rightwards when opening the side navigation */
   #main {
-    transition: margin-left .5s;
+    transition: margin-left 0.8s;
   }
 </style>
 
@@ -51,14 +50,14 @@
 <script type="text/javascript">
   /* set side navigation width & page content left margin & page content background color */
   function openNav() {
-    document.getElementById("sidenav").style.width = "20vmax";
-    document.getElementById("main").style.marginLeft = "20vmax";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.6)";
+    document.getElementById("sidenav").style.width = "33.3vmax";
+    // document.getElementById("main").style.marginLeft = "33.3vmax";
+    // document.body.style.backgroundColor = "rgba(0,0,0,0.6)";
   }
   function closeNav() {
     document.getElementById("sidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
-    document.body.style.backgroundColor = "white";
+    // document.getElementById("main").style.marginLeft = "0";
+    // document.body.style.backgroundColor = "white";
   }
 </script>
 
