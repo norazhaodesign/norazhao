@@ -32,11 +32,8 @@ body {
   color: black;
   line-height: 1.2;
 }
-article {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 10px;
-  margin: 4vh 2vw;
+section {
+  margin: 4vh 2vw 4vh 34vw;
 }
 img {
   width: 100%;
@@ -47,26 +44,29 @@ img {
 h1 {
   font-family: "gt-black", sans-serif;
   /* set to vw size so it won't overflow horizontally on mobile screen */
-  font-size: 11vw;
-  line-height: 12vw;
+  font-size: 13vw;
+  line-height: 14vw;
   text-transform: uppercase;
   margin: 30vh 2vw 0 2vw;
 }
 h1:lang(zh), h1 span:lang(zh) {
   font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   font-weight: 900;
-  font-size: 8.5vw;
+  font-size: 10vw; /* h1 size x0.7727 */
   position: relative;
   top: -0.98vmax; /* shift it up to align with english text */
   margin: 1vh 2vw 0 2vw;
 }
 
-/* titles on the left */
+/* small titles */
 h2 {
   font-family: "gt-regular", sans-serif;
   font-size: 2vmax;
   text-transform: uppercase;
-  margin: 0 0 0.5vmax 0;
+  margin-top: 6vmax; /* distance outside */
+  margin-bottom: 2vmax;
+  padding-bottom: 0.5vmax; /* distance between text and border (inside) */
+  border-bottom: 1px solid black;
 }
 h2:lang(zh), h2 span:lang(zh) {
   font-family: "Hiragino Sans GB", "冬青黑体简", "SimHei", "黑体", sans-serif;
@@ -124,6 +124,14 @@ nav a {
 
 
 /* classes -------------------------------------------------------------------- */
+.menuBtn {
+  width: 4vmax; /* 2x1.8vmax */
+  z-index: 0.5; /* on top of page content & behind side menu */
+  position: fixed;
+  margin: 4vh 2vw 4vh 2vw;
+  top: -1vmax;
+  left: -1vmax; /* put the icon in place because it's twice the size of the close button */
+}
 .inline {
   display: inline;
 }
@@ -156,8 +164,9 @@ nav a {
 
 /* mobile layout */
 @media screen and (max-width: 500px) {
-  article {
-    grid-template-columns: 1fr;
+  section {
+    margin-left: 2vw; /* no white space on the left */
+    margin-top: 8vmax; /* move page content down for the space of the menu button */
   }
   .gridxto1 {
     grid-template-columns: 1fr;
