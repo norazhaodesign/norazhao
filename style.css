@@ -45,7 +45,7 @@ img {
 
 /* page titles */
 h1 {
-  font-family: "gt-black";
+  font-family: "gt-black", sans-serif;
   /* set to vw size so it won't overflow horizontally on mobile screen */
   font-size: 11vw;
   line-height: 12vw;
@@ -53,7 +53,7 @@ h1 {
   margin: 30vh 2vw 0 2vw;
 }
 h1 span:lang(zh) {
-  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑";
+  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   font-weight: 900;
   font-size: 8.5vw;
   position: relative;
@@ -62,13 +62,13 @@ h1 span:lang(zh) {
 
 /* titles on the left */
 h2 {
-  font-family: "gt-regular";
+  font-family: "gt-regular", sans-serif;
   font-size: 2vmax;
   text-transform: uppercase;
   margin: 0 0 0.5vmax 0;
 }
 h2 span:lang(zh) {
-  font-family: "Hiragino Sans GB", "冬青黑体简", "SimHei", "黑体";
+  font-family: "Hiragino Sans GB", "冬青黑体简", "SimHei", "黑体", sans-serif;
   font-size: 1.66vmax;
   position: relative;
   top: -0.08vmax; /* shift it up to align with english text */
@@ -76,21 +76,21 @@ h2 span:lang(zh) {
 
 /* body texts */
 p {
-  font-family: "canela-thin";
+  font-family: "canela-thin", serif;
   font-size: 2vmax;
   line-height: 2.8vmax;
   word-spacing: 0.06vmax; /* bigger space between words */
   margin: 0;
 }
 p :lang(zh), p span:lang(zh) {
-  font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体";
+  font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体", serif;
   font-size: 1.52vmax;
   line-height: 2.6vmax;
   position: relative;
   top: -0.2vmax; /* shift it up to align with english text */
 }
 p span:lang(en) {
-  font-family: "canela-thin";
+  font-family: "canela-thin", serif;
   font-size: 1.52vmax;
   position: relative;
   top: 0.2vmax; /* shift it down to align with chinese text */
