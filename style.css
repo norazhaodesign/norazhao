@@ -44,15 +44,15 @@ img {
 h1 {
   font-family: "gt-black", sans-serif;
   /* set to vw size so it won't overflow horizontally on mobile screen */
-  font-size: 13vw;
-  line-height: 14vw;
+  font-size: 12vw;
+  line-height: 13vw;
   text-transform: uppercase;
   margin: 30vh 2vw 0 2vw;
 }
 h1:lang(zh), h1 span:lang(zh) {
   font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   font-weight: 900;
-  font-size: 10vw; /* h1 size x0.7727 */
+  font-size: 9.27vw; /* h1 size x0.7727 */
   position: relative;
   top: -0.98vmax; /* shift it up to align with english text */
   margin: 1vh 2vw 0 2vw;
@@ -63,8 +63,7 @@ h2 {
   font-family: "gt-regular", sans-serif;
   font-size: 2vmax;
   text-transform: uppercase;
-  margin-top: 6vmax; /* distance outside */
-  margin-bottom: 2vmax;
+  margin: 6vmax 0 2vmax 0;
   padding-bottom: 0.5vmax; /* distance between text and border (inside) */
   border-bottom: 1px solid black;
 }
@@ -124,14 +123,6 @@ nav a {
 
 
 /* classes -------------------------------------------------------------------- */
-.menuBtn {
-  width: 4vmax; /* 2x1.8vmax */
-  z-index: 1; /* on top of page content & behind side menu */
-  position: fixed;
-  margin: 4vh 2vw 4vh 2vw;
-  top: -1vmax;
-  left: -1vmax; /* put the icon in place because it's twice the size of the close button */
-}
 .inline {
   display: inline;
 }

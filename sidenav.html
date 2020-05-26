@@ -1,11 +1,14 @@
 <!-- html -------------------------------------------------------------------- -->
 <div style="margin: 4vh 2vw;">
+  <!-- menu button -->
+  <a href="#" onclick="openNav()">
+    <img id="menubtn" src="img/menu.svg" alt="Menu">
+  </a>
   <!-- close button -->
-  <p style="text-align: right;">
-    <a href="#" id="closebtn" onclick="closeNav()">
-      <img src="img/close.svg" alt="Menu" style="width: 2vmax;">
-    </a>
-  <p>
+  <a href="#" id="closebtn" onclick="closeNav()">
+    <img src="img/close.svg" alt="Menu" style="width: 2vmax;">
+  </a>
+  <br>
   <!-- contents -->
   <p>
     <a href="index.html">
@@ -41,7 +44,13 @@
 
 <!-- css -------------------------------------------------------------------- -->
 <style>
-  /* The side navigation menu */
+  #menubtn {
+    width: 4vmax; /* 2x1.8vmax */
+    position: fixed;
+    margin: 4vh 2vw 4vh 2vw;
+    top: -1vmax;
+    left: -1vmax; /* put the icon in place because it's twice the size of the close button */
+  }
   #sidenav {
     height: 100%; /* 100% full-height */
     width: 0; /* 0 width - change this with JavaScript */
@@ -51,30 +60,22 @@
     left: 0;
     background-color: lavender;
     overflow-x: hidden; /* disable horizontal scroll */
-    transition: 0.8s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   }
-  /* When you mouse over the navigation links, change their color */
   #sidenav a:hover {
     color: blueviolet;
-  }
-  /* animation for pushing page content rightwards when opening the side navigation */
-  #main {
-    transition: margin-left 0.8s;
   }
 </style>
 
 <!-- javascript -------------------------------------------------------------------- -->
 <script type="text/javascript">
-  /* set side navigation width & page content left margin & page content background color */
   function openNav() {
     document.getElementById("sidenav").style.width = "32.5vmax";
-    // document.getElementById("main").style.marginLeft = "33.3vmax";
-    // document.body.style.backgroundColor = "rgba(0,0,0,0.6)";
+    document.getElementById("menubtn").style.display = "none";
   }
   function closeNav() {
     document.getElementById("sidenav").style.width = "0";
-    // document.getElementById("main").style.marginLeft = "0";
-    // document.body.style.backgroundColor = "white";
+    document.getElementById("menubtn").style.display = "inline";
   }
 </script>
 <!-- reference site https://www.w3schools.com/howto/howto_js_sidenav.asp -->
