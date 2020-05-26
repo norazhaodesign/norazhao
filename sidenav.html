@@ -1,15 +1,8 @@
 <!-- html -------------------------------------------------------------------- -->
-<div style="margin: 4vh 2vw;">
-  <!-- menu button -->
-  <a href="#" onclick="openNav()">
-    <img id="menubtn" src="img/menu.svg" alt="Menu">
-  </a>
-  <!-- close button -->
-  <a href="#" id="closebtn" onclick="closeNav()">
-    <img src="img/close.svg" alt="Menu" style="width: 2vmax;">
-  </a>
+<nav style="">
+  <img id="menubtn" onclick="openNav()" src="img/menu.svg" alt="Menu">
+  <img id="closebtn" onclick="closeNav()" src="img/close.svg" alt="Close">
   <br>
-  <!-- contents -->
   <p>
     <a href="index.html">
       Home Page
@@ -40,16 +33,22 @@
       <span lang="zh">「简介及联系方式」</span>
     </a>
   </p>
-</div>
+</nav>
 
 <!-- css -------------------------------------------------------------------- -->
 <style>
+  nav {
+    margin: 4vh 2vw;
+  }
   #menubtn {
     width: 4vmax; /* 2x1.8vmax */
     position: fixed;
-    margin: 4vh 2vw 4vh 2vw;
+    margin: 4vh 2vw;
     top: -1vmax;
     left: -1vmax; /* put the icon in place because it's twice the size of the close button */
+  }
+  #closebtn {
+    width: 2vmax;
   }
   #sidenav {
     height: 100%; /* 100% full-height */
