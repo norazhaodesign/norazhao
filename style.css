@@ -43,7 +43,7 @@ img {
   margin: 0;
 }
 
-/* big titles */
+/* page titles */
 h1 {
   font-family: "gt-black";
   /* set to vw size so it won't overflow horizontally on mobile screen */
@@ -52,10 +52,12 @@ h1 {
   text-transform: uppercase;
   margin: 30vh 2vw 0 2vw;
 }
-h1:lang(zh) {
-  font-family: "lanting-heavy";
-  font-size: 10vw;
-  margin: 0 2vw 4vh 2vw;
+h1 span:lang(zh) {
+  font-family: Lantinghei SC, Microsoft Yahei;
+  font-weight: 900;
+  font-size: 8.5vw;
+  position: relative;
+  top: -0.98vmax; /* shift it up to align with english text */
 }
 
 /* titles on the left */
@@ -65,9 +67,11 @@ h2 {
   text-transform: uppercase;
   margin: 0 0 0.5vmax 0;
 }
-h2:lang(zh) {
-  font-size: 1.8vmax;
-  margin-bottom: 1.8vmax;
+h2 span:lang(zh) {
+  font-family: Hiragino Sans GB, SimHei;
+  font-size: 1.66vmax;
+  position: relative;
+  top: -0.08vmax; /* shift it up to align with english text */
 }
 
 /* body texts */
@@ -75,12 +79,21 @@ p {
   font-family: "canela-thin";
   font-size: 2vmax;
   line-height: 2.8vmax;
+  word-spacing: 0.06vmax; /* bigger space between words */
   margin: 0;
 }
-p:lang(zh) {
-  font-family: "songti-light";
+p :lang(zh), p span:lang(zh) {
+  font-family: STSong, NSimSun, SimSun;
   font-size: 1.52vmax;
   line-height: 2.6vmax;
+  position: relative;
+  top: -0.2vmax; /* shift it up to align with english text */
+}
+p span:lang(en) {
+  font-family: "canela-thin";
+  font-size: 1.52vmax;
+  position: relative;
+  top: 0.2vmax; /* shift it down to align with chinese text */
 }
 br {
   content: "";
