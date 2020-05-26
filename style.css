@@ -126,7 +126,7 @@ nav a {
 /* classes -------------------------------------------------------------------- */
 .menuBtn {
   width: 4vmax; /* 2x1.8vmax */
-  z-index: 0.5; /* on top of page content & behind side menu */
+  z-index: 1; /* on top of page content & behind side menu */
   position: fixed;
   margin: 4vh 2vw 4vh 2vw;
   top: -1vmax;
