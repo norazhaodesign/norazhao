@@ -1,51 +1,52 @@
 <!-- html -------------------------------------------------------------------- -->
-<nav style="">
-  <img id="menubtn" onclick="openNav()" src="img/menu.svg" alt="Menu">
-  <img id="closebtn" onclick="closeNav()" src="img/close.svg" alt="Close">
-  <br>
-  <p>
-    <a href="index.html">
-      Home Page
-      <span lang="zh">「主页」</span>
-    </a>
-  </p>
-  <br>
-  <p>Coding Projects <span lang="zh">「编程设计」</span></p>
-  <p>
-    <a href="glitch-room.html">
-      Glitch Room
-      <span lang="zh">「故障房间」</span>
-    </a>
-  </p>
-  <br>
-  <p>Branding Projects <span lang="zh">「品牌设计」</span></p>
-  <p>
-    <a href="#"></a>
-  </p>
-  <br>
-  <p>Design Projects <span lang="zh">「平面设计」</span></p>
-  <br>
-  <p>Playground <span lang="zh">「其他」</span></p>
-  <br>
-  <p>
-    <a href="#">
-      About and Contact
-      <span lang="zh">「简介及联系方式」</span>
-    </a>
-  </p>
-</nav>
+<img id="menubtn" onclick="openNav()" src="img/menu.svg" alt="Menu">
+
+<div id="sidenav">
+  <nav>
+    <img id="closebtn" onclick="closeNav()" src="img/close.svg" alt="Close">
+    <br>
+    <p>
+      <a href="index.html">
+        Home Page
+        <span lang="zh">「主页」</span>
+      </a>
+    </p>
+    <br>
+    <p>Coding Projects <span lang="zh">「编程设计」</span></p>
+    <p>
+      <a href="glitch-room.html">
+        Glitch Room
+        <span lang="zh">「故障房间」</span>
+      </a>
+    </p>
+    <br>
+    <p>Branding Projects <span lang="zh">「品牌设计」</span></p>
+    <p>
+      <a href="#"></a>
+    </p>
+    <br>
+    <p>Design Projects <span lang="zh">「平面设计」</span></p>
+    <br>
+    <p>Playground <span lang="zh">「其他」</span></p>
+    <br>
+    <p>
+      <a href="#">
+        About and Contact
+        <span lang="zh">「简介及联系方式」</span>
+      </a>
+    </p>
+  </nav>
+</div>
 
 <!-- css -------------------------------------------------------------------- -->
 <style>
-  nav {
-    margin: 4vh 2vw;
-  }
   #menubtn {
     width: 4vmax; /* 2x1.8vmax */
     position: fixed;
     margin: 4vh 2vw;
     top: -1vmax;
     left: -1vmax; /* put the icon in place because it's twice the size of the close button */
+    z-index: 1;
   }
   #closebtn {
     width: 2vmax;
@@ -64,17 +65,18 @@
   #sidenav a:hover {
     color: blueviolet;
   }
+  nav {
+    margin: 4vh 2vw;
+  }
 </style>
 
 <!-- javascript -------------------------------------------------------------------- -->
 <script type="text/javascript">
   function openNav() {
     document.getElementById("sidenav").style.width = "32.5vmax";
-    document.getElementById("menubtn").style.display = "none";
   }
   function closeNav() {
     document.getElementById("sidenav").style.width = "0";
-    document.getElementById("menubtn").style.display = "inline";
   }
 </script>
 <!-- reference site https://www.w3schools.com/howto/howto_js_sidenav.asp -->
