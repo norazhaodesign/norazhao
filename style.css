@@ -120,28 +120,32 @@ a:visited {
 .grid1 {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 10px;
+  grid-gap: 0.5vmin;
+  padding: 0.25vmin 0;
 }
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.5vmin;
-  /* padding: 0 10px; */
+  padding: 0.25vmin 0;
 }
 .grid3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 0.5vmin;
+  padding: 0.25vmin 0;
 }
 .grid4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 0.5vmin;
+  padding: 0.25vmin 0;
 }
 .grid5 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 0.5vmin;
+  padding: 0.25vmin 0;
 }
 
 /* mobile layout */
