@@ -125,7 +125,8 @@ a:visited {
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 0.5vmin;
+  /* padding: 0 10px; */
 }
 .grid3 {
   display: grid;
