@@ -95,6 +95,15 @@ p span:lang(en) {
   top: 0.2vmax; /* shift it down to align with chinese text */
 }
 
+h6 {
+  font-family: "canela-thin", serif;
+  font-size: 2vmax;
+  line-height: 2.8vmax;
+  word-spacing: 0.06vmax; /* bigger space between words */
+  margin: 0 2vw 2vh 34vw ;
+  font-weight: 100;
+}
+
 br {
   content: "";
   margin-bottom: 2vmax;
