@@ -6,7 +6,7 @@
 	.st0{fill:#FFFFFF;}
 	.st1{fill:none;stroke:#000000;stroke-width:16;stroke-miterlimit:10;}
 </style>
-<circle class="st0" cx="283.4" cy="283.4" r="255.1"/>
+<circle class="st0" cx="283.5" cy="283.5" r="228.2"/>
 <g>
 	<line class="st1" x1="141.7" y1="163" x2="425.2" y2="163"/>
 	<line class="st1" x1="141.7" y1="283.9" x2="425.2" y2="283.9"/>

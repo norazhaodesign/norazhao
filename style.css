@@ -1,5 +1,3 @@
-/* section {border: 1px solid white;} */
-
 @font-face {
   font-family: "gt-black";
   src: url(font/gt-america-black.otf);
@@ -20,6 +18,7 @@
   font-family: "lanting-heavy";
   src: url(font/lantinghei-pro-heavy.ttf);
 }
+
 html {
   display: grid;
   -webkit-text-size-adjust: 100%;
@@ -40,7 +39,7 @@ img {
   margin: 0;
 }
 
-/* page titles */
+/* page title */
 h1 {
   font-family: "gt-black", sans-serif;
   /* set to vw size so it won't overflow horizontally on mobile screen */
@@ -58,7 +57,7 @@ h1:lang(zh), h1 span:lang(zh) {
   margin: 1vh 2vw 0 2vw;
 }
 
-/* small titles */
+/* small title */
 h2 {
   font-family: "gt-regular", sans-serif;
   font-size: 2vmax;
@@ -73,7 +72,7 @@ h2:lang(zh), h2 span:lang(zh) {
   position: relative;
 }
 
-/* body texts */
+/* body text */
 p {
   font-family: "canela-thin", serif;
   font-size: 2vmax;
@@ -95,15 +94,35 @@ p span:lang(en) {
   top: 0.2vmax; /* shift it down to align with chinese text */
 }
 
-br {
+/* h6 img caption */
+h6 {
+  font-family: "canela-thin", serif;
+  font-weight: 100;
+  font-size: 1vmax;
+  line-height: 1.4vmax;
+  margin: 0.5vh 2vw 2vh 34vw;
+}
+h6:lang(zh), h6 span:lang(zh) {
+  font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体", serif;
+  font-size: 0.9vmax;
+  line-height: 1.3vmax;
+  position: relative;
+  top: -0.06vmax;
+}
+h6 span:lang(en) {
+  font-family: "canela-thin", serif;
+  position: relative;
+  top: 0.06vmax;
+}
+
+/* line break */
+.paragraph br {
   content: "";
   margin-bottom: 2vmax;
   display: block;
 }
-.list br {
-  margin-bottom: 0;
-}
 
+/* link */
 a:link {
   color: blue;
   text-decoration: none;
@@ -113,11 +132,6 @@ a:visited {
 }
 
 /* classes -------------------------------------------------------------------- */
-
-.img {
-  margin: 1vh 2vw 4vh 34vw;
-  color: grey;
-}
 .inline {
   display: inline;
 }
