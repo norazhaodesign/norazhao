@@ -159,11 +159,6 @@ a:visited {
     margin-left: 2vw; /* no white space on the left */
     margin-top: 8vmax; /* move page content down for the space of the menu button */
   }
-  /* p {
-    font-family: helvetica, serif;
-    font-weight: 100;
-    line-height: 2.6vmax;
-  } */
   .gridxto1 {
     grid-template-columns: 1fr;
   }
