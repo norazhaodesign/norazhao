@@ -1,3 +1,7 @@
+.zh {
+  display: none;
+}
+
 @font-face {
   font-family: "gt-black";
   src: url(font/gt-america-black.otf);
@@ -41,51 +45,47 @@ img {
 
 /* page title */
 h1 {
-  font-family: "gt-black", sans-serif;
-  /* set to vw size so it won't overflow horizontally on mobile screen */
-  font-size: 12vw;
-  line-height: 13vw;
   text-transform: uppercase;
   margin: 30vh 2vw 0 2vw;
-}
-h1:lang(zh), h1 span:lang(zh) {
-  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   font-weight: 900;
+}
+h1.en {
+  font-family: "gt-black", sans-serif;
+  font-size: 12vw; /* set to vw size so it won't overflow horizontally on mobile screen */
+  line-height: 13vw;
+}
+h1.zh {
+  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   font-size: 9.27vw; /* h1 size x0.7727 */
-  position: relative;
-  top: -0.98vmax; /* shift it up to align with english text */
-  margin: 1vh 2vw 0 2vw;
 }
 
 /* small title */
 h2 {
-  font-family: "gt-regular", sans-serif;
-  font-size: 2vmax;
   text-transform: uppercase;
   margin: 6vmax 0 2vmax 0;
   padding-bottom: 0.5vmax; /* distance between text and border (inside) */
   border-bottom: 1px solid black;
 }
-h2:lang(zh), h2 span:lang(zh) {
+h2.en {
+  font-family: "gt-regular", sans-serif;
+  font-size: 2vmax;
+}
+h2.zh {
   font-family: "Hiragino Sans GB", "冬青黑体简", "SimHei", "黑体", sans-serif;
   font-size: 1.72vmax;
-  position: relative;
 }
 
 /* body text */
-p {
+p.en, p a.en {
   font-family: "canela-thin", serif;
   font-size: 2vmax;
   line-height: 2.8vmax;
   word-spacing: 0.06vmax; /* bigger space between words */
-  margin: 0;
 }
-p:lang(zh), p span:lang(zh) {
+p.zh, p a.zh {
   font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体", serif;
   font-size: 1.52vmax;
   line-height: 2.6vmax;
-  position: relative;
-  top: -0.16vmax; /* shift it up to align with english text */
 }
 p span:lang(en) {
   font-family: "canela-thin", serif;
@@ -94,29 +94,8 @@ p span:lang(en) {
   top: 0.2vmax; /* shift it down to align with chinese text */
 }
 
-/* h6 img caption */
-h6 {
-  font-family: "canela-thin", serif;
-  font-weight: 100;
-  font-size: 1vmax;
-  line-height: 1.4vmax;
-  margin: 0.5vh 2vw 2vh 34vw;
-}
-h6:lang(zh), h6 span:lang(zh) {
-  font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体", serif;
-  font-size: 0.9vmax;
-  line-height: 1.3vmax;
-  position: relative;
-  top: -0.06vmax;
-}
-h6 span:lang(en) {
-  font-family: "canela-thin", serif;
-  position: relative;
-  top: 0.06vmax;
-}
-
 /* line break */
-.paragraph br {
+.text br {
   content: "";
   margin-bottom: 2vmax;
   display: block;

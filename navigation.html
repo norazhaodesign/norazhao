@@ -1,57 +1,71 @@
 <!-- html -------------------------------------------------------------------- -->
-<img id="menubtn" onclick="openNav()" src="img/icon/menu.svg" alt="Menu">
+<img id="menuBtn" onclick="openNav()" src="img/icon/menu.svg" alt="Menu">
 
-<div id="sidenav">
+<!-- language selector -->
+<!-- <select id="language" >
+  <option value="0" selected>English</option>
+  <option value="1">中文</option>
+</select> -->
+
+<div id="langDiv">
+  <input id="enBtn" type="radio" name="language" value="en" checked> EN
+  <br>
+  <input id="zhBtn" type="radio" name="language" value="zh"> 中
+</div>
+
+<!-- side navigation menu -->
+<div id="sideNav">
   <nav>
-    <img id="closebtn" onclick="closeNav()" src="img/icon/close.svg" alt="Close">
-    <br>
+    <img id="closeBtn" onclick="closeNav()" src="img/icon/close.svg" alt="Close">
     <p>
-      <a href="index.html">
-        Home Page
-        <span lang="zh">「主页」</span>
-      </a>
+      <a class="en" href="index.html">Home Page</a>
+      <a class="zh" href="index.html">主页</a>
     </p>
-    <br>
-    <p>Coding Projects <span lang="zh">「编程设计」</span></p>
+
+    <p class="en">Coding Projects</p>
+    <p class="zh">编程设计项目</p>
     <p>
-      <a href="glitch-room.html">
-        Glitch Room
-        <span lang="zh">「故障房间」</span>
-      </a>
+      <a class="en" href="glitch-room.html">- Glitch Room</a>
+      <a class="zh" href="glitch-room.html">- 故障房间</a>
     </p>
-    <br>
-    <p>Branding Projects <span lang="zh">「品牌设计」</span></p>
+
+    <p class="en">Branding Projects</p>
+    <p class="zh">品牌设计项目</p>
+
+    <p class="en">Design Projects</p>
+    <p class="zh">平面设计项目</p>
+
+    <p class="en">Other</p>
+    <p class="zh">其他</p>
+
     <p>
-      <a href="#"></a>
-    </p>
-    <br>
-    <p>Design Projects <span lang="zh">「平面设计」</span></p>
-    <br>
-    <p>Playground <span lang="zh">「其他」</span></p>
-    <br>
-    <p>
-      <a href="#">
-        About and Contact
-        <span lang="zh">「简介及联系方式」</span>
-      </a>
+      <a class="en" href="#">About and Contact</a>
+      <a class="zh" href="#">简介及联系方式</a>
     </p>
   </nav>
 </div>
 
 <!-- css -------------------------------------------------------------------- -->
 <style>
-  #menubtn {
+  #langDiv {
+    position: fixed;
+    top: 4vh;
+    left: 6vmax;
+  }
+  #menuBtn {
     width: 4vmax; /* 2x1.8vmax */
     position: fixed;
     margin: 4vh 2vw;
     top: -1vmax;
     left: -1vmax; /* put the icon in place because it's twice the size of the close button */
     z-index: 1;
+    cursor: pointer;
   }
-  #closebtn {
+  #closeBtn {
     width: 2vmax;
+    cursor: pointer;
   }
-  #sidenav {
+  #sideNav {
     height: 100%; /* 100% full-height */
     width: 0; /* 0 width - change this with JavaScript */
     z-index: 2; /* stay on top */
@@ -62,7 +76,7 @@
     overflow-x: hidden; /* disable horizontal scroll */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   }
-  #sidenav a:hover {
+  #sideNav a:hover {
     color: blueviolet;
   }
   nav {
@@ -72,11 +86,55 @@
 
 <!-- javascript -------------------------------------------------------------------- -->
 <script type="text/javascript">
+  // $(document).ready(function(){
+  //   $("select#language").change(function(){
+  //       var selectedLang = $(this).children("option:selected").val();
+  //       alert("You have selected " + selectedLang);
+  //     });
+  // });
+
+  // record & retrive the selection status
+  $(function() {
+    $("[name='language']").click(function(){
+        var value = $(this).val();
+        localStorage.setItem("option", value);
+    });
+    var itemValue = localStorage.getItem("option");
+    if (itemValue !== null) {
+        $("input[value=\""+itemValue+"\"]").click();
+    }
+  }); // ref link https://stackoverflow.com/a/53298040/11975753
+
+  // change the display of page contents based on selected language
+  $("[name='language']").click(function() {
+    if (document.getElementById('enBtn').checked) {
+        $(".en").css("display", "block");
+        $(".zh").css("display", "none");
+      }
+    else if (document.getElementById('zhBtn').checked) {
+        $(".zh").css("display", "block");
+        $(".en").css("display", "none");
+      }
+    });
+
+  // open and close nav sidebar on click
   function openNav() {
-    document.getElementById("sidenav").style.width = "32.5vmax";
+    document.getElementById("sideNav").style.width = "32.5vmax";
   }
   function closeNav() {
-    document.getElementById("sidenav").style.width = "0";
+    document.getElementById("sideNav").style.width = "0";
   }
 </script>
+
+
+
+
+
+
+
+
+
+
+
 <!-- reference site https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+<!-- https://www.tutorialrepublic.com/faq/how-to-get-the-value-of-selected-option-in-a-select-box-using-jquery.php -->
