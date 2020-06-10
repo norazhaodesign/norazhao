@@ -2,11 +2,6 @@
 <img id="menuBtn" onclick="openNav()" src="img/icon/menu.svg" alt="Menu">
 
 <!-- language selector -->
-<!-- <select id="language" >
-  <option value="0" selected>English</option>
-  <option value="1">中文</option>
-</select> -->
-
 <div id="langDiv">
   <input id="enBtn" type="radio" name="language" value="en" checked> EN
   <br>
@@ -86,38 +81,31 @@
 
 <!-- javascript -------------------------------------------------------------------- -->
 <script type="text/javascript">
-  // $(document).ready(function(){
-  //   $("select#language").change(function(){
-  //       var selectedLang = $(this).children("option:selected").val();
-  //       alert("You have selected " + selectedLang);
-  //     });
-  // });
-
-  // record & retrive the selection status
+  // record & retrive the selection status (ref link https://stackoverflow.com/a/53298040/11975753)
   $(function() {
     $("[name='language']").click(function(){
-        var value = $(this).val();
-        localStorage.setItem("option", value);
+      var value = $(this).val();
+      localStorage.setItem("option", value);
     });
     var itemValue = localStorage.getItem("option");
     if (itemValue !== null) {
-        $("input[value=\""+itemValue+"\"]").click();
+      $("input[value=\""+itemValue+"\"]").click();
     }
-  }); // ref link https://stackoverflow.com/a/53298040/11975753
+  });
 
   // change the display of page contents based on selected language
   $("[name='language']").click(function() {
     if (document.getElementById('enBtn').checked) {
-        $(".en").css("display", "block");
-        $(".zh").css("display", "none");
-      }
+      $(".en").css("display", "block");
+      $(".zh").css("display", "none");
+    }
     else if (document.getElementById('zhBtn').checked) {
-        $(".zh").css("display", "block");
-        $(".en").css("display", "none");
-      }
-    });
+      $(".zh").css("display", "block");
+      $(".en").css("display", "none");
+    }
+  });
 
-  // open and close nav sidebar on click
+  // open and close nav sidebar on click (ref link https://www.w3schools.com/howto/howto_js_sidenav.asp)
   function openNav() {
     document.getElementById("sideNav").style.width = "32.5vmax";
   }
@@ -125,16 +113,3 @@
     document.getElementById("sideNav").style.width = "0";
   }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-<!-- reference site https://www.w3schools.com/howto/howto_js_sidenav.asp -->
-<!-- https://www.tutorialrepublic.com/faq/how-to-get-the-value-of-selected-option-in-a-select-box-using-jquery.php -->
