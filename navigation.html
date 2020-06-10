@@ -1,10 +1,21 @@
 <!-- html -------------------------------------------------------------------- -->
+  <h1 class="en home"
+      style="margin: 0;
+             font-size: 2.2vmax;
+             line-height: 1;">
+      <a href="index.html">Nora Zhao</a>
+  </h1>
+  <h1 class="zh home"
+      style="margin: 0;
+             font-size: 1.82vmax;">
+      <a href="index.html">赵子娴</a>
+  </h1>
+
 <img id="menuBtn" onclick="openNav()" src="img/icon/menu.svg" alt="Menu">
 
 <!-- language selector -->
 <div id="langDiv">
   <input id="enBtn" type="radio" name="language" value="en" checked> EN
-  <br>
   <input id="zhBtn" type="radio" name="language" value="zh"> 中
 </div>
 
@@ -37,22 +48,29 @@
       <a class="en" href="#">About and Contact</a>
       <a class="zh" href="#">简介及联系方式</a>
     </p>
+
+    <p class="en">0 <br> 1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br> 1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br></p>
   </nav>
 </div>
 
 <!-- css -------------------------------------------------------------------- -->
 <style>
+  .home {
+    position: fixed;
+    top: 2vmax;
+    left: 4.6vmax; /* put the icon in place because it's twice the size of the close button */
+    z-index: 1;
+  }
+
   #langDiv {
     position: fixed;
-    top: 4vh;
-    left: 6vmax;
+    top: 5vmax;
+    left: 1.4vmax;
   }
   #menuBtn {
-    width: 4vmax; /* 2x1.8vmax */
+    width: 2vmax; /* 2x1.8vmax */
     position: fixed;
-    margin: 4vh 2vw;
-    top: -1vmax;
-    left: -1vmax; /* put the icon in place because it's twice the size of the close button */
+    margin: 2vmax 1.5vmax;
     z-index: 1;
     cursor: pointer;
   }
@@ -75,7 +93,7 @@
     color: blueviolet;
   }
   nav {
-    margin: 4vh 2vw;
+    margin: 2vmax 1.5vmax;
   }
 </style>
 
