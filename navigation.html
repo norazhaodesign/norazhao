@@ -1,25 +1,47 @@
-<!-- html -------------------------------------------------------------------- -->
-  <h1 class="en home"
-      style="margin: 0;
-             font-size: 2.2vmax;
-             line-height: 1;">
-      <a href="index.html">Nora Zhao</a>
-  </h1>
-  <h1 class="zh home"
-      style="margin: 0;
-             font-size: 1.82vmax;">
-      <a href="index.html">赵子娴</a>
-  </h1>
-
+<!-- menu button ---------------------------------------- -->
 <img id="menuBtn" onclick="openNav()" src="img/icon/menu.svg" alt="Menu">
+<style media="screen">
+  #menuBtn {
+    width: 2vmax; /* 2x1.8vmax */
+    position: fixed;
+    margin: 2vmax 1.5vmax;
+    z-index: 1;
+    cursor: pointer;
+  }
+</style>
+<script type="text/javascript">
+  // open and close nav sidebar on click (ref link https://www.w3schools.com/howto/howto_js_sidenav.asp)
+  function openNav() {
+    document.getElementById("sideNav").style.width = "32.5vmax";
+  }
+  function closeNav() {
+    document.getElementById("sideNav").style.width = "0";
+  }
+</script>
 
-<!-- language selector -->
-<div id="langDiv">
-  <input id="enBtn" type="radio" name="language" value="en" checked> EN
-  <input id="zhBtn" type="radio" name="language" value="zh"> 中
-</div>
+<!-- back to home page ---------------------------------------- -->
+<h1 class="en home"
+    style="margin: 0;
+           font-size: 2.2vmax;
+           line-height: 1;">
+    <a href="index.html">Nora Zhao</a>
+</h1>
+<h1 class="zh home"
+    style="margin: 0;
+           font-size: 1.82vmax;
+           line-height: 1.4;">
+    <a href="index.html">赵子娴</a>
+</h1>
+<style media="screen">
+  .home {
+    position: fixed;
+    top: 2vmax;
+    left: 4.6vmax;
+    z-index: 1;
+  }
+</style>
 
-<!-- side navigation menu -->
+<!-- side navigation menu ---------------------------------------- -->
 <div id="sideNav">
   <nav>
     <img id="closeBtn" onclick="closeNav()" src="img/icon/close.svg" alt="Close">
@@ -53,27 +75,7 @@
   </nav>
 </div>
 
-<!-- css -------------------------------------------------------------------- -->
-<style>
-  .home {
-    position: fixed;
-    top: 2vmax;
-    left: 4.6vmax; /* put the icon in place because it's twice the size of the close button */
-    z-index: 1;
-  }
-
-  #langDiv {
-    position: fixed;
-    top: 5vmax;
-    left: 1.4vmax;
-  }
-  #menuBtn {
-    width: 2vmax; /* 2x1.8vmax */
-    position: fixed;
-    margin: 2vmax 1.5vmax;
-    z-index: 1;
-    cursor: pointer;
-  }
+<style media="screen">
   #closeBtn {
     width: 2vmax;
     cursor: pointer;
@@ -97,7 +99,43 @@
   }
 </style>
 
-<!-- javascript -------------------------------------------------------------------- -->
+<!-- language selector ---------------------------------------- -->
+<div class="radioToolbar">
+  <input type="radio" id="enBtn" name="language" value="en" checked>
+  <label for="enBtn" id="enSvg"><img src="img/icon/en.svg" alt=""></label>
+
+  <input type="radio" id="zhBtn" name="language" value="zh">
+  <label for="zhBtn" id="zhSvg"><img src="img/icon/zh.svg" alt=""></label>
+</div>
+<style media="screen">
+  /* (style ref link https://jsfiddle.net/markheath/azk2cL45) */
+  .radioToolbar {
+    position: fixed;
+    top: 4.4vmax;
+    left: 1.4vmax;
+  }
+  .radioToolbar input[type="radio"] { /* hide default radio buttons */
+    opacity: 0;
+    position: fixed;
+    width: 0;
+    }
+  .radioToolbar label { /* each botton */
+    display: inline-block;
+    margin-right: 0.2vmax;
+  }
+  #enSvg {
+    width: 2vmax;
+  }
+  #zhSvg {
+    width: 3vmax;
+  }
+  .radioToolbar label:hover {
+    cursor: pointer;
+  }
+  .radioToolbar input[type="radio"]:checked + label { /* https://css-tricks.com/change-color-of-svg-on-hover/ */
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  }
+</style>
 <script type="text/javascript">
   // record & retrive the selection status (ref link https://stackoverflow.com/a/53298040/11975753)
   $(function() {
@@ -122,12 +160,4 @@
       $(".en").css("display", "none");
     }
   });
-
-  // open and close nav sidebar on click (ref link https://www.w3schools.com/howto/howto_js_sidenav.asp)
-  function openNav() {
-    document.getElementById("sideNav").style.width = "32.5vmax";
-  }
-  function closeNav() {
-    document.getElementById("sideNav").style.width = "0";
-  }
 </script>
