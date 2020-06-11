@@ -82,21 +82,11 @@ p span:lang(en) {
 
 /* h6 text */
 h6 {
-  font-weight: normal;
-  margin: 0;
-  margin-left: 20vw;
-}
-h6.en, h6 a.en {
-  font-family: "plain-light", sans-serif;
-  font-size: 1.3vmax;
-}
-h6.zh, h6 a.zh {
   font-family: sans-serif;
-  font-size: 1.2vmax;
-}
-h6 span:lang(en) {
-  position: relative;
-  top: 0.11vmax; /* shift it down to align with chinese text */
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0.5vmax 0 0 1.5vmax;
+  width: 34vmax;
 }
 
 /* line break */
@@ -163,5 +153,13 @@ a:visited {
   }
   .hide-on-mobile {
     display: none;
+  }
+  p.en, p a.en, p.zh, p a.zh, p span:lang(en) {
+    font-size: 12pt;
+    line-height: 20pt;
+  }
+  h6 {
+    font-size: 8pt;
+    width: 200px;
   }
 }
