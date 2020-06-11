@@ -22,6 +22,10 @@
   font-family: "lanting-heavy";
   src: url(font/lantinghei-pro-heavy.ttf);
 }
+@font-face {
+  font-family: "plain-light";
+  src: url(font/plain-light.ttf);
+}
 
 html {
   display: grid;
@@ -40,6 +44,7 @@ section {
 img {
   width: 100%;
   margin: 0;
+  background-color: #e66b57;
 }
 
 /* page title */
@@ -74,6 +79,25 @@ p span:lang(en) {
   font-size: 1.6vmax;
   position: relative;
   top: 0.2vmax; /* shift it down to align with chinese text */
+}
+
+/* h6 text */
+h6 {
+  font-weight: normal;
+  margin: 0;
+  margin-left: 20vw;
+}
+h6.en, h6 a.en {
+  font-family: "plain-light", sans-serif;
+  font-size: 1.3vmax;
+}
+h6.zh, h6 a.zh {
+  font-family: sans-serif;
+  font-size: 1.2vmax;
+}
+h6 span:lang(en) {
+  position: relative;
+  top: 0.11vmax; /* shift it down to align with chinese text */
 }
 
 /* line break */
@@ -131,6 +155,8 @@ a:visited {
 @media screen and (max-width: 500px) {
   section {
     margin-left: 1.5vmax; /* no white space on the left */
+  }
+  .pageTop {
     margin-top: 8vmax; /* move page content down for the space of the menu button */
   }
   .gridxto1 {

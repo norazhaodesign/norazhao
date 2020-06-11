@@ -2,9 +2,10 @@
 <img id="menuBtn" onclick="openNav()" src="img/icon/menu.svg" alt="Menu">
 <style media="screen">
   #menuBtn {
-    width: 2vmax; /* 2x1.8vmax */
+    width: 2vmax;
     position: fixed;
-    margin: 2vmax 1.5vmax;
+    top: 2vmax;
+    left: 1.5vmax;
     z-index: 1;
     cursor: pointer;
   }
@@ -18,6 +19,10 @@
     document.getElementById("sideNav").style.width = "0";
   }
 </script>
+
+
+
+
 
 <!-- back to home page ---------------------------------------- -->
 <h1 class="en home"
@@ -41,47 +46,61 @@
   }
 </style>
 
+
+
+
+
 <!-- side navigation menu ---------------------------------------- -->
 <div id="sideNav">
   <nav>
     <img id="closeBtn" onclick="closeNav()" src="img/icon/close.svg" alt="Close">
 
+
+
+
+
     <!-- language selector ---------------------------------------- -->
-    <div class="radioToolbar">
+    <div id="radioToolbar">
       <input type="radio" id="enBtn" name="language" value="en" checked>
       <label for="enBtn">
-        <p style="font-family: 'canela-thin', serif; font-size: 2vmax;">English</p>
+        <p style="font-family: 'canela-thin', serif;
+                  font-size: 2vmax;
+                  margin: 0;">English</p>
       </label>
-      <p style="font-family: 'canela-thin', serif; font-size: 2vmax; display: inline-block;">·</p>
+      <p style="font-family: 'canela-thin', serif;
+                font-size: 2vmax;
+                display: inline-block;
+                margin: 0;">·</p>
       <input type="radio" id="zhBtn" name="language" value="zh">
       <label for="zhBtn">
         <p style="font-family: 'STSong', '华文宋体', 'NSimSun', '新宋体', 'SimSun', '宋体', serif;
                   font-size: 1.6vmax;
                   position: relative;
-                  bottom: 0.21vmax;">中文</p>
+                  bottom: 0.21vmax;
+                  margin: 0;">中文</p>
       </label>
     </div>
     <style media="screen">
       /* (style ref https://jsfiddle.net/markheath/azk2cL45) */
-      .radioToolbar {
+      #radioToolbar {
         display: inline-block;
         margin-left: 1vmax;
       }
-      .radioToolbar input[type="radio"] { /* hide default radio buttons */
+      #radioToolbar input[type="radio"] { /* hide default radio buttons */
         opacity: 0;
         position: fixed;
         width: 0;
         }
-      .radioToolbar label { /* each botton */
+      #radioToolbar label { /* each botton */
         display: inline-block;
         margin-right: 0.2vmax;
       }
-
-      .radioToolbar label:hover {
+      #radioToolbar label:hover {
         cursor: pointer;
       }
-      .radioToolbar input[type="radio"]:checked + label { /* https://css-tricks.com/change-color-of-svg-on-hover/ */
-        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+      #radioToolbar input[type="radio"]:checked + label { /* (ref https://css-tricks.com/change-color-of-svg-on-hover) */
+        /* to turn black into another color (tool https://codepen.io/sosuke/pen/Pjoqqp) */
+        filter: invert(24%) sepia(65%) saturate(3318%) hue-rotate(261deg) brightness(87%) contrast(104%);
       }
     </style>
     <script type="text/javascript">
@@ -96,7 +115,6 @@
           $("input[value=\""+itemValue+"\"]").click();
         }
       });
-
       // change the display of page contents based on selected language
       $("[name='language']").click(function() {
         if (document.getElementById('enBtn').checked) {
@@ -110,7 +128,12 @@
       });
     </script>
 
+
+
+
+
     <!-- sidebar menu contents ---------------------------------------- -->
+    <div style="margin-top: 4vh;"></div>
     <p>
       <a class="en" href="index.html">Home Page</a>
       <a class="zh" href="index.html">主页</a>
@@ -119,8 +142,9 @@
     <p class="en">Coding Projects</p>
     <p class="zh">编程设计项目</p>
     <p>
-      <a class="en" href="glitch-room.html">- Glitch Room</a>
-      <a class="zh" href="glitch-room.html">- 故障房间</a>
+      <img class="projectIcon" src="img/icon/glitch.ico" alt="-">
+      <a class="en" href="glitch-room.html">Glitch Room</a>
+      <a class="zh" href="glitch-room.html">故障房间</a>
     </p>
 
     <p class="en">Branding Projects</p>
@@ -138,10 +162,13 @@
     </p>
 
     <p class="en">0 <br> 1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br> 1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br></p>
+    <p class="zh">0 <br> 1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br> 0 <br> 1 <br> 2 <br> 3 <br> 4 <br> 5 <br> 6 <br> 7 <br> 8 <br> 9 <br></p>
   </nav>
 </div>
-
 <style media="screen">
+  nav {
+    margin: 2vmax 1.5vmax; /* nav contents margin */
+  }
   #closeBtn {
     width: 2vmax;
     cursor: pointer;
@@ -150,21 +177,23 @@
     height: 100%; /* 100% full-height */
     width: 0; /* 0 width - change this with JavaScript */
     z-index: 2; /* stay on top */
-    position: fixed; /* stay in place */
+    position: fixed;
     top: 0;
     left: 0;
     background-color: lavender;
     overflow-x: hidden; /* disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.3s; /* 0.x second transition effect to slide in the sidenav */
   }
-  #sideNav a:hover {
+  .projectIcon {
+    width: 1.5vmax;
+    float: left;
+    margin: 0.5vmax 1vmax 0 0;
+  }
+  nav a:hover {
     color: blueviolet;
   }
-  nav {
-    margin: 2vmax 1.5vmax;
-  }
-  #sideNav a.active{
-    text-decoration:line-through blueviolet;
+  nav a.active{
+    text-decoration: line-through blueviolet;
   }
 </style>
 <script type="text/javascript">
