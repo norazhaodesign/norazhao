@@ -60,10 +60,11 @@ h1 {
 }
 h1.en {
   font-family: "gt-black", sans-serif;
+  margin-bottom: 1vmax;
 }
 h1.zh {
   font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
-  margin-bottom: 1.5vmax;
+  margin-bottom: 2vmax;
 }
 
 /* body text */
