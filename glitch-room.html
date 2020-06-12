@@ -56,22 +56,23 @@ $(function(){
 <div class="" style="margin-top: 40vh;"></div>
 
 <section>
-  <p class="en">
-    <a href="#">Previous Project</a>
-    &nbsp;&nbsp;·&nbsp;&nbsp;
-    <a href="#">Back to Top</a>
-    &nbsp;&nbsp;·&nbsp;&nbsp;
-    <a href="#">Next Project</a>
-  </p>
-
-  <p class="zh">
-    <a href="#">上个项目</a>
-    ·
-    <a href="#">回到页面顶部</a>
-    ·
-    <a href="#">下个项目</a>
-  </p>
+  <footer>
+    <h6 class="en">© 2020 Nora Zhao. All Rights Reserved. Website designed and coded by myself.</h6>
+    <h6 class="zh">© 2020 赵子娴 保留所有权利。网页设计及代码编写由我本人完成。</h6>
+  </footer>
 </section>
+
+<div style="width: 100%; border-bottom: 1px solid dimgray"></div>
+<a href="index.html">
+  <p class="en" style="position:absolute; left: 1.5vmax;">Next Project</p>
+  <p class="zh" style="position:absolute; left: 1.5vmax;">浏览下一个项目</p>
+  <div id="nextProject" style="width: 100%; height: 70vh; overflow: hidden;"></div>
+</a>
+<script type="text/javascript">
+$(function(){
+  $("#nextProject").load("index.html");
+});
+</script>
 
 </body>
 </html>

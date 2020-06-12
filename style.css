@@ -26,6 +26,10 @@
   font-family: "plain-light";
   src: url(font/plain-light.ttf);
 }
+@font-face {
+  font-family: "graphik";
+  src: url(font/graphik.ttf);
+}
 
 html {
   display: grid;
@@ -99,14 +103,19 @@ h6 {
   font-family: sans-serif;
   font-size: 14px;
   font-weight: normal;
+  color: dimgray;
   margin: 0.5vmax 0 0 1.5vmax;
-  width: 34vmax;
+  width: 240px;
 }
 @media screen and (max-width: 500px) {
   h6 {
     font-size: 7pt;
-    width: 200px;
+    width: 140px;
   }
+}
+footer h6 {
+  margin: 0;
+  width: 100%;
 }
 
 /* line break */
