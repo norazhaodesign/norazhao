@@ -79,6 +79,20 @@ p span:lang(en) {
   position: relative;
   top: 0.2vmax; /* shift it down to align with chinese text */
 }
+@media screen and (max-width: 500px) {
+  p.en, p a.en {
+    font-size: 12pt;
+    line-height: 16.8pt;
+  }
+  p.zh, p a.zh {
+    font-size: 9.6pt;
+    line-height: 16.8pt;
+  }
+  p span:lang(en) {
+    font-size: 9.6pt;
+    top: 1pt;
+  }
+}
 
 /* h6 text */
 h6 {
@@ -87,6 +101,12 @@ h6 {
   font-weight: normal;
   margin: 0.5vmax 0 0 1.5vmax;
   width: 34vmax;
+}
+@media screen and (max-width: 500px) {
+  h6 {
+    font-size: 7pt;
+    width: 200px;
+  }
 }
 
 /* line break */
@@ -153,13 +173,5 @@ a:visited {
   }
   .hide-on-mobile {
     display: none;
-  }
-  p.en, p a.en, p.zh, p a.zh, p span:lang(en) {
-    font-size: 12pt;
-    line-height: 20pt;
-  }
-  h6 {
-    font-size: 8pt;
-    width: 200px;
   }
 }
