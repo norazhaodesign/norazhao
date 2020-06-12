@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NORA ZHAO 赵子娴 · GRAPHIC DESIGNER 平面设计师</title>
+<title>Glitch Room 故障房间</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="js/jquery.min.js"></script>
 </head>
@@ -16,6 +16,7 @@ $(function(){
 });
 </script>
 
+<main>
 <section class="pageTop">
   <p class="en">An interactive VR site which generates customised glitching patterns.<p>
   <p class="zh">可生成自定义故障图样的交互式虚拟现实网站。</p>
@@ -25,7 +26,7 @@ $(function(){
 <h1 class="zh">故障房间</h1>
 <br>
 <!-- <iframe src="page/glitch-room.html" style="width: 100%; height: 60vh; border: 0;"></iframe> -->
-<img src="img/glitch-room/1-1sc.jpg" alt="Glitch Room - A Graphic Design Project by Nora Zhao">
+<img src="img/glitch-room/1-1sc.jpg" alt="Glitch Room by Nora Zhao">
 
 <section>
   <p class="en text">
@@ -34,45 +35,34 @@ $(function(){
     The project is situated in the context of glitch art. Using computer code as a design medium and z-fighting as methodology, it generates unique patterns every millisecond and displays them on-screen with a flickering effect.
     <br>
     A control panel is implemented to allow customisation of the geometries while the 3D rendering mechanism produces personalised fit-to-screen graphic output.
-    <br>
   </p>
   <p class="zh text">
     故障房间是一个交互式网站，用户可以设计、访问和修改现有模型，并通过虚拟现实步入生成的空间以实现沉浸式视觉体验。
     <br>
     该项目在故障艺术这一领域进行了探索，以计算机代码为设计媒介，以深度缓冲噪音为方法，以闪烁的效果呈现每毫秒生成的独特图样。网站通过植入用户可调的控制面板实现模型自定义，通过三维渲染机制生成适应设备及屏幕尺寸的个性化图样输出，二者结合使该项目同时实现了自定义及个性化。
-    <br>
   </p>
 </section>
 
-<img src="img/glitch-room/2-1sc.jpg" alt="Glitch Room - A Graphic Design Project by Nora Zhao">
-<img src="img/glitch-room/6-2s.jpg" alt="Glitch Room - A Graphic Design Project by Nora Zhao">
+<img src="img/glitch-room/2-1sc.jpg" alt="Glitch Room by Nora Zhao">
+<img src="img/glitch-room/6-2s.jpg" alt="Glitch Room by Nora Zhao">
 
-<img src="img/glitch-room/5-2s.jpg" alt="Glitch Room - A Graphic Design Project by Nora Zhao">
-<img src="img/glitch-room/8-1sp.jpg" alt="Glitch Room - A Graphic Design Project by Nora Zhao">
+<img src="img/glitch-room/5-2s.jpg" alt="Glitch Room by Nora Zhao">
+<img src="img/glitch-room/8-1sp.jpg" alt="Glitch Room by Nora Zhao">
 
 <h6 class="en">Screenshots of 3D models in VR view on glitchroom.com.</h6>
 <h6 class="zh">三维模型在<span lang="en"> glitchroom.com </span>虚拟现实空间中的截图。</h6>
+</main>
 
-<div class="" style="margin-top: 40vh;"></div>
-
-<section>
-  <footer>
-    <h6 class="en">© 2020 Nora Zhao. All Rights Reserved. Website designed and coded by myself.</h6>
-    <h6 class="zh">© 2020 赵子娴 保留所有权利。网页设计及代码编写由我本人完成。</h6>
-  </footer>
-</section>
-
-<div style="width: 100%; border-bottom: 1px solid dimgray"></div>
-<a href="index.html">
-  <p class="en" style="position:absolute; left: 1.5vmax;">Next Project</p>
-  <p class="zh" style="position:absolute; left: 1.5vmax;">浏览下一个项目</p>
-  <div id="nextProject" style="width: 100%; height: 70vh; overflow: hidden;"></div>
+<div class="pageDivider"></div>
+<a href="chinese-grid.html"> <!-- change link -->
+  <p class="en nextText">Next Project</p>
+  <p class="zh nextText">下一个项目</p>
+  <div id="nextPage"></div>
 </a>
 <script type="text/javascript">
 $(function(){
-  $("#nextProject").load("index.html");
+  $("#nextPage").load("chinese-grid.html main"); <!-- change link -->
 });
 </script>
-
 </body>
 </html>
