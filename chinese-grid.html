@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Glitch Room 故障房间</title>
+<title>Chinese Grid 中文文字网格</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="js/jquery.min.js"></script>
 </head>
@@ -27,20 +27,24 @@ $(function(){
 <div class="iframeWrapper">
   <iframe src="page/chinese-grid.html"></iframe>
 </div>
-<h6 class="en">Click on the components to construt a figure of your choice and have two generated outcomes.</h6>
-<h6 class="zh">点击部件以组建您想要的文字或图形，由系统生成两种结果。</h6>
+<h6 class="en imgDescription">Click on the components to construt a figure of your choice and have two generated outcomes.</h6>
+<h6 class="zh imgDescription">点击部件以组建您想要的文字或图形，由系统生成两种结果。</h6>
 
 <section>
   <p class="en text">
-    In terms of making a new Chinese font, designers need to construct and adjust each character manually with pre-designed basic strokes. Unlike English, where there are only limited number of alphabets and symbols, the vast number of Chinese characters require the character making process to be repeated for at least a few thousands, sometimes tens of thousands times.
+    In terms of making a new Chinese font, traditionally designers have to construct and adjust each character manually with pre-designed basic strokes. Unlike English, where there are only limited number of alphabets and symbols, the vast number of Chinese characters require the character making process to be repeated for at least a few thousands, sometimes tens of thousands times.
     <!-- add another paragraph to state the reason of making this system -->
     <br>
     The project aims at challenging the traditional method of Chinese type design with a systematic approach.
   </p>
   <p class="zh text">
-    产出一套中文字体的传统方法是由设计师根据基本笔画一笔一笔地手动拼写和调整每个文字，而因为汉字巨大的数量，这个过程通常要重复成千上万次。通过建立一个几何化的体系，本项目旨在探索和挑战传统的字体设计方法。
+    产出一套中文字体的传统方法往往是由设计师根据基本笔画一笔一划地手动拼写和调整每个文字。因为汉字字符数目巨大，这个过程通常要重复成千上万次。通过建立一个几何化的体系，本项目旨在探索和挑战传统的字体设计方法。
   </p>
 </section>
+
+<img src="img/chinese-grid/grid.png" alt="Chinese Grid by Nora Zhao">
+<h6 class="en imgDescription">Each point and line has its corresponding part in the system, which allows the simultaneous generation of a character in two styles.</h6>
+<h6 class="zh imgDescription"></h6>
 
 </main>
 
@@ -52,7 +56,14 @@ $(function(){
 </a>
 <script type="text/javascript">
 $(function(){
-  $("#nextPage").load("glitch-room.html main"); <!-- change link -->
+  $("#nextPage").load("glitch-room.html main"); // change link
+});
+</script>
+
+<div id="footer"></div>
+<script type="text/javascript">
+$(function(){
+  $("#footer").load("footer.html");
 });
 </script>
 </body>

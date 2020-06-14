@@ -13,11 +13,11 @@
     position: absolute;
     width: 100%;
   }
-  .buttons { /* button wrapper: center button on the page */
+  .buttonsWrapper { /* button wrapper: center button on the page */
     text-align: left;
     margin-left: 6.4%;
   }
-  button {
+  .button {
     margin-top: 2%;
     display: inline-block;
     cursor: pointer;
@@ -52,8 +52,9 @@
 </head>
 
 <body>
-<div class="buttons">
-  <button>Hide/Show Assist Grid</button>
+<div class="buttonsWrapper">
+  <button class="button">Hide/Show Assist Grid</button>
+  <button class="button" onClick="document.location.reload()">Clear All</button>
 </div>
 <div>
   <svg class="background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 853.95 449.68">
