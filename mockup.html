@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- write title -->
+<title></title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="navigation"></div>
+<script type="text/javascript">
+$(function() {
+  $("#navigation").load("navigation.html");
+});
+</script>
+
+<main>
+<section class="pageTop">
+  <!-- write project summary-->
+  <p class="en"><p>
+  <p class="zh"></p>
+</section>
+
+<!-- write project title -->
+<h1 class="en"></h1>
+<h1 class="zh"></h1>
+
+<!-- place img -->
+<img src="img/" alt="by Nora Zhao">
+
+<!-- write img description-->
+<h6 class="en imgDescription"></h6>
+<h6 class="zh imgDescription"></h6>
+
+<section>
+  <!-- write body text -->
+  <p class="en text">
+  </p>
+  <p class="zh text">
+  </p>
+</section>
+
+</main>
+
+<div class="pageDivider"></div>
+
+<!-- place link-->
+<a href=".html">
+  <p class="en nextText">Next Project</p>
+  <p class="zh nextText">下一个项目</p>
+  <div id="nextPage"></div>
+</a>
+<script type="text/javascript">
+$(function(){
+  // place link
+  $("#nextPage").load(".html main");
+});
+</script>
+
+<div id="footer"></div>
+<script type="text/javascript">
+$(function(){
+  $("#footer").load("footer.html");
+});
+</script>
+</body>
+</html>
