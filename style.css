@@ -161,6 +161,7 @@ a:visited {
   padding-top: 60%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  margin: 5px 0;
 }
 iframe {
   border: none;
