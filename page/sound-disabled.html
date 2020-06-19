@@ -76,7 +76,8 @@ a {
   // update
   var clock = new THREE.Clock();
 
-  var [n1, n2, n3, n4, n5, n6, n7, n8, n9] = [Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005, Math.random() * 0.0005 + 0.0005];
+  // bigger > rotation faster
+  var [n1, n2, n3, n4, n5, n6, n7, n8, n9] = [Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005];
 
   var randomR1 = (Math.PI * 2) * Math.random();
   var randomG1 = (Math.PI * 2) * Math.random();
@@ -88,6 +89,7 @@ a {
   var randomG3 = (Math.PI * 2) * Math.random();
   var randomB3 = (Math.PI * 2) * Math.random();
 
+  // bigger > color change slower
   var [t1, t2, t3, t4, t5, t6, t7, t8, t9] = [Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5];
 
   var update = function() {
@@ -99,19 +101,19 @@ a {
     var timeElapsed = clock.getElapsedTime();
 
     // sound value to decide color brightness
-      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *256);
-      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *256);
-      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *256);
+      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 * 100 + 56);
+      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 * 100 + 56);
+      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 * 100 + 56);
       obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
 
-      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *256);
-      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *256);
-      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *256);
+      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 * 156 + 100);
+      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 * 156 + 100);
+      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 * 156 + 100);
       obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
 
-      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *256);
-      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *256);
-      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *256);
+      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 * 156 + 100);
+      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 * 156 + 100);
+      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 * 156 + 100);
       obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
 
     renderer.setSize(window.innerWidth, window.innerHeight);
