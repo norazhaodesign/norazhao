@@ -13,9 +13,9 @@ html, body {
   font-family: 'Roboto', sans-serif;
   z-index: 1;
   position: absolute;
-  bottom: 1%;
-  left: 0.4%;
-  right: 0.5%;
+  bottom: 1vh;
+  left: 0.4vw;
+  right: 0.5vw;
   text-transform: uppercase;
   font-size: 1.58vw;
   text-align: center;
@@ -28,6 +28,7 @@ a {
 </style>
 <title>Nora Zhao</title>
 </head>
+
 <body>
 <div class="text">
   This model reponds to sound in its sorrounding environment. Please allow microphone access. Design by Nora Zhao.
@@ -35,7 +36,7 @@ a {
 <div id = "webgl"></div>
 
 <script>
-  // the volume: sound ------------------------------------------------------
+  // sound volumn
   var sound;
   navigator.mediaDevices.getUserMedia({ audio: true, video: false })
   .then(function(stream) {

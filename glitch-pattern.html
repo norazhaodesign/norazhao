@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- write title -->
-<title>Weather Sphere 天气球</title>
+<title>Glitch Pattern 故障图纹</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="js/jquery.min.js"></script>
 </head>
@@ -19,18 +18,14 @@ $(function() {
 
 <main>
 <section class="pageTop">
-  <!-- write project summary-->
-  <p class="en">Visualisation of a city's live weather data in the form of a 3D sphere.<p>
-  <p class="zh">以三维球体模型视觉化一个城市的实时天气数据。</p>
+  <p class="en">Patterned images generated with the z-fighting glitch.<p>
+  <p class="zh">由深度缓冲噪音生成的故障图纹。</p>
 </section>
 
-<h1 class="en">Weather Sphere</h1>
-<h1 class="zh">天气球</h1>
+<h1 class="en">Glitch Pattern</h1>
+<h1 class="zh">故障图纹</h1>
 
-<!-- place img -->
-<div class="iframeWrapper">
-  <iframe src="page/weather-sphere.html"></iframe>
-</div>
+<img src="img/glitch-pattern/1s.jpg" alt="Glitch Pattern by Nora Zhao">
 
 <!-- write img description-->
 <h6 class="en imgDescription"></h6>
@@ -48,16 +43,14 @@ $(function() {
 
 <div class="pageDivider"></div>
 
-<!-- place link-->
-<a href="glitch-pattern.html">
+<a href="coordinate-converter.html">
   <p class="en nextText">Next Project</p>
   <p class="zh nextText">下一个项目</p>
   <div id="nextPage"></div>
 </a>
 <script type="text/javascript">
 $(function() {
-  // place link
-  $("#nextPage").load("glitch-pattern.html main");
+  $("#nextPage").load("coordinate-converter.html main");
 });
 </script>
 
