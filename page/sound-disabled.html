@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<script src="../js/three.min.js"></script>
+<style media="screen">
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden
+}
+.text {
+  font-family: 'Roboto', sans-serif;
+  z-index: 1;
+  position: absolute;
+  bottom: 1%;
+  left: 0.4%;
+  right: 0.5%;
+  text-transform: uppercase;
+  font-size: 1.58vw;
+  text-align: center;
+  margin: auto;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+</style>
+<title>Nora Zhao</title>
+</head>
+<body>
+<div id = "webgl"></div>
+
+<script>
+  // scene
+  var scene = new THREE.Scene();
+
+  // camera
+  var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 0, 1);
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+  // define geometry
+  function getSphere(x, y, z) {
+    var geometry = new THREE.SphereGeometry(x, y, z);
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 1,
+      side: THREE.DoubleSide
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    return mesh;
+  }
+
+  // place geometry
+  var [obj1, obj2, obj3] = [getSphere(5, 6, 6), getSphere(5, 6, 6), getSphere(5, 6, 6)];
+
+  var group = new THREE.Group();
+  group.add(obj1, obj2, obj3);
+  group.position.set(0, 0, 0);
+  group.scale.set(1, 1, 1);
+
+  // initail rotation status
+  obj1.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+  obj2.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+  obj3.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+
+  scene.add(group);
+
+  // render
+  var renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor('rgb(255, 255, 255)');
+  document.getElementById('webgl').appendChild(renderer.domElement);
+
+  // update
+  var clock = new THREE.Clock();
+
+  // bigger > rotation faster
+  var [n1, n2, n3, n4, n5, n6, n7, n8, n9] = [Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005];
+
+  var randomR1 = (Math.PI * 2) * Math.random();
+  var randomG1 = (Math.PI * 2) * Math.random();
+  var randomB1 = (Math.PI * 2) * Math.random();
+  var randomR2 = (Math.PI * 2) * Math.random();
+  var randomG2 = (Math.PI * 2) * Math.random();
+  var randomB2 = (Math.PI * 2) * Math.random();
+  var randomR3 = (Math.PI * 2) * Math.random();
+  var randomG3 = (Math.PI * 2) * Math.random();
+  var randomB3 = (Math.PI * 2) * Math.random();
+
+  // bigger > color change slower
+  var [t1, t2, t3, t4, t5, t6, t7, t8, t9] = [Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5];
+
+  var update = function() {
+
+    obj1.rotation.x -= n1; obj1.rotation.y += n2; obj1.rotation.z -= n3;
+    obj2.rotation.x += n4; obj2.rotation.y -= n5; obj2.rotation.z -= n6;
+    obj3.rotation.x -= n7; obj3.rotation.y += n8; obj3.rotation.z += n9;
+
+    var timeElapsed = clock.getElapsedTime();
+
+    // sound value to decide color brightness
+      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 * 100 + 56);
+      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 * 100 + 56);
+      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 * 100 + 56);
+      obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
+
+      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 * 156 + 100);
+      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 * 156 + 100);
+      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 * 156 + 100);
+      obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
+
+      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 * 156 + 100);
+      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 * 156 + 100);
+      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 * 156 + 100);
+      obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
+    renderer.render (scene, camera);
+    setTimeout( function() { requestAnimationFrame (function() {
+      update(scene, camera);
+    }) }, 1000 / 60 );
+  }
+
+  update();
+</script>
+</body>
+</html>

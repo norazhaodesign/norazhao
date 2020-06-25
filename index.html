@@ -8,33 +8,43 @@
 <script src="js/jquery.min.js"></script>
 </head>
 
-<body>
-<div id="navigation"></div>
-<script type="text/javascript">
-$(function() {
-  $("#navigation").load("navigation.html");
-});
-</script>
-
 <main>
+  <h1 class="en home"
+      style="margin: 0;
+             font-size: 2.2vmax;
+             line-height: 1;">
+      <a href="index.html">Nora Zhao</a>
+  </h1>
+  <h1 class="zh home"
+      style="margin: 0;
+             font-size: 1.82vmax;
+             line-height: 1.4;">
+      <a href="index.html">赵子娴</a>
+  </h1>
+  <style media="screen">
+    .home {
+      position: fixed;
+      top: 2vmax;
+      left: 1.5vmax;
+      z-index: 1;
+    }
+    html, body, iframe, .iframeWrapper {
+      margin-bottom: 0;
+    }
+  </style>
+
+
+
 <section class="pageTop">
   <p class="en">I'm a designer who works across the area of generative design, branding and conventional graphic design.</p>
-  <p class="zh">我是一名实践于衍生式设计、品牌设计和传统的平面设计等领域的设计师。</p>
 </section>
 
-<h1 class="en">Nora Zhao</h1>
-<h1 class="zh">赵子娴</h1>
+<h1 class="en">Coming Soon</h1>
 <br>
 <div class="iframeWrapper">
-  <iframe src="page/sound.html"></iframe>
+  <iframe src="page/sound-disabled.html"></iframe>
 </div>
 </main>
 
-<div id="footer"></div>
-<script type="text/javascript">
-$(function() {
-  $("#footer").load("footer.html");
-});
-</script>
 </body>
 </html>
