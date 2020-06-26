@@ -50,6 +50,10 @@ img {
   width: 100%;
   margin: 0.1vmin 0;
 }
+.pix {
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
 
 /* page title */
 h1 {
