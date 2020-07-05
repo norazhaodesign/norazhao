@@ -11,9 +11,9 @@
 <body>
 <div id="navigation"></div>
 <script type="text/javascript">
-$(function() {
-  $("#navigation").load("navigation.html");
-});
+  $(function() {
+    $("#navigation").load("navigation.html");
+  });
 </script>
 
 <main>
@@ -43,22 +43,24 @@ $(function() {
 
 <div class="pageDivider"></div>
 
-<a href="chinese-grid.html">
-  <p class="en nextText">Next Project</p>
-  <p class="zh nextText">下一个项目</p>
-  <div id="nextPage"></div>
-</a>
-<script type="text/javascript">
-$(function() {
-  $("#nextPage").load("chinese-grid.html main");
-});
-</script>
+<div class="nextPageDiv">
+  <a href="chinese-grid.html"> <!-- change link -->
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下一个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("chinese-grid.html main"); // change link
+    });
+  </script>
+</div>
 
 <div id="footer"></div>
 <script type="text/javascript">
-$(function() {
-  $("#footer").load("footer.html");
-});
+  $(function() {
+    $("#footer").load("footer.html");
+  });
 </script>
 </body>
 </html>

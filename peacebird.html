@@ -11,9 +11,9 @@
 <body>
 <div id="navigation"></div>
 <script type="text/javascript">
-$(function() {
-  $("#navigation").load("navigation.html");
-});
+  $(function() {
+    $("#navigation").load("navigation.html");
+  });
 </script>
 
 <main>
@@ -40,7 +40,7 @@ $(function() {
 
 <section>
   <p class="en text">
-    While maintaining the sans-serif approach and its unique visual characteristics, the new logotype maximises the simplicity of form to achive better legibility on digital screens.
+    While maintaining the sans-serif approach and its unique visual characteristics, the new logotype maximises the simplicity of form to achive a better legibility on digital screens.
   </p>
   <p class="zh text">
     在维持衬线字体及其独特视觉特征的前提下，我们最大限度地简化了太平鸟的企业标识，使其能在数字屏幕上清晰显示。
@@ -51,22 +51,24 @@ $(function() {
 
 <div class="pageDivider"></div>
 
-<a href="byton.html">
-  <p class="en nextText">Next Project</p>
-  <p class="zh nextText">下一个项目</p>
-  <div id="nextPage"></div>
-</a>
-<script type="text/javascript">
-$(function() {
-  $("#nextPage").load("byton.html main");
-});
-</script>
+<div class="nextPageDiv">
+  <a href="byton.html">
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下一个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("byton.html main");
+    });
+  </script>
+</div>
 
 <div id="footer"></div>
 <script type="text/javascript">
-$(function() {
-  $("#footer").load("footer.html");
-});
+  $(function() {
+    $("#footer").load("footer.html");
+  });
 </script>
 </body>
 </html>

@@ -137,17 +137,26 @@ h6.imgDescription {
 
 /* link */
 a:link {
-  color: black;
   text-decoration: none;
+  color: black;
 }
 a:visited {
   color: black;
+}
+main a:link { /* not affecting navigation and next peohect section  */
+  color: blueviolet;
+}
+main a:visited {
+  color: blueviolet;
 }
 
 .pageDivider {
   margin-top: 20vh;
   width: 100%;
   border-bottom: 1px solid dimgray;
+}
+.nextPageDiv {
+  background-color: rgb(245,248,255);
 }
 .nextText {
   position:absolute;

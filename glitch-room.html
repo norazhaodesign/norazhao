@@ -11,9 +11,9 @@
 <body>
 <div id="navigation"></div>
 <script type="text/javascript">
-$(function() {
-  $("#navigation").load("navigation.html");
-});
+  $(function() {
+    $("#navigation").load("navigation.html");
+  });
 </script>
 
 <main>
@@ -25,7 +25,7 @@ $(function() {
 <h1 class="en">Glitch Room</h1>
 <h1 class="zh">故障房间</h1>
 <!-- <iframe src="page/glitch-room.html" style="width: 100%; height: 60vh; border: 0;"></iframe> -->
-<img src="img/glitch-room/1-5b2.png" alt="Glitch Room by Nora Zhao">
+<img src="img/glitch-room/1-6b.png" alt="Glitch Room by Nora Zhao">
 
 <h6 class="en imgDescription">A model customisation page screenshot.</h6>
 <h6 class="zh imgDescription">模型自定义页面截图。</h6>
@@ -60,23 +60,31 @@ $(function() {
 <h6 class="zh imgDescription">三维模型在虚拟现实空间中的截图。</h6>
 </main>
 
+<!-- <h6 class="en" 
+    style="text-align: right; margin-left: 34vw; margin-right: 1.5vmax; margin-top: 20vh;">
+  2020 All Rights Reserved. Design and Code by Nora Zhao.
+</h6> -->
+
 <div class="pageDivider"></div>
-<a href="weather-sphere.html">
-  <p class="en nextText">Next Project</p>
-  <p class="zh nextText">下一个项目</p>
-  <div id="nextPage"></div>
-</a>
-<script type="text/javascript">
-$(function() {
-  $("#nextPage").load("weather-sphere.html main"); // change link
-});
-</script>
+
+<div class="nextPageDiv">
+  <a href="weather-sphere.html"> <!-- change link -->
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下一个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("weather-sphere.html main"); // change link
+    });
+  </script>
+</div>
 
 <div id="footer"></div>
 <script type="text/javascript">
-$(function() {
-  $("#footer").load("footer.html");
-});
+  $(function() {
+    $("#footer").load("footer.html");
+  });
 </script>
 </body>
 </html>
