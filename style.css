@@ -200,31 +200,31 @@ iframe {
 .grid1 {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 0.5vmin;
+  grid-gap: 1vmin;
   padding-bottom: 0.25vmin;
 }
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.5vmin;
+  grid-gap: 1vmin;
   padding-bottom: 0.25vmin;
 }
 .grid3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 0.5vmin;
+  grid-gap: 1vmin;
   padding-bottom: 0.25vmin;
 }
 .grid4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 0.5vmin;
+  grid-gap: 1vmin;
   padding-bottom: 0.25vmin;
 }
 .grid5 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 0.5vmin;
+  grid-gap: 1vmin;
   padding-bottom: 0.25vmin;
 }
 
