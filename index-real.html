@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nora Zhao 赵子娴</title>
+<title>Nora Zhao</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="js/jquery.min.js"></script>
 </head>
@@ -20,8 +20,7 @@
 <!-- top text -->
 <div style="z-index: 2; position: absolute; background-color: white; width: 100%;">
   <section class="pageTop">
-    <p class="en">I'm a designer working across the areas of generative design, branding and conventional graphic design.</p>
-    <p class="zh">我是一名实践于衍生式设计、品牌设计和传统的平面设计等领域的设计师。</p>
+    <p>I'm a designer working across the areas of generative design, branding and conventional graphic design.</p>
   </section>
 </div>
 
@@ -146,8 +145,19 @@
 </div>
 
 <!-- project card -->
-<section class="grid3 gridxto2" style="padding-top: 5vmax;">
+<section class="cardGrid">
   <style>
+    .cardGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 0.8vmin;
+      padding-top: 5vmax;
+    }
+    @media screen and (max-width: 500px) {
+      .cardGrid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
     .card {
       border: 1px solid black;
       border-radius: 0px;
@@ -180,56 +190,56 @@
 
   <div class="card" onclick="window.location.href='glitch-room.html';">
     <div><img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao"></div>
-    <p class="en">Glitch Room</p>
-    <h6 class="en">An interactive VR site which generates customised glitching patterns.</h6>
+    <p>Glitch Room</p>
+    <h6>An interactive VR site which generates customised glitching patterns.</h6>
   </div>
 
   <div class="card"  onclick="window.location.href='weather-sphere.html';">
     <div><img src="img/weather-sphere/cover.jpg" alt="Weather Sphere by Nora Zhao"></div>
-    <p class="en">Weather Sphere</p>
-    <h6 class="en">Visualisation of a city's live weather data in the form of a 3D sphere.</h6>
+    <p>Weather Sphere</p>
+    <h6>Visualisation of a city's live weather data in the form of a 3D sphere.</h6>
   </div>
 
   <div class="card"  onclick="window.location.href='glitch-pattern.html';">
     <div><img src="img/glitch-pattern/cover.png" alt="Glitch Pattern by Nora Zhao"></div>
-    <p class="en">Glitch Pattern</p>
-    <h6 class="en">Patterned images generated with the z-fighting glitch.</h6>
+    <p>Glitch Pattern</p>
+    <h6>Patterned images generated with the z-fighting glitch.</h6>
   </div>
 
   <div class="card" onclick="window.location.href='coordinate-converter.html';">
     <div><img src="img/coordinate-converter/cover.jpg" alt="Coordinate Converter by Nora Zhao"></div>
-    <p class="en">Coordinate Converter</p>
-    <h6 class="en">Exploration of pattern and movement thorough creative coding.</h6>
+    <p>Coordinate Converter</p>
+    <h6>Exploration of pattern and movement thorough creative coding.</h6>
   </div>
 
   <div class="card" onclick="window.location.href='rtw.html';">
     <div><img src="img/rtw/cover.jpg" alt="RTW by Nora Zhao"></div>
-    <p class="en">RTW</p>
-    <h6 class="en">Brand identity for an apparel company that provides classical quality products with a reasonable price.</h6>
+    <p>RTW</p>
+    <h6>Brand identity for an apparel company that provides classical quality products with a reasonable price.</h6>
   </div>
 
   <div class="card" onclick="window.location.href='omdia.html';">
     <div><img src="img/omdia/cover.png" alt="Omdia by Nora Zhao"></div>
-    <p class="en">Omdia</p>
-    <h6 class="en">Brand identity framework for a global technology research powerhouse.</h6>
+    <p>Omdia</p>
+    <h6>Brand identity framework for a global technology research powerhouse.</h6>
   </div>
 
   <div class="card" onclick="window.location.href='peacebird.html';">
     <div><img src="img/peacebird/cover.png" alt="Peacebird by Nora Zhao"></div>
-    <p class="en">Peacebird</p>
-    <h6 class="en">A refreshed visual identity for one of the best selling Chinese fashion brands.</h6>
+    <p>Peacebird</p>
+    <h6>A refreshed visual identity for one of the best selling Chinese fashion brands.</h6>
   </div>
 
   <div class="card" onclick="window.location.href='byton.html';">
     <div><img src="img/byton/cover.png" alt="Byton by Nora Zhao"></div>
-    <p class="en">Byton</p>
-    <h6 class="en">Tweaks on the visual assets of a startup electric car company to inject vibrance.</h6>
+    <p>Byton</p>
+    <h6>Tweaks on the visual assets of a startup electric car company to inject vibrance.</h6>
   </div>
 
   <div class="card" onclick="window.location.href='chinese-grid.html';">
     <div><img src="img/chinese-grid/cover.png" alt="Chinese Grid by Nora Zhao"></div>
-    <p class="en">Chinese Grid</p>
-    <h6 class="en">A geometric grid system which generates Simplified Chinese characters in both square and circular styles.</h6>
+    <p>Chinese Grid</p>
+    <h6>A geometric grid system which generates Simplified Chinese characters in both square and circular styles.</h6>
   </div>
 </section>
 
@@ -238,8 +248,7 @@
 
 <section>
   <footer>
-    <h6 class="en footer">© 2020 Nora Zhao All Rights Reserved. Design and Code by Nora Zhao.</h6>
-    <h6 class="zh footer">© 2020 赵子娴 保留所有权利。网页设计及代码编写由我本人完成。</h6>
+    <h6 class="footer">© 2020 Nora Zhao All Rights Reserved. Design and Code by Nora Zhao.</h6>
   </footer>
 </section>
 

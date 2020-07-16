@@ -28,9 +28,6 @@
   src: url(font/graphik.ttf);
 }
 
-.zh {
-  display: none;
-}
 html {
   display: grid;
   -webkit-text-size-adjust: 100%;
@@ -62,46 +59,22 @@ h1 {
   text-transform: uppercase;
   margin: 20vh 1.5vmax 0 1.5vmax;
   font-weight: 900;
-}
-h1.en, h1 span:lang(en){
   font-family: "gt-black", sans-serif;
   margin-bottom: 1vmax;
 }
-h1.zh {
-  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
-  margin-bottom: 2vmax;
-}
 
 /* body text */
-p.en, p a.en {
+p, p a {
   font-family: "canela-thin", serif;
   font-size: 2vmax;
   line-height: 2.8vmax;
   word-spacing: 0.06vmax; /* bigger space between words */
 }
-p.zh, p a.zh {
-  font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体", serif;
-  font-size: 1.6vmax;
-  line-height: 2.8vmax;
-}
-p span:lang(en) {
-  font-family: "canela-thin", serif;
-  font-size: 1.6vmax;
-  position: relative;
-  top: 0.2vmax; /* shift it down to align with chinese text */
-}
+
 @media screen and (max-width: 500px) {
-  p.en, p a.en {
+  p, p a {
     font-size: 12pt;
     line-height: 16.8pt;
-  }
-  p.zh, p a.zh {
-    font-size: 9.6pt;
-    line-height: 16.8pt;
-  }
-  p span:lang(en) {
-    font-size: 9.6pt;
-    top: 1pt;
   }
 }
 .text {
@@ -200,31 +173,31 @@ iframe {
 .grid1 {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 1vmin;
+  grid-gap: 0.25vmin;
   padding-bottom: 0.25vmin;
 }
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 1vmin;
+  grid-gap: 0.25vmin;
   padding-bottom: 0.25vmin;
 }
 .grid3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1vmin;
+  grid-gap: 0.25vmin;
   padding-bottom: 0.25vmin;
 }
 .grid4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1vmin;
+  grid-gap: 0.25vmin;
   padding-bottom: 0.25vmin;
 }
 .grid5 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 1vmin;
+  grid-gap: 0.25vmin;
   padding-bottom: 0.25vmin;
 }
 
