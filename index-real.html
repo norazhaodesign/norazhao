@@ -17,11 +17,11 @@
 </script>
 
 <main>
-<!-- top text -->
-<div style="z-index: 2; position: absolute; background-color: white; width: 100%;">
-  <section class="pageTop">
-    <p>I'm a designer working across the areas of generative design, branding and conventional graphic design.</p>
-  </section>
+<!-- header text -->
+<div style="z-index: 1; position: absolute; background-color: white; width: 100%;">
+  <p class="indent headerText">
+    I'm a designer working across the areas of generative design, branding and conventional graphic design.
+  </p>
 </div>
 
 <!-- three.js code -->
@@ -145,7 +145,7 @@
 </div>
 
 <!-- project card -->
-<section class="cardGrid">
+<div class="indent cardGrid">
   <style>
     .cardGrid {
       display: grid;
@@ -153,111 +153,156 @@
       grid-gap: 0.8vmin;
       padding-top: 5vmax;
     }
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 960px) {
       .cardGrid {
         grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media screen and (max-width: 500px) {
+      .cardGrid {
+        grid-template-columns: 1fr;
       }
     }
     .card {
       border: 1px solid black;
       border-radius: 0px;
       cursor: pointer;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media screen and (max-width: 500px) {
+      .card {
+        grid-template-columns: 2fr 1fr;
+      }
     }
     .card:hover {
       border: 1px solid blueviolet;
       background-color: lavender;
       color: blueviolet;
     }
-    div.card p {
-      margin: 1vmax 0 0 0;
-      padding: 0 1vmax;
-    }
-    div.card h6 {
-      margin: 0 0 1vmax 0;
-      padding: 0 1vmax;
-    }
-    div.card div {
+    .imgHolder {
       width: 100%;
       padding-top: 100%;
       position: relative;
     }
-    div.card img {
+    .card img {
       position: absolute;
       top: 0; left: 0; bottom: 0; right: 0;
       margin: 0;
     }
+    .card p {
+      margin: 1vmax 0 0 0;
+      padding: 0 1vmax;
+    }
+    .card h6 {
+      margin: 0 0 1vmax 0;
+      padding: 0 1vmax;
+    }
   </style>
 
   <div class="card" onclick="window.location.href='glitch-room.html';">
-    <div><img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao"></div>
-    <p>Glitch Room</p>
-    <h6>An interactive VR site which generates customised glitching patterns.</h6>
+    <div class="imgHolder">
+      <img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao">
+    </div>
+    <div>
+      <p>Glitch Room</p>
+      <h6>An interactive VR site which generates customised glitching patterns.</h6>
+    </div>
   </div>
 
-  <div class="card"  onclick="window.location.href='weather-sphere.html';">
-    <div><img src="img/weather-sphere/cover.jpg" alt="Weather Sphere by Nora Zhao"></div>
-    <p>Weather Sphere</p>
-    <h6>Visualisation of a city's live weather data in the form of a 3D sphere.</h6>
+  <div class="card" onclick="window.location.href='weather-sphere.html';">
+    <div class="imgHolder">
+      <img src="img/weather-sphere/cover.jpg" alt="Weather Sphere by Nora Zhao">
+    </div>
+    <div>
+      <p>Weather Sphere</p>
+      <h6>Visualisation of a city's live weather data in the form of a 3D sphere.</h6>
+    </div>
   </div>
 
-  <div class="card"  onclick="window.location.href='glitch-pattern.html';">
-    <div><img src="img/glitch-pattern/cover.png" alt="Glitch Pattern by Nora Zhao"></div>
-    <p>Glitch Pattern</p>
-    <h6>Patterned images generated with the z-fighting glitch.</h6>
+  <div class="card" onclick="window.location.href='glitch-pattern.html';">
+    <div class="imgHolder">
+      <img src="img/glitch-pattern/cover.png" alt="Glitch Pattern by Nora Zhao">
+    </div>
+    <div>
+      <p>Glitch Pattern</p>
+      <h6>Patterned images generated with the z-fighting glitch.</h6>
+    </div>
   </div>
 
   <div class="card" onclick="window.location.href='coordinate-converter.html';">
-    <div><img src="img/coordinate-converter/cover.jpg" alt="Coordinate Converter by Nora Zhao"></div>
-    <p>Coordinate Converter</p>
-    <h6>Exploration of pattern and movement thorough creative coding.</h6>
+    <div class="imgHolder">
+      <img src="img/coordinate-converter/cover.jpg" alt="Coordinate Converter by Nora Zhao">
+    </div>
+    <div>
+      <p>Coordinate Converter</p>
+      <h6>Exploration of pattern and movement thorough creative coding.</h6>
+    </div>
   </div>
 
   <div class="card" onclick="window.location.href='rtw.html';">
-    <div><img src="img/rtw/cover.jpg" alt="RTW by Nora Zhao"></div>
-    <p>RTW</p>
-    <h6>Brand identity for an apparel company that provides classical quality products with a reasonable price.</h6>
+    <div class="imgHolder">
+      <img src="img/rtw/cover.jpg" alt="RTW by Nora Zhao">
+    </div>
+    <div>
+      <p>RTW</p>
+      <h6>Brand identity for an apparel company that provides classical quality products with a reasonable price.</h6>
+    </div>
   </div>
 
   <div class="card" onclick="window.location.href='omdia.html';">
-    <div><img src="img/omdia/cover.png" alt="Omdia by Nora Zhao"></div>
-    <p>Omdia</p>
-    <h6>Brand identity framework for a global technology research powerhouse.</h6>
+    <div class="imgHolder">
+      <img src="img/omdia/cover.png" alt="Omdia by Nora Zhao">
+    </div>
+    <div>
+      <p>Omdia</p>
+      <h6>Brand identity framework for a global technology research powerhouse.</h6>
+    </div>
   </div>
 
   <div class="card" onclick="window.location.href='peacebird.html';">
-    <div><img src="img/peacebird/cover.png" alt="Peacebird by Nora Zhao"></div>
-    <p>Peacebird</p>
-    <h6>A refreshed visual identity for one of the best selling Chinese fashion brands.</h6>
+    <div class="imgHolder">
+      <img src="img/peacebird/cover.png" alt="Peacebird by Nora Zhao">
+    </div>
+    <div>
+      <p>Peacebird</p>
+      <h6>A refreshed visual identity for one of the best selling Chinese fashion brands.</h6>
+    </div>
   </div>
 
   <div class="card" onclick="window.location.href='byton.html';">
-    <div><img src="img/byton/cover.png" alt="Byton by Nora Zhao"></div>
-    <p>Byton</p>
-    <h6>Tweaks on the visual assets of a startup electric car company to inject vibrance.</h6>
+    <div class="imgHolder">
+      <img src="img/byton/cover.png" alt="Byton by Nora Zhao">
+    </div>
+    <div>
+      <p>Byton</p>
+      <h6>Tweaks on the visual assets of a startup electric car company to inject vibrance.</h6>
+    </div>
   </div>
 
   <div class="card" onclick="window.location.href='chinese-grid.html';">
-    <div><img src="img/chinese-grid/cover.png" alt="Chinese Grid by Nora Zhao"></div>
-    <p>Chinese Grid</p>
-    <h6>A geometric grid system which generates Simplified Chinese characters in both square and circular styles.</h6>
+    <div class="imgHolder">
+      <img src="img/chinese-grid/cover.png" alt="Chinese Grid by Nora Zhao">
+    </div>
+    <div>
+      <p>Chinese Grid</p>
+      <h6>A geometric grid system which generates Simplified Chinese characters in both square and circular styles.</h6>
+    </div>
   </div>
-</section>
+</div>
 
 <h1></h1>
 </main>
 
-<section>
-  <footer>
-    <h6 class="footer">© 2020 Nora Zhao All Rights Reserved. Design and Code by Nora Zhao.</h6>
-  </footer>
-</section>
+<footer class="indent">
+  <h6 class="footer">© 2020 Nora Zhao All Rights Reserved. Design and Code by Nora Zhao.</h6>
+  <style media="screen">
+    h6.footer {
+      margin-top: 1vmax;
+      margin-bottom: 1vmax;
+    }
+  </style>
+</footer>
 
-<style media="screen">
-  h6.footer {
-    margin-top: 1vmax;
-    margin-bottom: 1vmax;
-  }
-</style>
-</script>
 </body>
 </html>

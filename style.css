@@ -39,48 +39,59 @@ body {
   margin: 0;
   color: black;
 }
-section {
+.indent {
   margin-left: 34vw;
   margin-right: 1.5vmax;
 }
+@media screen and (max-width: 500px) {
+  .indent {
+    margin-left: 1.5vmax; /* no indentation */
+  }
+}
 img {
   width: 100%;
-  margin: 0.1vmin 0;
+  margin: 0;
 }
-.pix {
-  image-rendering: crisp-edges;
+.pixelated {
   image-rendering: pixelated;
 }
 
 /* page title */
 h1 {
-  font-size: 12vw; /* set to vw size so it won't overflow horizontally on mobile screen */
-  line-height: 13vw;
-  text-transform: uppercase;
-  margin: 20vh 1.5vmax 0 1.5vmax;
-  font-weight: 900;
   font-family: "gt-black", sans-serif;
-  margin-bottom: 1vmax;
+  font-weight: 900;
+  font-size: 12vw; /* set to vw size so it won't overflow horizontally on mobile screen */
+  line-height: 12vw;
+  text-transform: uppercase;
+  margin: 20vh 1.5vmax 01vmax 1.5vmax;
 }
 
 /* body text */
-p, p a {
+p {
   font-family: "canela-thin", serif;
   font-size: 2vmax;
   line-height: 2.8vmax;
+  margin: 0;
   word-spacing: 0.06vmax; /* bigger space between words */
 }
-
 @media screen and (max-width: 500px) {
-  p, p a {
+  p {
     font-size: 12pt;
     line-height: 16.8pt;
   }
+  .headerText {
+    margin-top: 8vmax; /* move page content down to make space for the menu button */
+  }
 }
-.text {
-  margin: 3vmax 0 3vmax 0;
+.headerText {
+  padding-top: 2vmax;
+  padding-bottom: 1.5vmax;
 }
-.text br {
+.bodyText {
+  padding-top: 3vmax;
+  padding-bottom: 3vmax;
+}
+.bodyText br {
   content: "";
   margin-bottom: 2vmax;
   display: block;
@@ -91,16 +102,16 @@ h6 {
   font-family: sans-serif;
   font-size: 14px;
   font-weight: normal;
-  color: dimgray;
+  opacity: 0.55;
 }
 @media screen and (max-width: 500px) {
   h6 {
-    font-size: 7pt;
+    font-size: 6pt;
   }
 }
 h6.imgDescription {
-  margin: 0.5vmax 0 0.5vmax 1.5vmax;
   width: 260px;
+  margin: 0.5vmax 0 0.5vmax 1.5vmax;
 }
 @media screen and (max-width: 500px) {
   h6.imgDescription {
@@ -116,7 +127,7 @@ a:link {
 a:visited {
   color: black;
 }
-main a:link { /* not affecting navigation and next peohect section  */
+main a:link { /* not affecting navigation and next project section  */
   color: blueviolet;
 }
 main a:visited {
@@ -132,7 +143,10 @@ main a:visited {
   background-color: rgb(245,248,255);
 }
 .nextText {
-  position:absolute;
+  font-weight: bolder;
+  text-transform: uppercase;
+  padding-top: 2vmax;
+  position: absolute;
   left: 1.5vmax;
   color: blueviolet;
 }
@@ -173,42 +187,36 @@ iframe {
 .grid1 {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 0.25vmin;
-  padding-bottom: 0.25vmin;
+  grid-gap: 4px;
+  padding-bottom: 4px;
 }
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.25vmin;
-  padding-bottom: 0.25vmin;
+  grid-gap: 4px;
+  padding-bottom: 4px;
 }
 .grid3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 0.25vmin;
-  padding-bottom: 0.25vmin;
+  grid-gap: 4px;
+  padding-bottom: 4px;
 }
 .grid4 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 0.25vmin;
-  padding-bottom: 0.25vmin;
+  grid-gap: 4px;
+  padding-bottom: 4px;
 }
 .grid5 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 0.25vmin;
-  padding-bottom: 0.25vmin;
+  grid-gap: 4px;
+  padding-bottom: 4px;
 }
 
 /* mobile layout */
 @media screen and (max-width: 500px) {
-  section {
-    margin-left: 1.5vmax; /* no white space on the left */
-  }
-  .pageTop {
-    margin-top: 8vmax; /* move page content down for the space of the menu button */
-  }
   .gridxto1 {
     grid-template-columns: 1fr;
   }

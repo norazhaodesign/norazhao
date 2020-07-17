@@ -18,10 +18,9 @@
 </script>
 
 <main>
-<section class="pageTop">
-  <!-- write project summary-->
-  <p></p>
-</section>
+<!-- write project summary-->
+<p class="indent headerText">
+</p>
 
 <!-- write project title -->
 <h1></h1>
@@ -32,25 +31,22 @@
 <!-- write img description-->
 <h6 class="imgDescription"></h6>
 
-<section>
-  <!-- write body text -->
-  <p class="text">
-  </p>
-</section>
-
+<!-- write body text -->
+<p class="indent bodyText">
+</p>
 </main>
 
 <div class="pageDivider"></div>
 
 <div class="nextPageDiv">
-  <!-- place link-->
+<!-- place link-->
   <a href=".html">
     <p class="nextText">Next Project</p>
     <div id="nextPage"></div>
   </a>
   <script type="text/javascript">
     $(function() {
-      // place link
+// place link
       $("#nextPage").load(".html main");
     });
   </script>
