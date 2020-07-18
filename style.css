@@ -69,7 +69,7 @@ h1 {
 p {
   font-family: "canela-thin", serif;
   font-size: calc(10px + .8vw + .8vh);
-  line-height: calc((10px + .8vw + .8vh) * 1.4);
+  line-height: calc((10px + .8vw + .8vh) * 1.28);
   word-spacing: calc((10px + .8vw + .8vh) * 0.03); /* bigger space between words */
   margin: 0;
 }
@@ -79,7 +79,7 @@ p {
 }
 @media screen and (max-width: 760px) {
   .headerText {
-    margin-top: 5vmax; /* move page content down to make space for the menu button */
+    margin-top: 6vmax; /* move page content down to make space for the menu button */
   }
 }
 .bodyText {
@@ -95,7 +95,8 @@ p {
 /* h6 text */
 h6 {
   font-family: sans-serif;
-  font-size: calc((10px + .8vw + .8vh) * 0.5); /* p size x 0.5 */
+  font-size: calc(6px + .4vw + .4vh);
+  line-height: calc((6px + .4vw + .4vh) * 1.22);
   font-weight: normal;
   opacity: 0.55;
   margin: 0.5vmax 1.5vmax 0.5vmax 1.5vmax;
