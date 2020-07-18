@@ -1,12 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 2267.7 283.5" style="enable-background:new 0 0 2267.7 283.5;" xml:space="preserve">
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="home_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1842.5 283.5" style="enable-background:new 0 0 1842.5 283.5;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;}
-	.st1{font-family:'GTAmerica-Black';}
-	.st2{font-size:367px;}
+	.st0{display:none;fill:none;stroke:#00D3A5;stroke-width:0.1;stroke-miterlimit:10;}
+	.st1{display:none;}
+	.st2{display:inline;fill:none;stroke:#00AFF5;stroke-width:45;stroke-miterlimit:10;}
+	.st3{fill:none;}
+	.st4{font-family:'GTAmerica-Black';}
+	.st5{font-size:303px;}
 </style>
-<rect x="-8" y="6.5" class="st0" width="2634.5" height="270.1"/>
-<text transform="matrix(1 0 0 1 -8.0071 272.5359)" class="st1 st2">NORA ZHAO</text>
+<rect id="zone" x="7.1" y="58.8" class="st0" width="269.3" height="215.4"/>
+<g id="menu_icon" class="st1">
+	<line class="st2" x1="7.1" y1="81.5" x2="276.4" y2="81.5"/>
+	<line class="st2" x1="7.1" y1="166.8" x2="276.4" y2="166.8"/>
+	<line class="st2" x1="7.1" y1="251.5" x2="276.4" y2="251.5"/>
+</g>
+<rect x="-11.1" y="54.4" class="st3" width="2240.4" height="301.4"/>
+<text id="text" transform="matrix(1 0 0 1 -11.1204 274.102)" class="st1 st4 st5">NORA ZHAO</text>
+<g id="expanded_text">
+	<path d="M7.1,59h68.5l57,103.9c4.2,8.2,10.3,20.6,13,27.9h0.6v-27V59h58.5v215.1h-65.4L78.6,168.4c-4.5-9.1-9.7-18.8-12.4-25.8
+		h-0.6v28.5v103H7.1V59z"/>
+	<path d="M228.9,166.5c0-69.1,43-112.7,110.3-112.7s110.3,43.6,110.3,112.7c0,69.1-43,112.7-110.3,112.7S228.9,235.6,228.9,166.5z
+		 M384.6,166.5c0-40.3-17-63.9-45.4-63.9s-45.4,23.6-45.4,63.9c0,40.3,17,63.9,45.4,63.9S384.6,206.8,384.6,166.5z"/>
+	<path d="M560.9,195.3H537v78.8h-63.3V59h102.7c53.6,0,82.7,23.9,82.7,67.9c0,27.6-14.5,48.8-38.8,59.1l43.6,88.2h-67.9L560.9,195.3
+		z M537,154.4h25.1c20,0,30.9-9.7,30.9-27.6c0-17-10.3-25.5-30.9-25.5H537V154.4z"/>
+	<path d="M827,230.2H753l-13.6,43.9h-63.3L752.4,59h75.1l76.4,215.1h-63.3L827,230.2z M813.9,187.7l-14.2-46.7
+		c-3.6-11.8-7-21.8-9.4-38.2h-0.6c-2.4,16.4-5.8,26.4-9.4,38.2l-14.2,46.7H813.9z"/>
+	<path d="M1069.1,107.2h-89.4V59H1143v42.7l-93,124.8h97.9v47.6H975.1v-42.7L1069.1,107.2z"/>
+	<path d="M1369,274.1h-63.3v-84.8h-68.8v84.8h-63.3V59h63.3v82.7h68.8V59h63.3V274.1z"/>
+	<path d="M1541.1,230.2h-73.9l-13.6,43.9h-63.3L1466.6,59h75.1l76.4,215.1h-63.3L1541.1,230.2z M1528.1,187.7l-14.2-46.7
+		c-3.6-11.8-7-21.8-9.4-38.2h-0.6c-2.4,16.4-5.8,26.4-9.4,38.2l-14.2,46.7H1528.1z"/>
+	<path d="M1615.1,166.5c0-69.1,43-112.7,110.3-112.7s110.3,43.6,110.3,112.7c0,69.1-43,112.7-110.3,112.7S1615.1,235.6,1615.1,166.5
+		z M1770.8,166.5c0-40.3-17-63.9-45.4-63.9s-45.4,23.6-45.4,63.9c0,40.3,17,63.9,45.4,63.9S1770.8,206.8,1770.8,166.5z"/>
+</g>
 </svg>

@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="menu_icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 283.5 283.5" style="enable-background:new 0 0 283.5 283.5;" xml:space="preserve">
 <style type="text/css">
-	.st0{display:none;fill:none;stroke:#00D3A5;stroke-miterlimit:10;}
-	.st1{display:none;}
-	.st2{display:inline;fill:none;stroke:#000000;stroke-width:16;stroke-miterlimit:10;}
-	.st3{fill:none;stroke:#000000;stroke-width:44;stroke-miterlimit:10;}
+	.st0{display:none;fill:none;stroke:#00D3A5;stroke-width:0.1;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#000000;stroke-width:45;stroke-miterlimit:10;}
 </style>
-<rect x="7.1" y="59.8" class="st0" width="269.3" height="215.4"/>
-<g class="st1">
-	<line class="st2" x1="7.1" y1="68.2" x2="276.4" y2="68.2"/>
-	<line class="st2" x1="7.1" y1="167.8" x2="276.4" y2="167.8"/>
-	<line class="st2" x1="7.1" y1="266.6" x2="276.4" y2="266.6"/>
-</g>
-<g>
-	<line class="st3" x1="7.1" y1="82.4" x2="276.4" y2="82.4"/>
-	<line class="st3" x1="7.1" y1="167.7" x2="276.4" y2="167.7"/>
-	<line class="st3" x1="7.1" y1="252.4" x2="276.4" y2="252.4"/>
+<rect id="zone" x="7.1" y="58.8" class="st0" width="269.3" height="215.4"/>
+<g id="icon">
+	<line class="st1" x1="7.1" y1="81.5" x2="276.4" y2="81.5"/>
+	<line class="st1" x1="7.1" y1="166.8" x2="276.4" y2="166.8"/>
+	<line class="st1" x1="7.1" y1="251.5" x2="276.4" y2="251.5"/>
 </g>
 </svg>
