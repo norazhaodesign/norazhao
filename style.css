@@ -99,10 +99,11 @@ h6 {
   line-height: calc((6px + .4vw + .4vh) * 1.22);
   font-weight: normal;
   opacity: 0.55;
-  margin: 0.5vmax 1.5vmax 0.5vmax 1.5vmax;
+  margin: 0.5vmax 1.5vmax 0.5vmax 0;
 }
 .imgDescription {
-  max-width: calc(40px + 8vw + 8vh);;
+  max-width: calc(40px + 8vw + 8vh);
+  margin-left: 1.5vmax;
 }
 
 /* link */
