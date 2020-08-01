@@ -203,14 +203,14 @@ iframe {
 }
 
 /* mobile layout */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 760px) {
   .gridxto1 {
     grid-template-columns: 1fr;
   }
   .gridxto2 {
     grid-template-columns: 1fr 1fr;
   }
-  .hide-on-mobile {
+  .hideMobile {
     display: none;
   }
 }
