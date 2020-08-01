@@ -144,51 +144,108 @@
   </script>
 </div>
 
-<!-- project card -->
+
+
+
+
+
+
+
+
+
+
+<style>
+  .cardGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1vmin;
+    padding-top: 2vmin;
+  }
+  .card {
+    border: 3px solid blueviolet;
+    position: relative;
+    width: 100%;
+  }
+  .onHover {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    height: 100%; width: 100%;
+    opacity: 0;
+  }
+  .card:hover .onHover {
+    opacity: 1;
+    transition: 1s ease;
+    background-color: lavender;
+  }
+  .card p {
+    color: blueviolet;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  }
+</style>
+
+<h1>Digital:</h1>
 <div class="indent cardGrid">
-  <style>
-    .cardGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 0.8vmin;
-      padding-top: 5vmax;
-    }
-    @media screen and (max-width: 1100px) {
-      .cardGrid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    @media screen and (max-width: 500px) {
-      .cardGrid {
-        grid-template-columns: 1fr;
-      }
-    }
+  <div class="card" onclick="window.location.href='glitch-room.html';">
+    <img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao">
+    <div class="onHover">
+      <p>Glitch Room</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='glitch-room.html';">
+    <img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao">
+    <div class="onHover">
+      <p>Glitch Room</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- project card -->
+<!-- <style>
+  .cardGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2vmin;
+    padding-top: 2vmin;
+  }
+  .card {
+    border: 1px solid black;
+    border-radius: 0px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  @media screen and (max-width: 500px) {
     .card {
-      border: 1px solid black;
-      border-radius: 0px;
-      cursor: pointer;
-      display: grid;
       grid-template-columns: 1fr;
     }
-    @media screen and (max-width: 500px) {
-      .card {
-        grid-template-columns: 2fr 1fr;
-      }
-    }
-    .card:hover {
-      border: 1px solid blueviolet;
-      background-color: lavender;
-      color: blueviolet;
-    }
-    .card p {
-      margin: 1vmax 0 0 0;
-      padding: 0 1vmax;
-    }
-    .card h6 {
-      margin: 0 0 1vmax 0;
-      padding: 0 1vmax;
-    }
-  </style>
+  }
+  .card:hover {
+    border: 1px solid blueviolet;
+    background-color: lavender;
+    color: blueviolet;
+  }
+  .card p {
+    margin: 1vmax 0 0 0;
+    padding: 0 1vmax;
+  }
+  .card h6 {
+    margin: 0 0 1vmax 0;
+    padding: 0 1vmax;
+  }
+</style> -->
+
+<h1>Digital:</h1>
+<div class="indent cardGrid">
   <div class="card" onclick="window.location.href='glitch-room.html';">
     <img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao">
     <div>
@@ -197,14 +254,6 @@
     </div>
   </div>
 
-  <!-- <div class="card" onclick="window.location.href='weather-sphere.html';">
-    <img src="img/weather-sphere/cover.jpg" alt="Weather Sphere by Nora Zhao">
-    <div>
-      <p>Weather Sphere</p>
-      <h6>Visualisation of a city's live weather data in the form of a 3D sphere.</h6>
-    </div>
-  </div> -->
-
   <div class="card" onclick="window.location.href='glitch-pattern.html';">
     <img src="img/glitch-pattern/cover.png" alt="Glitch Pattern by Nora Zhao">
     <div>
@@ -212,15 +261,10 @@
       <h6>Patterned images generated with the z-fighting glitch.</h6>
     </div>
   </div>
+</div>
 
-  <!-- <div class="card" onclick="window.location.href='coordinate-converter.html';">
-    <img src="img/coordinate-converter/cover.jpg" alt="Coordinate Converter by Nora Zhao">
-    <div>
-      <p>Coordinate Converter</p>
-      <h6>Exploration of pattern and movement thorough creative coding.</h6>
-    </div>
-  </div> -->
-
+<h1>Corporate:</h1>
+<div class="indent cardGrid">
   <div class="card" onclick="window.location.href='rtw.html';">
     <img src="img/rtw/cover.jpg" alt="RTW by Nora Zhao">
     <div>
@@ -244,15 +288,10 @@
       <h6>A refreshed visual identity for one of the best selling Chinese fashion brands.</h6>
     </div>
   </div>
+</div>
 
-  <div class="card" onclick="window.location.href='byton.html';">
-    <img src="img/byton/cover.png" alt="Byton by Nora Zhao">
-    <div>
-      <p>Byton</p>
-      <h6>Tweaks on the visual assets of a startup electric car company to inject vibrance.</h6>
-    </div>
-  </div>
-
+<h1>Design:</h1>
+<div class="indent cardGrid">
   <div class="card" onclick="window.location.href='chinese-grid.html';">
     <img src="img/chinese-grid/cover.png" alt="Chinese Grid by Nora Zhao">
     <div>
@@ -266,13 +305,7 @@
 </main>
 
 <footer class="indent">
-  <h6 class="footer">© 2020 Nora Zhao All Rights Reserved. Design and Code by Nora Zhao.</h6>
-  <style media="screen">
-    h6.footer {
-      margin-top: 1vmax;
-      margin-bottom: 1vmax;
-    }
-  </style>
+  <p>© 2020 Nora Zhao All Rights Reserved. Design and Code by Nora Zhao.</p>
 </footer>
 
 </body>
