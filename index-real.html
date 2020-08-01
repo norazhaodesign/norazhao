@@ -144,8 +144,73 @@
   </script>
 </div>
 
-<!-- project card -->
+
+
+
+
+
+
+
+
+
+
 <style>
+  .cardGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1vmin;
+    padding-top: 2vmin;
+  }
+  .card {
+    border: 3px solid blueviolet;
+    position: relative;
+    width: 100%;
+  }
+  .onHover {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    height: 100%; width: 100%;
+    opacity: 0;
+  }
+  .card:hover .onHover {
+    opacity: 1;
+    transition: 1s ease;
+    background-color: lavender;
+  }
+  .card p {
+    color: blueviolet;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  }
+</style>
+
+<h1>Digital:</h1>
+<div class="indent cardGrid">
+  <div class="card" onclick="window.location.href='glitch-room.html';">
+    <img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao">
+    <div class="onHover">
+      <p>Glitch Room</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="window.location.href='glitch-room.html';">
+    <img src="img/glitch-room/cover.png" alt="Glitch Room by Nora Zhao">
+    <div class="onHover">
+      <p>Glitch Room</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- project card -->
+<!-- <style>
   .cardGrid {
     display: grid;
     grid-template-columns: 1fr;
@@ -177,7 +242,7 @@
     margin: 0 0 1vmax 0;
     padding: 0 1vmax;
   }
-</style>
+</style> -->
 
 <h1>Digital:</h1>
 <div class="indent cardGrid">

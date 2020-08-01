@@ -54,6 +54,7 @@ body {
 img {
   width: 100%;
   margin: 0;
+  display: block; /* img is by default shown as an inline element. this is to get rid of the white bar under the pics */
 }
 .pixelated {
   image-rendering: pixelated;
