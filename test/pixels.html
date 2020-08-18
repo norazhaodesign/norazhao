@@ -310,12 +310,12 @@
   <script>
     var color1 = '#' + Math.floor(Math.random() * 16777215).toString(16);
     var color2 = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    const colors = [color1, color2];
+    var colors = [color1, color2];
 
     // apply a random color to each box
     function randomColor() {
       $('.box').each(function() { // apply this function to each box
-        const color = Math.round(Math.random()); // get number 0 or 1
+        var color = Math.round(Math.random()); // get number 0 or 1
         $(this).css('background', colors[color]); // apply the designated color to a box
       });
     }
