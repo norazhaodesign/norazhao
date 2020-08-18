@@ -310,21 +310,14 @@
   <script>
     var color1 = '#' + Math.floor(Math.random() * 16777215).toString(16);
     var color2 = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    var color3 = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    var color4 = '#' + Math.floor(Math.random() * 16777215).toString(16);
-
     const colors = [color1, color2];
 
     // apply a random color to each box
     function randomColor() {
       $('.box').each(function() { // apply this function to each box
-        const color = getRandomInt(1, colors.length) - 1; // chose a random color from listed colors
-        $(this).css('background', colors[color]); // apply this color to a box
+        const color = Math.round(Math.random()); // get number 0 or 1
+        $(this).css('background', colors[color]); // apply the designated color to a box
       });
-    }
-
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min; // get a interger number
     }
 
     // color change frequency
