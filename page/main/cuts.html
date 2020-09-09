@@ -1,114 +1,104 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Just Stare - Nora Zhao</title>
-</head>
+<script src="../../js/three.min.js"></script>
+<script src="../../js/orbit-controls.js"></script>
 
-<body style="margin:0;padding:0;overflow:hidden">
-	<div id="webgl">
-	</div>
+<div id="webgl"></div>
+<script>
+	// scene
+	var scene = new THREE.Scene();
 
-	<script src="../../js/three.min.js"></script>
-	<script src="../../js/orbit-controls.js"></script>
-	<script>
-		// scene
-		var scene = new THREE.Scene();
+	// camera
+	var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1.2); // (fov, aspect, near, far) * make far small so there is only things on the surface showing up
+	camera.position.set(0, 0, 2);
+	camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-		// camera
-		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1.2); // (fov, aspect, near, far) * make far small so there is only things on the surface showing up
-		camera.position.set(0, 0, 2);
-		camera.lookAt(new THREE.Vector3(0, 0, 0));
+	// responsive
+	window.addEventListener("resize", onWindowResize, false);
 
-		// responsive
-		window.addEventListener("resize", onWindowResize, false);
+	function onWindowResize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+	}
 
-		function onWindowResize() {
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-			renderer.setSize(window.innerWidth, window.innerHeight);
+	// math
+	function getRandom(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+	// define geometry
+	function getSphere(x, y, z) {
+		var geometry = new THREE.SphereGeometry(x, y, z);
+		var material = new THREE.MeshBasicMaterial({
+		color: 0xffffff,
+		transparent: true,
+		opacity: 1,
+		side: THREE.DoubleSide
+		});
+		var mesh = new THREE.Mesh(geometry, material);
+		return mesh;
+	}
+
+	// place geometry
+	var [obj1, obj2, obj3, obj4] = [getSphere(1, 4, 3), getSphere(1, 4, 2), getSphere(1, 3, 4), getSphere(1, 3, 3)];
+
+	var group = new THREE.Group();
+	group.add(obj1, obj2, obj3, obj4);
+	group.position.set(0, 0, 0);
+	group.scale.set(1, 1, 1);
+
+	var iniPosition = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI));
+	obj1.rotation.set(iniPosition[0], iniPosition[1], iniPosition[2]);
+	obj2.rotation.set(iniPosition[3], iniPosition[4], iniPosition[5]);
+	obj3.rotation.set(iniPosition[6], iniPosition[7], iniPosition[8]);
+	obj4.rotation.set(iniPosition[9], iniPosition[10], iniPosition[11]); // initial rotation position
+
+	scene.add(group);
+
+	// render
+	var renderer = new THREE.WebGLRenderer({
+		preserveDrawingBuffer: true
+	});
+	renderer.setClearColor("rgb(0, 0, 0)"); // background color
+	document.getElementById("webgl").appendChild(renderer.domElement);
+
+	// orbit control
+	var controls = new THREE.OrbitControls(camera, renderer.domElement);
+	controls.enableZoom = false;
+
+	// update
+	var clock = new THREE.Clock();
+	var rotSpeed = Array.from({length: 12}, () => getRandom(0.002, 0.008)); // bigger -> rotates faster
+	var colSpeed = Array.from({length: 12}, () => getRandom(2, 3)); // bigger -> color changes slower
+	var colStart = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI)); // random color starting point
+
+	function update() {
+		// rotation
+		obj1.rotation.x += rotSpeed[0]; obj1.rotation.y += rotSpeed[1]; obj1.rotation.z -= rotSpeed[2];
+		obj2.rotation.x += rotSpeed[3]; obj2.rotation.y -= rotSpeed[4]; obj2.rotation.z -= rotSpeed[5];
+		obj3.rotation.x -= rotSpeed[6]; obj3.rotation.y += rotSpeed[7]; obj3.rotation.z += rotSpeed[8];
+		obj4.rotation.x -= rotSpeed[9]; obj4.rotation.y -= rotSpeed[10]; obj4.rotation.z += rotSpeed[11];
+
+		// color change
+		var timeElapsed = clock.getElapsedTime();
+		var rgbValue = [];
+		for (var i = 0, length = 12; i < length; i++) {
+			rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colStart[i]) + 1) / 2 * 256));
 		}
 
-		// math
-		function getRandom(min, max) {
-			return Math.random() * (max - min) + min;
-		}
-
-		// define geometry
-		function getSphere(x, y, z) {
-			var geometry = new THREE.SphereGeometry(x, y, z);
-			var material = new THREE.MeshBasicMaterial({
-			color: 0xffffff,
-			transparent: true,
-			opacity: 1,
-			side: THREE.DoubleSide
-			});
-			var mesh = new THREE.Mesh(geometry, material);
-			return mesh;
-		}
-
-		// place geometry
-		var [obj1, obj2, obj3, obj4] = [getSphere(1, 4, 3), getSphere(1, 4, 2), getSphere(1, 3, 4), getSphere(1, 3, 3)];
-
-		var group = new THREE.Group();
-		group.add(obj1, obj2, obj3, obj4);
-		group.position.set(0, 0, 0);
-		group.scale.set(1, 1, 1);
-
-		var iniPosition = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI));
-		obj1.rotation.set(iniPosition[0], iniPosition[1], iniPosition[2]);
-		obj2.rotation.set(iniPosition[3], iniPosition[4], iniPosition[5]);
-		obj3.rotation.set(iniPosition[6], iniPosition[7], iniPosition[8]);
-		obj4.rotation.set(iniPosition[9], iniPosition[10], iniPosition[11]); // initial rotation position
-
-		scene.add(group);
+		obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
+		obj2.material.color.set("rgb(" + rgbValue[3] + ", " + rgbValue[4] + ", " + rgbValue[5] + ")");
+		obj3.material.color.set("rgb(" + rgbValue[6] + ", " + rgbValue[7] + ", " + rgbValue[8] + ")");
+		obj4.material.color.set("rgb(" + rgbValue[9] + ", " + rgbValue[10] + ", " + rgbValue[11] + ")");
 
 		// render
-		var renderer = new THREE.WebGLRenderer({
-			preserveDrawingBuffer: true
-		});
-		renderer.setClearColor("rgb(0, 0, 0)"); // background color
-		document.getElementById("webgl").appendChild(renderer.domElement);
-
-		// orbit control
-		var controls = new THREE.OrbitControls(camera, renderer.domElement);
-		controls.enableZoom = false;
-
-		// update
-		var clock = new THREE.Clock();
-		var rotSpeed = Array.from({length: 12}, () => getRandom(0.002, 0.008)); // bigger -> rotates faster
-		var colSpeed = Array.from({length: 12}, () => getRandom(2, 3)); // bigger -> color changes slower
-		var colStart = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI)); // random color starting point
-
-		function update() {
-			// rotation
-			obj1.rotation.x += rotSpeed[0]; obj1.rotation.y += rotSpeed[1]; obj1.rotation.z -= rotSpeed[2];
-			obj2.rotation.x += rotSpeed[3]; obj2.rotation.y -= rotSpeed[4]; obj2.rotation.z -= rotSpeed[5];
-			obj3.rotation.x -= rotSpeed[6]; obj3.rotation.y += rotSpeed[7]; obj3.rotation.z += rotSpeed[8];
-			obj4.rotation.x -= rotSpeed[9]; obj4.rotation.y -= rotSpeed[10]; obj4.rotation.z += rotSpeed[11];
-
-			// color change
-			var timeElapsed = clock.getElapsedTime();
-			var rgbValue = [];
-			for (var i = 0, length = 12; i < length; i++) {
-				rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colStart[i]) + 1) / 2 * 256));
-			}
-
-			obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
-			obj2.material.color.set("rgb(" + rgbValue[3] + ", " + rgbValue[4] + ", " + rgbValue[5] + ")");
-			obj3.material.color.set("rgb(" + rgbValue[6] + ", " + rgbValue[7] + ", " + rgbValue[8] + ")");
-			obj4.material.color.set("rgb(" + rgbValue[9] + ", " + rgbValue[10] + ", " + rgbValue[11] + ")");
-
-			// render
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
-			renderer.render(scene, camera);
-			setTimeout(function() {
-				requestAnimationFrame(function() {
-					update(scene, camera);
-				})
-			}, 1000 / 60); // refresh rate per second
-		}
-		update();
-	</script>
-</body>
-</html>
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
+		renderer.render(scene, camera);
+		setTimeout(function() {
+			requestAnimationFrame(function() {
+				update(scene, camera);
+			})
+		}, 1000 / 60); // refresh rate per second
+	}
+	update();
+</script>

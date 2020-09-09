@@ -1,0 +1,67 @@
+<!-- inspired by Ben Matthews https://codepen.io/tsuhre/pen/Rjaezb -->
+
+<style>
+  * { margin:0; padding:0; }
+  html, body { width:100%; height:100%; overflow: hidden;}
+  canvas { display:block; }
+</style>
+
+<script src="../../js/p5.min.js"></script>
+<script type="text/javascript">
+
+  var portion = 44;
+  var radius, graphics;
+
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+
+    radius = dist(0, 0, width/2, height/2); // distance between two points (x1, y1, x2, y2)
+    g = createGraphics(radius, radius);
+
+    g.pixelDensity(0.2); // how much the sketch should scale
+  }
+
+  function setup() {
+    createCanvas();
+    frameRate(20); // the number of times draw() executes in each second may be controlled with the frameRate() function.
+    windowResized();
+  }
+
+  function draw() {
+    background(0); // canvas background
+    
+    g.clear();
+    colorPixels();
+
+    translate(width/2, height/2); // center the picture
+ 
+    for (var i = 0; i < portion; i++){
+      rotate((1/portion)*PI*2); // rotate lines to the amount of portion
+      image(g, 0, 0); // top-left corner of the img is at (x, y)
+    }
+  }
+
+  function colorPixels() {
+    g.loadPixels();
+
+    var stop, pos, n;
+    for (var i = 0; i < 1; i++) {
+      stop = i*radius;
+      for (var j = stop; j < radius; j++) {
+        pos = (i*radius + j)*200; // change the overlay effect
+        n = noise(i/20, (j-frameCount*4)/800, frameCount/20);
+
+        n = n*n; // color combination percentage
+        n = Math.floor(n*10); // pattern intensiveness (bigger number > more complicated pattern)
+
+        if (n%1 == 0){ // n%2 means n can be devided by 2 
+          if (n%4 == 0) g.pixels[pos + 1] = 255; // g
+          if (n%8 == 0) g.pixels[pos + 2] = 255; // b
+          g.pixels[pos] = 255; // r
+          g.pixels[pos + 3] = 255; // a
+        }
+      }
+    }
+    g.updatePixels();
+  }
+</script>

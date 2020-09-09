@@ -1,0 +1,74 @@
+<style>
+  * { margin:0; padding:0; }
+  html, body { width:100%; height:100%; overflow: hidden;}
+  canvas { display:block; }
+</style>
+
+<script src="../../js/p5.min.js"></script>
+<script type="text/javascript">
+  var reflections = 4;
+
+  var radius = 0;
+  var length = 0;
+
+  var g;
+
+  function setup() {
+    createCanvas();
+    colorMode(RGB, 100);
+    frameRate(20);
+
+    windowResized();
+  }
+
+  function draw() {
+    background(255); // canvas background
+    
+    g.clear();
+    colorPixels();
+
+    var rot = (1/reflections)*PI*2;
+    for (var i = 0; i < reflections; i++){
+      rotate(rot);
+      image(g, 0, 0); // top-left corner of the img is at (0, 0)
+      scale(2); // ************ this line made the glitch
+    }
+  }
+
+  function colorPixels() {
+    g.loadPixels();
+    var mod = radius/length;
+
+    var stop, pos, n;
+    for (var i = 0; i < length; i++){
+      stop = i*mod - 1;
+      for (var j = floor(stop); j < radius; j++){
+        pos = (i*radius + j)*8; // change the overlay effect
+        n = noise(i/60, (j-frameCount*4)/80, frameCount/200);
+
+        n = n*n;
+        n = Math.floor(n*20);
+
+        if (n%2 == 0){ // n%2 means n can be devided by 2 
+          if (n%4 == 0) g.pixels[pos + 1] = 55; // number for color control
+          if (n%8 == 0) g.pixels[pos + 2] = 255; 
+          g.pixels[pos] = 0;
+          g.pixels[pos + 3] = 255;
+        }
+      }
+    }
+    g.updatePixels();
+  }
+
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+
+    var angle = (1/(reflections*2))*PI*2;
+    radius = dist(0, 0, width/2, height/2);
+    length = floor(tan(angle)*radius);
+    radius = floor(radius);
+    g = createGraphics(radius, length);
+
+    g.pixelDensity(1);
+  }
+</script>
