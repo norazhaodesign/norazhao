@@ -1,10 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Center Two by Nora Zhao</title>
+<!-- inspiration & code refrence by ben matthews https://codepen.io/tsuhre/pen/Rjaezb -->
+</head>
+
+<body>
 <script src="../../js/p5.min.js"></script>
 <style>
   * {margin:0; padding:0;}
 </style>
 
 <script type="text/javascript">
-  var reflections = 4;
+  var reflections = 8;
 
   var radius = 0;
   var length = 0;
@@ -13,23 +23,29 @@
 
   function setup() {
     createCanvas(windowWidth, windowHeight);
-    colorMode(RGB, 100);
     frameRate(20);
 
     windowResized();
   }
 
   function draw() {
-    background(255); // canvas background
+    background(0); // canvas background
     
     g.clear();
     colorPixels();
 
+    translate(width/2, height/2); // center the picture
+
     var rot = (1/reflections)*PI*2;
     for (var i = 0; i < reflections; i++){
       rotate(rot);
-      image(g, 0, 0); // top-left corner of the img is at (0, 0)
-      scale(2); // ************ this line made the glitch
+      image(g, 1, 1); // top-left corner of the img is at (x, y)
+    }
+    
+    scale(-1, 1); // scale on x to make each portion sysmetrical
+    for (var i = 0; i < reflections; i++){
+      rotate(rot);
+      image(g, -1, -1);
     }
   }
 
@@ -41,22 +57,23 @@
     for (var i = 0; i < length; i++){
       stop = i*mod - 1;
       for (var j = floor(stop); j < radius; j++){
-        pos = (i*radius + j)*8; // change the overlay effect
+        pos = (i*radius + j)*5; // change the overlay effect
         n = noise(i/60, (j-frameCount*4)/80, frameCount/200);
 
-        n = n*n;
-        n = Math.floor(n*20);
+        n = n*n; // color combination percentage
+        n = Math.floor(n*10); // pattern intensiveness (bigger number > more complicated pattern)
 
         if (n%2 == 0){ // n%2 means n can be devided by 2 
-          if (n%4 == 0) g.pixels[pos + 1] = 55; // number for color control
+          if (n%4 == 0) g.pixels[pos + 1] = 255; // number for color control
           if (n%8 == 0) g.pixels[pos + 2] = 255; 
-          g.pixels[pos] = 0;
+          g.pixels[pos] = 55;
           g.pixels[pos + 3] = 255;
         }
       }
     }
     g.updatePixels();
   }
+
 
   function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
@@ -67,6 +84,8 @@
     radius = floor(radius);
     g = createGraphics(radius, length);
 
-    g.pixelDensity(1);
+    g.pixelDensity(0.5);
   }
 </script>
+</body>
+</html>

@@ -33,7 +33,8 @@
     "page/main/spheres.html",
     "page/main/pixels.html",
     "page/main/cuts.html",
-    "page/main/center.html"
+    "page/main/center.html",
+    "page/main/center-two.html"
   ];
   var randomUrl = myArray[Math.floor(Math.random() * myArray.length)];
   document.getElementById('display').src = randomUrl;
@@ -61,13 +62,12 @@
 </style>
 
 <script>
-  // ref https://css-tricks.com/updating-a-css-variable-with-javascript/
-  var firstRowHeight = document.getElementById('firstRow').clientHeight;
+  // ref https://css-tricks.com/updating-a-css-variable-with-javascript/  
   let root = document.documentElement;
-  root.style.setProperty('--top-dis', firstRowHeight + "px");
+  root.style.setProperty('--top-dis', document.getElementById('firstRow').clientHeight + "px");
 
   window.onresize = function() { 
-    console.log("resized");
+    root.style.setProperty('--top-dis', document.getElementById('firstRow').clientHeight + "px");
   };
 </script>
 
