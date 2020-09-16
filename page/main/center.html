@@ -24,18 +24,6 @@
     windowResized();
   }
 
-  function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-
-    var angle = (1/(reflections*2))*PI*2;
-    radius = dist(0, 0, width/2, height/2);
-    length = floor(tan(angle)*radius);
-    radius = floor(radius);
-    g = createGraphics(radius, length);
-
-    g.pixelDensity(1);
-  }
-
   function draw() {
     background(0); // canvas background
     
@@ -80,5 +68,18 @@
       }
     }
     g.updatePixels();
+  }
+
+
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+
+    var angle = (1/(reflections*2))*PI*2;
+    radius = dist(0, 0, width/2, height/2);
+    length = floor(tan(angle)*radius);
+    radius = floor(radius);
+    g = createGraphics(radius, length);
+
+    g.pixelDensity(1);
   }
 </script>
