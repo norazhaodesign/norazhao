@@ -17,9 +17,6 @@
 </script>
 
 
-
-
-
 <div class="row-container">
   <div class="firstRow" id="firstRow"> 
     <p class="indent headerText">
@@ -27,10 +24,20 @@
     </p>
   </div>
   <div class="secondRow">
-    <iframe src="page/main/center.html"></iframe>
+    <iframe id="display" src=""></iframe>
   </div>
 </div>
 
+<script type="text/javascript">
+  var myArray = [
+    "page/main/spheres.html",
+    "page/main/pixels.html",
+    "page/main/cuts.html",
+    "page/main/center.html"
+  ];
+  var randomUrl = myArray[Math.floor(Math.random() * myArray.length)];
+  document.getElementById('display').src = randomUrl;
+</script>
 
 <style>
   :root {
@@ -64,22 +71,5 @@
   };
 </script>
 
-
-
-<!-- <div id="display"></div>
-<script type="text/javascript">
-  var myArray = [
-    // "spheres.html",
-    // "pixels.html",
-    // "cuts.html",
-    "center.html",
-    // "center-glitched.html"
-  ];
-  var randomUrl = myArray [Math.floor(Math.random() * myArray.length)];
-
-  $(function() {
-    $("#display").load("page/main/"+randomUrl+"");
-  });
-</script> -->
 </body>
 </html>
