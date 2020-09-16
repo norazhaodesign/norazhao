@@ -20,24 +20,53 @@
 
 
 
-
-
-
-
-
-<!-- header text -->
-<div style="z-index: 1; display: block; position: absolute; background-color: white; width: 100%; ">
-  <p class="indent headerText">
-    Artist and designer practicing across the areas of generative art, branding and graphic design.
-  </p>
+<div class="row-container">
+  <div class="firstRow" id="firstRow"> 
+    <p class="indent headerText">
+      Artist and designer practicing across the areas of generative art, branding and graphic design.
+    </p>
+  </div>
+  <div class="secondRow">
+    <iframe src="page/main/center.html"></iframe>
+  </div>
 </div>
 
 
+<style>
+  :root {
+    --top-dis: 0px;
+  }
+  .firstRow {
+    position: absolute; 
+    top: 0; left: 0; right: 0;
+  }
+  .secondRow {
+    position: absolute; 
+    top: var(--top-dis);
+    left: 0; right: 0; bottom: 0; 
+  }
+  .secondRow iframe {
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    border: none;
+  }
+</style>
+
+<script>
+  // ref https://css-tricks.com/updating-a-css-variable-with-javascript/
+  var firstRowHeight = document.getElementById('firstRow').clientHeight;
+  let root = document.documentElement;
+  root.style.setProperty('--top-dis', firstRowHeight + "px");
+
+  window.onresize = function() { 
+    console.log("resized");
+  };
+</script>
 
 
 
-<!-- main display -->
-<canvas id="display"></canvas>
+<!-- <div id="display"></div>
 <script type="text/javascript">
   var myArray = [
     // "spheres.html",
@@ -51,6 +80,6 @@
   $(function() {
     $("#display").load("page/main/"+randomUrl+"");
   });
-</script>
+</script> -->
 </body>
 </html>
