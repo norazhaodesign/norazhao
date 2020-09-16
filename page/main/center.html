@@ -16,7 +16,8 @@
   var g;
 
   function setup() {
-    createCanvas(windowWidth, windowHeight);
+    let myCanvas = createCanvas(windowWidth, windowHeight);
+    myCanvas.parent('display');
     colorMode(RGB, 100);
     frameRate(20);
 
