@@ -16,6 +16,15 @@
   });
 </script>
 
+
+
+
+
+
+
+
+
+
 <!-- header text -->
 <div style="z-index: 1; display: block; position: absolute; background-color: white; width: 100%; ">
   <p class="indent headerText">
@@ -23,8 +32,36 @@
   </p>
 </div>
 
+
+
+
+<iframe id="mainIframe" src="page/main/center.html" frameborder="0"></iframe>
+<script>
+  var buffer = 20; //scroll bar buffer
+  var iframe = document.getElementById('mainIframe');
+  
+  function pageY(elem) {
+      return elem.offsetParent ? (elem.offsetTop + pageY(elem.offsetParent)) : elem.offsetTop;
+  }
+  
+  function resizeIframe() {
+      var height = document.documentElement.clientHeight;
+      height -= pageY(document.getElementById('mainIframe'))+ buffer ;
+      height = (height < 0) ? 0 : height;
+      document.getElementById('mainIframe').style.height = height + 'px';
+  }
+  
+  // .onload doesn't work with IE8 and older.
+  if (iframe.attachEvent) {
+      iframe.attachEvent("onload", resizeIframe);
+  } else {
+      iframe.onload=resizeIframe;
+  }
+  
+  window.onresize = resizeIframe;</script>
+
 <!-- main display -->
-<div id="display" style="display: block;"></div>
+<!-- <div id="display" style="display: block;"></div>
 <script type="text/javascript">
   var myArray = [
     // "spheres.html",
@@ -37,7 +74,7 @@
 
   $(function() {
     $("#display").load("page/main/"+randomUrl+"");
-  });
+  }); -->
 </script>
 </body>
 </html>
