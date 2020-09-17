@@ -2,10 +2,6 @@
   font-family: "gt-black";
   src: url(font/gt-america-black.otf);
 }
-/* @font-face {
-  font-family: "gt-regular";
-  src: url(font/gt-america-regular.otf);
-} */
 @font-face {
   font-family: "canela-thin";
   src: url(font/canela-web-thin.ttf);
@@ -21,14 +17,6 @@
 /* @font-face {
   font-family: "lanting-heavy";
   src: url(font/lantinghei-pro-heavy.ttf);
-} */
-/* @font-face {
-  font-family: "plain-light";
-  src: url(font/plain-light.ttf);
-} */
-/* @font-face {
-  font-family: "graphik";
-  src: url(font/graphik.ttf);
 } */
 
 html {
@@ -48,13 +36,13 @@ body {
 }
 @media screen and (max-width: 760px) {
   .indent {
-    margin-left: 1.5vmax; /* no indentation */
+    margin-left: 1.5vmax; /* no indentation on mobile */
   }
 }
 img {
   width: 100%;
   margin: 0;
-  display: block; /* img is by default shown as an inline element. this is to get rid of the white bar under the pics */
+  display: block; /* img is by default shown as an inline element. this is to get rid of the white bar under the img */
 }
 .pixelated {
   image-rendering: pixelated;
@@ -100,14 +88,14 @@ p {
 /* h6 text */
 h6 {
   font-family: "haas", sans-serif;
-  font-size: calc(6px + .3vw + .3vh);
-  line-height: calc((6px + .3vw + .3vh) * 1.2);
+  font-size: calc(7px + .2vw + .2vh);
+  line-height: calc((7px + .2vw + .2vh) * 1.2);
   font-weight: normal;
   opacity: 0.55;
   margin: 0.5vmax 1.5vmax 0.5vmax 0;
 }
 .imgDescription {
-  max-width: calc(40px + 6vw + 6vh);
+  max-width: calc(70px + 6vw + 6vh);
   margin-left: 1.5vmax;
 }
 
