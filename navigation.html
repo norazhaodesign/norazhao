@@ -3,6 +3,7 @@
 <style media="screen">
   #menuBtn {
     width: calc(10px + .8vw + .8vh);
+    display: inline-block;
     position: fixed;
     top: 2vmax;
     left: 1.5vmax;
@@ -25,7 +26,6 @@
 
 
 <!-- home button ---------------------------------------- -->
-<!-- <p id="homeBtn" onclick="window.location.href='index-real.html';">NORA ZHAO</p> -->
 <img id="homeBtn" onclick="window.location.href='index.html';" src="img/icon/norazhao.svg" alt="Home">
 
 <style>
@@ -37,18 +37,7 @@
     z-index: 4;
     cursor: pointer;
   }
-
-  /* #homeBtn {
-    font-family: "gt-black", sans-serif;
-    font-size: calc((10px + .8vw + .8vh) * 1.07);
-    line-height: calc((10px + .8vw + .8vh) * 1.1);
-    top: 2vmax;
-    left: calc(2vmax + (10px + .8vw + .8vh) * 1.2);
-    z-index: 4;
-    cursor: pointer;
-  } */
 </style>
-
 
 
 
@@ -57,6 +46,106 @@
 <div id="sideNav">
   <nav>
     <img id="closeBtn" onclick="closeNav()" src="img/icon/close.svg" alt="Close">
+    <style>
+      #sideNav {
+        height: 100%; /* 100% full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        z-index: 5; /* stay on top */
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: lavender;
+        overflow-x: hidden; /* disable horizontal scroll */
+        transition: 0.3s; /* 0.x second transition effect to slide in the sidenav */
+      }
+      nav {
+        margin: 2vmax 1.5vmax; /* nav contents margin */
+      }
+      #closeBtn {
+        width: 2vmax;
+        cursor: pointer;
+        display: inline-block;
+      }
+    </style>
+
+
+
+
+
+    <!-- language selector ---------------------------------------- -->
+    <div id="radioToolbar">
+      <input type="radio" id="enBtn" name="language" value="en" checked>
+      <label for="enBtn">
+        <p style="font-family: 'canela-thin', serif;
+                  font-size: 2vmax;
+                  margin: 0;">English</p>
+      </label>
+      <p style="font-family: 'canela-thin', serif;
+                font-size: 2vmax;
+                display: inline-block;
+                margin: 0;">·</p>
+      <input type="radio" id="zhBtn" name="language" value="zh">
+      <label for="zhBtn">
+        <p style="font-family: 'STSong', '华文宋体', 'NSimSun', '新宋体', 'SimSun', '宋体', serif;
+                  font-size: 1.6vmax;
+                  position: relative;
+                  bottom: 0.21vmax;
+                  margin: 0;">中文</p>
+      </label>
+    </div>
+    <style media="screen">
+      /* (style ref https://jsfiddle.net/markheath/azk2cL45) */
+      #radioToolbar {
+        display: inline-block;
+        margin-left: 1vmax;
+      }
+      #radioToolbar input[type="radio"] { /* hide default radio buttons */
+        opacity: 0;
+        position: fixed;
+        width: 0;
+        }
+      #radioToolbar label { /* each botton */
+        display: inline-block;
+        margin-right: 0.2vmax;
+      }
+      #radioToolbar label:hover {
+        cursor: pointer;
+      }
+      #radioToolbar input[type="radio"]:checked + label { /* (ref https://css-tricks.com/change-color-of-svg-on-hover) */
+        /* to turn black into another color (tool https://codepen.io/sosuke/pen/Pjoqqp) */
+        filter: invert(24%) sepia(65%) saturate(3318%) hue-rotate(261deg) brightness(87%) contrast(104%);
+      }
+    </style>
+    <script type="text/javascript">
+      // record & retrive the selection status (ref https://stackoverflow.com/a/53298040/11975753)
+      $(function() {
+        $("[name='language']").click(function(){
+          var value = $(this).val();
+          localStorage.setItem("option", value);
+        });
+        var itemValue = localStorage.getItem("option");
+        if (itemValue !== null) {
+          $("input[value=\""+itemValue+"\"]").click();
+        }
+      });
+      // change the display of page contents based on selected language
+      $("[name='language']").click(function() {
+        if (document.getElementById('enBtn').checked) {
+          $(".en").css("display", "block");
+          $(".zh").css("display", "none");
+        }
+        else if (document.getElementById('zhBtn').checked) {
+          $(".zh").css("display", "block");
+          $(".en").css("display", "none");
+        }
+      });
+    </script>
+
+
+
+
+
+
     <div style="margin-top: 2vh;"></div>
 
     <p><a href="index.html">Home Page</a></p>
@@ -81,24 +170,6 @@
   </nav>
 </div>
 <style>
-  #sideNav {
-    height: 100%; /* 100% full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    z-index: 5; /* stay on top */
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: lavender;
-    overflow-x: hidden; /* disable horizontal scroll */
-    transition: 0.3s; /* 0.x second transition effect to slide in the sidenav */
-  }
-  nav {
-    margin: 2vmax 1.5vmax; /* nav contents margin */
-  }
-  #closeBtn {
-    width: 2vmax;
-    cursor: pointer;
-  }
   nav a:hover {
     color: blueviolet;
   }
