@@ -57,13 +57,10 @@ h1 {
   text-transform: uppercase;
   margin: 20vh 1.5vmax 1vmax 1.5vmax;
 }
-<<<<<<< Updated upstream
-=======
 h1.zh {
   font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   margin-bottom: 2vmax;
 }
->>>>>>> Stashed changes
 
 /* body text */
 p {
