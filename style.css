@@ -91,7 +91,7 @@ p.zh {
     margin-top: 6vmax; /* move page content down to make space for the menu button */
   }
 }
-.bodyText {
+.bodyText, .listText {
   padding-top: 3vmax;
   padding-bottom: 3vmax;
 }
