@@ -10,14 +10,14 @@
   font-family: "haas";
   src: url(font/NeueHaasDisplay-Roman.ttf);
 }
-/* @font-face {
+@font-face {
   font-family: "songti-light";
   src: url(font/songti-light.ttf);
-} */
-/* @font-face {
+}
+@font-face {
   font-family: "lanting-heavy";
   src: url(font/lantinghei-pro-heavy.ttf);
-} */
+}
 
 html {
   display: grid;
