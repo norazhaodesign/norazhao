@@ -10,18 +10,18 @@
   font-family: "haas";
   src: url(font/NeueHaasDisplay-Roman.ttf);
 }
-@font-face {
+/* @font-face {
   font-family: "songti-light";
   src: url(font/songti-light.ttf);
-}
-@font-face {
+} */
+/* @font-face {
   font-family: "lanting-heavy";
   src: url(font/lantinghei-pro-heavy.ttf);
-}
-@font-face {
+} */
+/* @font-face {
   font-family: "fangjunhei-cu";
   src: url(font/fz-fangjunhei-cu.ttf);
-}
+} */
 
 .zh {
   display: none;
@@ -66,6 +66,7 @@ h1 {
 }
 h1.zh {
   font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
+  font-weight: 600;
   margin-bottom: 2vmax;
 }
 
