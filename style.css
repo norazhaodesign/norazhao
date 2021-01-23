@@ -18,7 +18,14 @@
   font-family: "lanting-heavy";
   src: url(font/lantinghei-pro-heavy.ttf);
 }
+@font-face {
+  font-family: "fangjunhei-cu";
+  src: url(font/fz-fangjunhei-cu.ttf);
+}
 
+.zh {
+  display: none;
+}
 html {
   display: grid;
   -webkit-text-size-adjust: 100%;
@@ -58,7 +65,7 @@ h1 {
   margin: 20vh 1.5vmax 1vmax 1.5vmax;
 }
 h1.zh {
-  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
+  font-family: "fangjunhei-cu", "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
   margin-bottom: 2vmax;
 }
 
@@ -69,6 +76,10 @@ p {
   line-height: calc((10px + .8vw + .8vh) * 1.28);
   word-spacing: calc((10px + .8vw + .8vh) * 0.03); /* bigger space between words */
   margin: 0;
+}
+p.zh {
+  font-family: "STSong", "华文宋体", "NSimSun", "新宋体", "SimSun", "宋体", serif;
+  font-size: calc(9px + .7vw + .7vh);
 }
 .headerText {
   padding-top: 2vmax;
@@ -97,6 +108,9 @@ h6 {
   font-weight: normal;
   opacity: 0.55;
   margin: 0.5vmax 1.5vmax 0.5vmax 0;
+}
+h6.zh {
+  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 .imgDescription {
   max-width: calc(70px + 6vw + 6vh);
