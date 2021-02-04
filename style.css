@@ -213,6 +213,11 @@ iframe {
   grid-gap: 4px;
   padding-bottom: 4px;
 }
+.flex {
+  display: flex;
+  grid-gap: 4px;
+  padding-bottom: 4px;
+}
 
 /* mobile layout */
 @media screen and (max-width: 760px) {
