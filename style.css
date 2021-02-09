@@ -126,7 +126,7 @@ a:link {
 a:visited {
   color: black;
 }
-main a:link { /* not affecting navigation and next project section  */
+main a:link { /* not affecting navigation and next project section */
   color: blueviolet;
 }
 main a:visited {
