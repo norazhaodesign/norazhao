@@ -34,39 +34,45 @@
     .menu__btn:hover {
         background-color: grey;
     }
-    #h1Holder {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    #infoDiv {
+        position: absolute; 
+        width: 100vw; 
+        height: 100vh;
+        background-color: rgba(0, 255, 0, 0);
+        white-space: nowrap;
+        overflow: hidden;
     }
-    h1 {
-        margin: 0;
-        padding: 0;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    #text {
+        display: inline-block;
         font-family: "helvetica";
-        font-size: 12vw;
-        color: black;
+        font-size: calc(16px + 2vw + 2vh);
+        margin-left: 2vw;
+        text-align: left;
         text-transform: uppercase;
-        text-align: center;
+        color: violet;
+        animation: marquee 8s linear infinite;
+    }
+    @keyframes marquee {
+        0% {
+            transform: translate(0, 130%);
+        }
+        100% {
+            transform: translate(0, -100%);
+        }
     }
 </style>
 </head>
 
 <body>
 <!-- input city name and search button -->
-<form onsubmit = 'return false' class='menu row row__menu'>
+<form onsubmit='return false' class='menu row row__menu'>
     <input style="border: 1px black solid;"
         type='text' 
-        id="inputCity"
         class='menu menu__city' 
         placeholder='Input City Name Here'> 
     </input>
     <div type='button' 
-        class = 'menu menu__btn menu--search'
+        class='menu menu__btn menu--search'
         id="searchCityButton">Search</div>
 </form>
 
@@ -85,22 +91,16 @@
     value="Reset"
     onClick="document.location.reload()">
 </input>
-
-<!-- display city name -->
-<div id="h1Holder">
-    <h1 id="outputCity">City</h1>
+<!-- weather data info div -->
+<div id="infoDiv">
+    <p id="text"></p>
 </div>
-<script>
-    document.getElementById("searchCityButton").onclick = function() {
-        var city = document.getElementById("inputCity").value;
-        document.getElementById("outputCity").innerText = city;
-    }
-</script>
 
 <canvas id="c"></canvas>
 
 <script type="module">
 // define the initial values so it won't be shown an error when opening the web page
+var name = "Undefined";
 var clouds = 50;
 var coordLat = 90; var coordLon = 40;
 var temp = 30; var humidity = 50;
@@ -114,12 +114,13 @@ function getWeatherData() {
     const searchButton = document.querySelector('.menu--search')
     const input = document.querySelector('.menu__city')
 
-	searchButton.addEventListener('click', e => {
+	document.getElementById("searchCityButton").addEventListener('click', e => {
 		const city = input.value;
 		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`)
 			.then(resp => resp.json())
 			.then(json => {
 				console.log(json);
+                name = json.name;
 				clouds = json.clouds.all;
 
 				coordLat = json.coord.lat;
@@ -137,11 +138,7 @@ function getWeatherData() {
 			});
 	});
 }
-  
-setInterval(function() {
-	getWeatherData();
-}, 5000); // fetch the data every 5 seconds for update
-getWeatherData(); // run immediatly instead of 5 seconds later when opeing the web page
+getWeatherData();
 
 import * as THREE from '../js/three.js-master/build/three.module.js';
 import {EffectComposer} from '../js/three.js-master/examples/jsm/postprocessing/EffectComposer.js';
@@ -299,8 +296,8 @@ function render(now) {
 }
 main();
 
-// display weather data on screen
-document.getElementById("searchCityButton").onclick = function() {
+document.getElementById("searchCityButton").onclick = setInterval(function() { // set interval to give it some time to fetch the data
+    var cityVal = name;
     var cloudsVal = clouds; 
     var coordLatVal = coordLat; 
     var coordLonVal = coordLon; 
@@ -312,25 +309,30 @@ document.getElementById("searchCityButton").onclick = function() {
     var windDegVal = windDeg; 
     var windSpeedVal = windSpeed; 
 
-    var str = "Clouds:" + cloudsVal 
-        + "<br>" + "Latitude:" + coordLatVal   
-        + "<br>" + "Longitude:" + coordLonVal
-        + "<br>" + "Humidity:" + humidityVal
-        + "<br>" + "Pressure:" + pressureVal
-        + "<br>" + "Temperature:" + tempVal
-        + "<br>" + "Maximum Temperature:" + tempMaxVal
-        + "<br>" + "Minimal Temperature:" + tempMinVal
-        + "<br>" + "Wind Degree:" + windDegVal
-        + "<br>" + "Wind Speed:" + windSpeedVal
+    // display weather data on screen
+    var str = "City: " + cityVal 
+        + "<br>" + "Clouds: " + cloudsVal 
+        + "<br>" + "Latitude: " + coordLatVal   
+        + "<br>" + "Longitude: " + coordLonVal
+        + "<br>" + "Humidity: " + humidityVal
+        + "<br>" + "Pressure: " + pressureVal
+        + "<br>" + "Temperature: " + tempVal
+        + "<br>" + "Max Temperature: " + tempMaxVal
+        + "<br>" + "Min Temperature: " + tempMinVal
+        + "<br>" + "Wind Degree: " + windDegVal
+        + "<br>" + "Wind Speed: " + windSpeedVal
+        + "<br>" + "<br>"
     ; 
+    document.getElementById("text").innerHTML = str; 
 
-document.getElementById( 'text').innerHTML = str; 
-}
+    // set random color to the info text
+    var gt = Math.floor(Math.abs(coordLatVal) %255);
+    var bt = Math.floor(Math.abs(coordLonVal) %255);
+    var rt = Math.floor(Math.abs(coordLatVal + coordLonVal) %255);
+    document.getElementById("text").style.color = 'rgb('+rt+','+gt+','+bt+')';
+}, 50)
+
+
 </script>
-
-<!-- weather data info div -->
-<div style="background-color: rgba(0,255,0,0); height: 600px; width: 800px; z-index: 10; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-    <p id="text"></p>
-</div>
 </body>
 </html>
