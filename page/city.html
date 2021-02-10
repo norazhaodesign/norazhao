@@ -6,7 +6,7 @@
     html, body {
         margin: 0;
         padding: 0;
-        overflow: hidden
+        overflow: hidden;
     }
     #c {
         width: 100%;
@@ -14,15 +14,15 @@
         display: block;
     }
     .menu {
-        padding: 8px 10px;
+        padding: 4px 8px;
         font-family: "helvetica";
-        font-size: 10pt;
+        font-size: calc(8px + .4vw + .4vh);
     }
-    .menu__city {
-        width: 150px;
+    .menuCity {
+        width: calc(100px + 4vw + 4vh);
         border: 1px white solid;
     }
-    .menu__btn {
+    .menuBtn {
         background-color: black;
         color: white;
         text-align: center;
@@ -31,7 +31,7 @@
         border: 1px white solid;
         margin-left: 2px;
     }
-    .menu__btn:hover {
+    .menuBtn:hover {
         background-color: grey;
     }
     #infoDiv {
@@ -50,14 +50,17 @@
         text-align: left;
         text-transform: uppercase;
         color: violet;
+        /* position: fixed;
+        top: 50%; 
+        transform: translateY(-55%); */
         animation: marquee 8s linear infinite;
     }
     @keyframes marquee {
         0% {
-            transform: translate(0, 130%);
+            transform: translate(0, 100%);
         }
         100% {
-            transform: translate(0, -100%);
+            transform: translate(0, -130%);
         }
     }
 </style>
@@ -65,32 +68,17 @@
 
 <body>
 <!-- input city name and search button -->
-<form onsubmit='return false' class='menu row row__menu'>
+<form onsubmit='return false' class='menu row'>
     <input style="border: 1px black solid;"
         type='text' 
-        class='menu menu__city' 
+        class='menu menuCity' 
         placeholder='Input City Name Here'> 
     </input>
     <div type='button' 
-        class='menu menu__btn menu--search'
+        class='menu menuBtn menuSearch'
         id="searchCityButton">Search</div>
 </form>
 
-<!-- reset button -->
-<input style="background-color: black;
-        color: white;
-        text-align: center;
-        display: inline-block;
-        cursor: pointer;
-        position: absolute;
-        top: 8px;
-        left: 255px;
-        border: 1px white solid;"
-    class='menu menu__btn'
-    type="button"
-    value="Reset"
-    onClick="document.location.reload()">
-</input>
 <!-- weather data info div -->
 <div id="infoDiv">
     <p id="text"></p>
@@ -111,8 +99,8 @@ var windDeg = 0; var windSpeed = 0;
 function getWeatherData() { 
     const api_key = 'eae707b81995803ad66994c8d8f53643';
     
-    const searchButton = document.querySelector('.menu--search')
-    const input = document.querySelector('.menu__city')
+    const searchButton = document.querySelector('.menuSearch')
+    const input = document.querySelector('.menuCity')
 
 	document.getElementById("searchCityButton").addEventListener('click', e => {
 		const city = input.value;
@@ -156,13 +144,15 @@ const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.x = 0;
+camera.position.y = -0.18;
 camera.position.z = 9; // 5.5 for full screen view, 9 for full sphere view
 
 const scene = new THREE.Scene();
 
 {
     const color = 0xFFFFFF;
-    const intensity = 2;
+    const intensity = 4;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(-1, 2, 4);
     scene.add(light);
@@ -173,19 +163,21 @@ const widthSegments = 12;
 const heightSegments = 12;
 const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 
-function makeInstance(geometry, color, x) {
+function makeInstance(geometry, color, x, y, z) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const sphere = new THREE.Mesh(geometry, material);
   scene.add(sphere);
   sphere.position.x = x;
+  sphere.position.y = y;
+  sphere.position.z = z;
   return sphere;
 }
 
 const spheres = [
-  makeInstance(geometry, 0x44aa88, 0),
-  makeInstance(geometry, 0x8844aa, 0),
-  makeInstance(geometry, 0xaa8844, 0),
+  makeInstance(geometry, 0x44aa88, 0, 0, 0),
+  makeInstance(geometry, 0x8844aa, 0, 0, 0),
+  makeInstance(geometry, 0xaa8844, 0, 0, 0),
 ];
 
 const composer = new EffectComposer(renderer);
@@ -321,7 +313,6 @@ document.getElementById("searchCityButton").onclick = setInterval(function() { /
         + "<br>" + "Min Temp: " + tempMinVal
         + "<br>" + "Wind Degree: " + windDegVal
         + "<br>" + "Wind Speed: " + windSpeedVal
-        + "<br>" + "<br>"
     ; 
     document.getElementById("text").innerHTML = str; 
 

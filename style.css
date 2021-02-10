@@ -231,4 +231,7 @@ iframe {
   .hideMobile {
     display: none;
   }
+  .iframe60 {
+    padding-top: 64%;
+  }
 }
