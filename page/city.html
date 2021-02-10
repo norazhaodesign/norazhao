@@ -101,11 +101,11 @@
 <script type="module">
 // define the initial values so it won't be shown an error when opening the web page
 var name = "Undefined";
-var clouds = 50;
-var coordLat = 90; var coordLon = 40;
-var temp = 30; var humidity = 50;
-var pressure = 70; var tempMax = 25; var tempMin = 20;
-var windDeg = 5; var windSpeed = 5;
+var clouds = 0;
+var coordLat = 0; var coordLon = 0;
+var temp = 0; var humidity = 0;
+var pressure = 0; var tempMax = 0; var tempMin = 0;
+var windDeg = 0; var windSpeed = 0;
   
 // get weather data
 function getWeatherData() { 
@@ -317,8 +317,8 @@ document.getElementById("searchCityButton").onclick = setInterval(function() { /
         + "<br>" + "Humidity: " + humidityVal
         + "<br>" + "Pressure: " + pressureVal
         + "<br>" + "Temperature: " + tempVal
-        + "<br>" + "Max Temperature: " + tempMaxVal
-        + "<br>" + "Min Temperature: " + tempMinVal
+        + "<br>" + "Max Temp: " + tempMaxVal
+        + "<br>" + "Min Temp: " + tempMinVal
         + "<br>" + "Wind Degree: " + windDegVal
         + "<br>" + "Wind Speed: " + windSpeedVal
         + "<br>" + "<br>"
