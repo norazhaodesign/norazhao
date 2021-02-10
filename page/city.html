@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>City Sphere</title>
+<style type = "text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden
+    }
+    #c {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .menu {
+        padding: 8px 10px;
+        font-family: "helvetica";
+        font-size: 10pt;
+    }
+    .menu__city {
+        width: 150px;
+        border: 1px white solid;
+    }
+    .menu__btn {
+        background-color: black;
+        color: white;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+        border: 1px white solid;
+        margin-left: 2px;
+    }
+    .menu__btn:hover {
+        background-color: grey;
+    }
+</style>
+</head>
+
+<body>
+<form onsubmit = 'return false' class='menu row row__menu'>
+    <input style="border: 1px black solid;"
+        type='text' 
+        class='menu menu__city' 
+        placeholder='Input City Name Here'> 
+    </input>
+    <div type='button' class = 'menu menu__btn menu--search'>Search</div>
+</form>
+<input style="background-color: black;
+        color: white;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+        position: absolute;
+        top: 8px;
+        left: 255px;
+        border: 1px white solid;"
+    class='menu menu__btn'
+    type="button"
+    value="Reset"
+    onClick="document.location.reload()">
+</input>
+<canvas id="c"></canvas>
+
+<script type="module">
+import * as THREE from '../js/three.js-master/build/three.module.js';
+import {EffectComposer} from '../js/three.js-master/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from '../js/three.js-master/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from '../js/three.js-master/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from '../js/three.js-master/examples/jsm/postprocessing/FilmPass.js';
+import {GUI} from '../js/three.js-master/examples/jsm/libs/dat.gui.module.js';
+
+function main() {
+const canvas = document.querySelector('#c');
+const renderer = new THREE.WebGLRenderer({canvas});
+
+// define the initial values so it won't be shown an error when opening the web page
+var clouds = 50;
+var coordLat = 90; var coordLon = 40;
+var temp = 30; var humidity = 50;
+var pressure = 70; var tempMax = 25; var tempMin = 20;
+var windDeg = 5; var windSpeed = 5;
+  
+// get weather data
+function getWeatherData() { 
+    const api_key = 'eae707b81995803ad66994c8d8f53643';
+    
+    const searchButton = document.querySelector('.menu--search')
+    const input = document.querySelector('.menu__city')
+
+	searchButton.addEventListener('click', e => {
+		const city = input.value;
+		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`)
+			.then(resp => resp.json())
+			.then(json => {
+				console.log(json);
+				clouds = json.clouds.all;
+
+				coordLat = json.coord.lat;
+				coordLon = json.coord.lon;
+
+				humidity = json.main.humidity;
+				pressure = json.main.pressure;
+
+				temp = json.main.temp;
+				tempMax = json.main.temp_max;
+				tempMin = json.main.temp_min;
+
+				windDeg = json.wind.deg;
+				windSpeed = json.wind.speed;
+			});
+	});
+}
+  
+setInterval(function() {
+	getWeatherData();
+}, 5000); // fetch the data every 5 seconds for update
+getWeatherData(); // run immediatly instead of 5 seconds later when opeing the web page
+
+const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.z = 9; // 5.5 for full screen view
+
+const scene = new THREE.Scene();
+
+{
+    const color = 0xFFFFFF;
+    const intensity = 2;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
+}
+
+const radius = 5;
+const widthSegments = 12;
+const heightSegments = 12;
+const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
+
+function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
+  sphere.position.x = x;
+  return sphere;
+}
+
+const spheres = [
+  makeInstance(geometry, 0x44aa88, 0),
+  makeInstance(geometry, 0x8844aa, 0),
+  makeInstance(geometry, 0xaa8844, 0),
+];
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const bloomPass = new BloomPass(
+    1,    // strength
+    25,   // kernel size
+    4,    // sigma ?
+    256,  // blur render target resolution
+);
+composer.addPass(bloomPass);
+
+const filmPass = new FilmPass(
+    4,     // noise intensity
+    2,     // scanline intensity
+    170,    // scanline count
+    false, // grayscale
+);
+filmPass.renderToScreen = true;
+composer.addPass(filmPass);
+
+function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+}
+
+const gui = new GUI();
+{
+    const folder = gui.addFolder('BloomPass');
+    folder.add(bloomPass.copyUniforms.opacity, 'value', 0, 4).name('strength');
+    folder.open();
+}
+
+{
+    const folder = gui.addFolder('FilmPass');
+    folder.add(filmPass.uniforms.grayscale, 'value').name('grayscale');
+    folder.add(filmPass.uniforms.nIntensity, 'value', 0, 4).name('noise intensity');
+    folder.add(filmPass.uniforms.sIntensity, 'value', 0, 4).name('scanline intensity');
+    folder.add(filmPass.uniforms.sCount, 'value', 0, 1000).name('scanline count');
+    folder.open();
+}
+
+let then = 0;
+function render(now) {
+    now *= 0.001;  // convert to seconds
+    const deltaTime = now - then;
+    then = now;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      composer.setSize(canvas.width, canvas.height);
+    }
+      
+      
+    spheres[0].rotation.x += windDeg/360 * 0.001;
+	spheres[0].rotation.y += windDeg/360 * 0.001;
+	spheres[0].rotation.z -= windSpeed * 0.001;
+
+	spheres[1].rotation.x += windDeg/360 * 0.001;
+	spheres[1].rotation.y -= windDeg/360 * 0.001;
+	spheres[1].rotation.z -= windSpeed * 0.001;
+
+	spheres[2].rotation.x -= windDeg/360 * 0.001;
+	spheres[2].rotation.y += windDeg/360 * 0.001;
+	spheres[2].rotation.z += windSpeed * 0.001;
+
+	var r1 = Math.floor(humidity /100 *256);
+	var g1 = Math.floor(clouds /100 *256);
+	var b1 = Math.floor(pressure %255);
+	spheres[0].material.color.set('rgb('+r1+','+g1+','+b1+')');
+
+	var r2 = Math.floor(Math.abs(coordLat) %255);
+	var g2 = Math.floor(Math.abs(coordLon) %255);
+	var b2 = Math.floor(Math.abs(coordLat + coordLon) %255);
+	spheres[1].material.color.set('rgb('+r2+','+g2+','+b2+')');
+
+	var r3 = Math.floor(Math.abs(temp %255));
+	var g3 = Math.floor(Math.abs(tempMax + (tempMax - tempMin) *5 %255));
+	var b3 = Math.floor(Math.abs(tempMin - (tempMax - tempMin) *5 %255));
+	spheres[2].material.color.set('rgb('+r3+','+g3+','+b3+')');
+      
+    composer.render(deltaTime);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+main();
+</script>
+</body>
+</html>
