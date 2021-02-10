@@ -13,13 +13,17 @@
         height: 100%;
         display: block;
     }
+    .row {
+        background-color: black;
+        padding: 2vh calc(1vh + 1.5vw) 0 calc(1vh + 1.5vw);
+    }
     .menu {
-        padding: 4px 8px;
+        padding: calc(4px + .5vh) calc(4px + 1vw);
         font-family: "helvetica";
-        font-size: calc(8px + .4vw + .4vh);
+        font-size: calc(10px + .5vw + .5vh);
     }
     .menuCity {
-        width: calc(100px + 4vw + 4vh);
+        width: calc(100px + 20vw + 2vh);
         border: 1px white solid;
     }
     .menuBtn {
@@ -29,7 +33,7 @@
         display: inline-block;
         cursor: pointer;
         border: 1px white solid;
-        margin-left: 2px;
+        margin-left: 0.2vw;
     }
     .menuBtn:hover {
         background-color: grey;
@@ -68,9 +72,8 @@
 
 <body>
 <!-- input city name and search button -->
-<form onsubmit='return false' class='menu row'>
-    <input style="border: 1px black solid;"
-        type='text' 
+<form onsubmit='return false' class='row'>
+    <input type='text' 
         class='menu menuCity' 
         placeholder='Input City Name Here'> 
     </input>
