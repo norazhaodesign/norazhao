@@ -34,18 +34,43 @@
     .menu__btn:hover {
         background-color: grey;
     }
+    #h1Holder {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    h1 {
+        margin: 0;
+        padding: 0;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "helvetica";
+        font-size: 12vw;
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+    }
 </style>
 </head>
 
 <body>
+<!-- input city name and search button -->
 <form onsubmit = 'return false' class='menu row row__menu'>
     <input style="border: 1px black solid;"
         type='text' 
+        id="inputCity"
         class='menu menu__city' 
         placeholder='Input City Name Here'> 
     </input>
-    <div type='button' class = 'menu menu__btn menu--search'>Search</div>
+    <div type='button' 
+        class = 'menu menu__btn menu--search'
+        id="searchCityButton">Search</div>
 </form>
+
+<!-- reset button -->
 <input style="background-color: black;
         color: white;
         text-align: center;
@@ -60,20 +85,21 @@
     value="Reset"
     onClick="document.location.reload()">
 </input>
+
+<!-- display city name -->
+<div id="h1Holder">
+    <h1 id="outputCity">City</h1>
+</div>
+<script>
+    document.getElementById("searchCityButton").onclick = function() {
+        var city = document.getElementById("inputCity").value;
+        document.getElementById("outputCity").innerText = city;
+    }
+</script>
+
 <canvas id="c"></canvas>
 
 <script type="module">
-import * as THREE from '../js/three.js-master/build/three.module.js';
-import {EffectComposer} from '../js/three.js-master/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from '../js/three.js-master/examples/jsm/postprocessing/RenderPass.js';
-import {BloomPass} from '../js/three.js-master/examples/jsm/postprocessing/BloomPass.js';
-import {FilmPass} from '../js/three.js-master/examples/jsm/postprocessing/FilmPass.js';
-import {GUI} from '../js/three.js-master/examples/jsm/libs/dat.gui.module.js';
-
-function main() {
-const canvas = document.querySelector('#c');
-const renderer = new THREE.WebGLRenderer({canvas});
-
 // define the initial values so it won't be shown an error when opening the web page
 var clouds = 50;
 var coordLat = 90; var coordLon = 40;
@@ -117,12 +143,23 @@ setInterval(function() {
 }, 5000); // fetch the data every 5 seconds for update
 getWeatherData(); // run immediatly instead of 5 seconds later when opeing the web page
 
+import * as THREE from '../js/three.js-master/build/three.module.js';
+import {EffectComposer} from '../js/three.js-master/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from '../js/three.js-master/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from '../js/three.js-master/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from '../js/three.js-master/examples/jsm/postprocessing/FilmPass.js';
+import {GUI} from '../js/three.js-master/examples/jsm/libs/dat.gui.module.js';
+
+function main() {
+const canvas = document.querySelector('#c');
+const renderer = new THREE.WebGLRenderer({canvas});
+
 const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-camera.position.z = 9; // 5.5 for full screen view
+camera.position.z = 9; // 5.5 for full screen view, 9 for full sphere view
 
 const scene = new THREE.Scene();
 
@@ -185,21 +222,20 @@ function resizeRendererToDisplaySize(renderer) {
     return needResize;
 }
 
-const gui = new GUI();
-{
-    const folder = gui.addFolder('BloomPass');
-    folder.add(bloomPass.copyUniforms.opacity, 'value', 0, 4).name('strength');
-    folder.open();
-}
-
-{
-    const folder = gui.addFolder('FilmPass');
-    folder.add(filmPass.uniforms.grayscale, 'value').name('grayscale');
-    folder.add(filmPass.uniforms.nIntensity, 'value', 0, 4).name('noise intensity');
-    folder.add(filmPass.uniforms.sIntensity, 'value', 0, 4).name('scanline intensity');
-    folder.add(filmPass.uniforms.sCount, 'value', 0, 1000).name('scanline count');
-    folder.open();
-}
+// const gui = new GUI();
+// {
+//     const folder = gui.addFolder('BloomPass');
+//     folder.add(bloomPass.copyUniforms.opacity, 'value', 0, 10).name('strength');
+//     folder.open();
+// }
+// {
+//     const folder = gui.addFolder('FilmPass');
+//     folder.add(filmPass.uniforms.grayscale, 'value').name('grayscale');
+//     folder.add(filmPass.uniforms.nIntensity, 'value', 0, 10).name('noise intensity');
+//     folder.add(filmPass.uniforms.sIntensity, 'value', 0, 10).name('scanline intensity');
+//     folder.add(filmPass.uniforms.sCount, 'value', 0, 1000).name('scanline count');
+//     folder.open();
+// }
 
 let then = 0;
 function render(now) {
@@ -213,35 +249,47 @@ function render(now) {
       camera.updateProjectionMatrix();
       composer.setSize(canvas.width, canvas.height);
     }
-      
-      
-    spheres[0].rotation.x += windDeg/360 * 0.001;
-	spheres[0].rotation.y += windDeg/360 * 0.001;
-	spheres[0].rotation.z -= windSpeed * 0.001;
+    
+    // fallback value when no value is returned
+    var windDegTrue = windDeg || 5;
+    var windSpeedTrue = windSpeed || 5;
+    var humidityTrue = humidity || 50;
+    var cloudsTrue = clouds || 50;
+    var pressureTrue = pressure || 70;
+    var coordLatTrue = coordLat || 90;
+    var coordLonTrue = coordLon || 40;
+    var tempTrue = temp || 30;
+    var tempMaxTrue = tempMax || 25;
+    var tempMinTrue = tempMin || 20;
 
-	spheres[1].rotation.x += windDeg/360 * 0.001;
-	spheres[1].rotation.y -= windDeg/360 * 0.001;
-	spheres[1].rotation.z -= windSpeed * 0.001;
+    // have weather data control the sphere movements and look
+    spheres[0].rotation.x += windDegTrue/360 * 0.001;
+	spheres[0].rotation.y += windDegTrue/360 * 0.001;
+	spheres[0].rotation.z -= windSpeedTrue * 0.001;
 
-	spheres[2].rotation.x -= windDeg/360 * 0.001;
-	spheres[2].rotation.y += windDeg/360 * 0.001;
-	spheres[2].rotation.z += windSpeed * 0.001;
+	spheres[1].rotation.x += windDegTrue/360 * 0.001;
+	spheres[1].rotation.y -= windDegTrue/360 * 0.001;
+	spheres[1].rotation.z -= windSpeedTrue * 0.001;
 
-	var r1 = Math.floor(humidity /100 *256);
-	var g1 = Math.floor(clouds /100 *256);
-	var b1 = Math.floor(pressure %255);
+	spheres[2].rotation.x -= windDegTrue/360 * 0.001;
+	spheres[2].rotation.y += windDegTrue/360 * 0.001;
+	spheres[2].rotation.z += windSpeedTrue * 0.001;
+
+	var r1 = Math.floor(humidityTrue /100 *256);
+	var g1 = Math.floor(cloudsTrue /100 *256);
+	var b1 = Math.floor(pressureTrue %255);
 	spheres[0].material.color.set('rgb('+r1+','+g1+','+b1+')');
 
-	var r2 = Math.floor(Math.abs(coordLat) %255);
-	var g2 = Math.floor(Math.abs(coordLon) %255);
-	var b2 = Math.floor(Math.abs(coordLat + coordLon) %255);
+	var r2 = Math.floor(Math.abs(coordLatTrue) %255);
+	var g2 = Math.floor(Math.abs(coordLonTrue) %255);
+	var b2 = Math.floor(Math.abs(coordLatTrue + coordLonTrue) %255);
 	spheres[1].material.color.set('rgb('+r2+','+g2+','+b2+')');
 
-	var r3 = Math.floor(Math.abs(temp %255));
-	var g3 = Math.floor(Math.abs(tempMax + (tempMax - tempMin) *5 %255));
-	var b3 = Math.floor(Math.abs(tempMin - (tempMax - tempMin) *5 %255));
+	var r3 = Math.floor(Math.abs(tempTrue %255));
+	var g3 = Math.floor(Math.abs(tempMaxTrue + (tempMaxTrue - tempMinTrue) *5 %255));
+	var b3 = Math.floor(Math.abs(tempMinTrue - (tempMaxTrue - tempMinTrue) *5 %255));
 	spheres[2].material.color.set('rgb('+r3+','+g3+','+b3+')');
-      
+
     composer.render(deltaTime);
 
     requestAnimationFrame(render);
@@ -250,6 +298,39 @@ function render(now) {
   requestAnimationFrame(render);
 }
 main();
+
+// display weather data on screen
+document.getElementById("searchCityButton").onclick = function() {
+    var cloudsVal = clouds; 
+    var coordLatVal = coordLat; 
+    var coordLonVal = coordLon; 
+    var humidityVal = humidity; 
+    var pressureVal = pressure; 
+    var tempVal = temp; 
+    var tempMaxVal = tempMax; 
+    var tempMinVal = tempMin; 
+    var windDegVal = windDeg; 
+    var windSpeedVal = windSpeed; 
+
+    var str = "Clouds:" + cloudsVal 
+        + "<br>" + "Latitude:" + coordLatVal   
+        + "<br>" + "Longitude:" + coordLonVal
+        + "<br>" + "Humidity:" + humidityVal
+        + "<br>" + "Pressure:" + pressureVal
+        + "<br>" + "Temperature:" + tempVal
+        + "<br>" + "Maximum Temperature:" + tempMaxVal
+        + "<br>" + "Minimal Temperature:" + tempMinVal
+        + "<br>" + "Wind Degree:" + windDegVal
+        + "<br>" + "Wind Speed:" + windSpeedVal
+    ; 
+
+document.getElementById( 'text').innerHTML = str; 
+}
 </script>
+
+<!-- weather data info div -->
+<div style="background-color: rgba(0,255,0,0); height: 600px; width: 800px; z-index: 10; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <p id="text"></p>
+</div>
 </body>
 </html>
