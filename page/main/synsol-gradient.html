@@ -139,11 +139,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let material = new THREE.ShaderMaterial({
         // the uniform variables. they update the mesh in real time
         uniforms: {
-            u_bg: {type: 'v3', value: rgb(255, 255, 255)},   // highlight
-            u_bgMain: {type: 'v3', value: rgb(248,193,74)},  // left side
-            u_color1: {type: 'v3', value: rgb(255,255,255)}, // main changing colour
-            u_color2: {type: 'v3', value: rgb(84,78,145)},   // right side
-            u_time: {type: 'f', value: 0},
+            u_bg:     {type: 'v3', value: rgb(255, 255, 255)}, // highlight
+            u_bgMain: {type: 'v3', value: rgb(248,193,74)},    // left side
+            u_color1: {type: 'v3', value: rgb(255,255,255)},   // main changing colour
+            u_color2: {type: 'v3', value: rgb(84,78,145)},     // right side
+            u_time:   {type: 'f',  value: 0},
             u_randomisePosition: { type: 'v2', value: randomisePosition }
         },
         fragmentShader: sNoise + document.querySelector('#fragment-shader').textContent,
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     var B = function(x, y, t) {
         return( Math.floor(192 + 64*Math.sin( 5*Math.sin(t/9) + ((x-100)*(x-100)+(y-100)*(y-100))/1100) ) );
     }
-    
+
     // two variables to generate the warp of the sheet
     let t = 0;
     let j = 0;
