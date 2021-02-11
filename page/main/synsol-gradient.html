@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Synsol</title>
+    <script src="../../js/three.min.js"></script>
+</head>
+<body style="padding: 0; margin: 0;">
+
+<!-- snoise() / simplex noise: generates noise or random vertexes within shaders, which adjusts the x and z positions of each point to create a cloth like effect -->
+<script id="snoise-function" type="x-shader/x-vertex">
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+
+    float snoise(vec2 v) {
+        const vec4 C = vec4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+                            0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+                            -0.577350269189626,  // -1.0 + 2.0 * C.x
+                            0.024390243902439); // 1.0 / 41.0
+        vec2 i  = floor(v + dot(v, C.yy) );
+        vec2 x0 = v -   i + dot(i, C.xx);
+        vec2 i1;
+        i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+        vec4 x12 = x0.xyxy + C.xxzz;
+        x12.xy -= i1;
+        i = mod289(i); // Avoid truncation effects in permutation
+        vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+            + i.x + vec3(0.0, i1.x, 1.0 ));
+
+        vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+        m = m*m ;
+        m = m*m ;
+        vec3 x = 2.0 * fract(p * C.www) - 1.0;
+        vec3 h = abs(x) - 0.5;
+        vec3 ox = floor(x + 0.5);
+        vec3 a0 = x - ox;
+        m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+        vec3 g;
+        g.x  = a0.x  * x0.x  + h.x  * x0.y;
+        g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+        return 130.0 * dot(m, g);
+    }
+</script>
+
+<!-- uniform variables: variables to manipulate straight from JavaScript which updates three.js 3D shape -->
+<!-- gl_Position & gl_FragColor: reserved variables which control the final output of shaders -->
+<script id="vertex-shader" type="x-shader/x-vertex">
+    uniform float u_time;
+    uniform vec2 u_randomisePosition;
+
+    varying float vDistortion;
+    varying float xDistortion;
+    varying vec2 vUv;
+
+    void main() {
+        vUv = uv;
+        // 1st number adjusts the number to control how many folds the mesh has
+        // 2nd number adjusts how fast the folds move
+        vDistortion = snoise(vUv.xx * 2. - u_randomisePosition * 0.15); // vertical folds
+        xDistortion = snoise(vUv.yy * 2. - u_randomisePosition * 0.05); // horizeontal folds
+        vec3 pos = position;
+        
+        // adjust the number to control how distorted the mesh is
+        pos.x += (xDistortion * 10.); // on x
+        pos.y += (vDistortion * 10.); // on y
+        pos.z += (vDistortion * 5.); // on z
+
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    }
+</script>
+
+<!-- vUv & uv: variables which carry information on the vertex we are currently adjusting -->
+<script id="fragment-shader" type="x-shader/x-fragment"> 
+    vec3 rgb(float r, float g, float b) {
+        return vec3(r / 255., g / 255., b / 255.);
+    }
+    vec3 rgb(float c) {
+        return vec3(c / 255., c / 255., c / 255.);
+    }
+
+    uniform vec3 u_bg;
+    uniform vec3 u_bgMain;
+    uniform vec3 u_color1;
+    uniform vec3 u_color2;
+    uniform float u_time;
+
+    varying vec2 vUv;
+    varying float vDistortion;
+
+    void main() {
+        vec3 bg = rgb(u_bg.r, u_bg.g, u_bg.b);
+        vec3 c1 = rgb(u_color1.r, u_color1.g, u_color1.b);
+        vec3 c2 = rgb(u_color2.r, u_color2.g, u_color2.b);
+        vec3 bgMain = rgb(u_bgMain.r, u_bgMain.g, u_bgMain.b);
+
+        float noise1 = snoise(vUv + u_time * 0.3); // horizontal shake of the light spots
+        float noise2 = snoise(vUv * 2. + u_time * 0.3); // vertical shake of the light spots
+
+        vec3 color = bg;
+        color = mix(color, c1, noise1 * .6);
+        color = mix(color, c2, noise2 * .4);
+
+        color = mix(color, mix(c1, c2, vUv.x), vDistortion);
+
+        float border = smoothstep(0.2, 0.6, vUv.x);
+
+        color = mix(color, bgMain, 1. -border);
+
+        gl_FragColor = vec4(color, 1.0);
+    }
+</script>
+
+<!-- the main three.js script -->
+<script>
+function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function rgb(r, g, b) {
+    return new THREE.Vector3(r, g, b);
+}
+
+document.addEventListener("DOMContentLoaded", function(e) {
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement )
+    
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    let vCheck = false;
+    camera.position.z = 5;
+
+    var randomisePosition = new THREE.Vector2(1, 2);
+    // the shader from earlier
+    let sNoise = document.querySelector('#snoise-function').textContent
+    // make a rectangle
+    let geometry = new THREE.PlaneGeometry(400, 400, 100, 100);
+    // and define its material using the shader
+    let material = new THREE.ShaderMaterial({
+        // the uniform variables. they update the mesh in real time
+        uniforms: {
+            u_bg: {type: 'v3', value: rgb(255, 255, 255)},   // highlight
+            u_bgMain: {type: 'v3', value: rgb(248,193,74)},  // left side
+            u_color1: {type: 'v3', value: rgb(255,255,255)}, // main changing colour
+            u_color2: {type: 'v3', value: rgb(84,78,145)},   // right side
+            u_time: {type: 'f', value: 0},
+            u_randomisePosition: { type: 'v2', value: randomisePosition }
+        },
+        fragmentShader: sNoise + document.querySelector('#fragment-shader').textContent,
+        vertexShader: sNoise + document.querySelector('#vertex-shader').textContent,
+    });
+
+    // combine the shape and its material to make what is displayed on the screen
+    let mesh = new THREE.Mesh(geometry, material);
+    mesh.position.set(0, 60, -400);
+    mesh.scale.multiplyScalar(4); // set default to 4
+    scene.add(mesh);
+    renderer.render( scene, camera );
+
+    // generate random R, G, B values
+    var R = function(x, y, t) {
+        return( Math.floor(192 + 64*Math.cos( (x*x-y*y)/300 + t )) );
+    }
+    var G = function(x, y, t) {
+        return( Math.floor(192 + 64*Math.sin( (x*x*Math.cos(t/4)+y*y*Math.sin(t/3))/300 ) ) );
+    }
+    var B = function(x, y, t) {
+        return( Math.floor(192 + 64*Math.sin( 5*Math.sin(t/9) + ((x-100)*(x-100)+(y-100)*(y-100))/1100) ) );
+    }
+    
+    // two variables to generate the warp of the sheet
+    let t = 0;
+    let j = 0;
+    // set x and y as random integers
+    let x = randomInteger(0, 32);
+    let y = randomInteger(0, 32);
+
+    const animate = function () {
+        requestAnimationFrame( animate );
+        renderer.render( scene, camera );
+
+        // the uniform variables from earlier. now to update the randomisePosition variable with the j variable, producing a random z and x position as shown in the shader
+        mesh.material.uniforms.u_randomisePosition.value = new THREE.Vector2(j, j);
+        
+        // generate a random R, G, B value using R(), G(), and B()
+        mesh.material.uniforms.u_color1.value = new THREE.Vector3(R(x,y,t/2), G(x,y,t/2), B(x,y,t/2));
+
+        // have t representing time
+        mesh.material.uniforms.u_time.value = t;
+        // every 2 ticks of t, we adjust x so it never goes below 0 or above 32
+        if(t % 0.1 == 0) {         
+            if(vCheck == false) {
+                x -= 1;
+                if(x <= 0) {
+                    vCheck = true;
+                }
+            } else {
+                x += 1;
+                if(x >= 32) {
+                    vCheck = false;
+                }
+            }
+        }
+
+        // increase t by a certain value every frame
+        j = j + 0.01; // how fast the mesh moves
+        t = t + 0.01; // how fast the colour moves
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
+        renderer.render (scene, camera);
+    };
+    animate();
+});
+</script>
+</body>
+</html>

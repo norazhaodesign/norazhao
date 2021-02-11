@@ -15,7 +15,6 @@
       height: 33.33vh;
       object-fit: cover; /* display pic without stretching */
       image-rendering: pixelated; /* make pic rendered sharp */
-      border-radius: 0%;
     }
     .main {
       display: grid;
@@ -28,14 +27,14 @@
         height: 25vh;
       }
       .main {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
       }
     }
     </style>
   </head>
   <body>
     <script type="text/javascript">
-      const n = 15; // number of values needed
+      const n = 16; // number of values needed
       const arr = []; // initial empty array 
       do { 
         const randomNumber = Math.floor(Math.random() * 477) + 1 // generating random integer from 1 to the given number
@@ -61,6 +60,7 @@
         document.write('<img src="../../img/cards/p' + arr[12] + '.png">');
         document.write('<img src="../../img/cards/p' + arr[13] + '.png">');
         document.write('<img src="../../img/cards/p' + arr[14] + '.png">');
+        document.write('<img src="../../img/cards/p' + arr[15] + '.png">');
       document.write('</div>');
     </script>
   </body>
