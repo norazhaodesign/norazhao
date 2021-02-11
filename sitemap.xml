@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<!-- index page -->
+<url>
+  <loc>https://norazhao.com/</loc>
+  <priority>1</priority>
+</url>
+
+<!-- about and contact -->
+<url>
+  <loc>https://norazhao.com/about-and-contact.html</loc>
+  <priority>0.85</priority>
+</url>
+
+<!-- projects -->
+<url>
+  <loc>https://norazhao.com/glitch-room.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/glitch-pattern.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/visual-weather.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/rtw.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/omdia.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/peacebird.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/byton.html</loc>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/chinese-grid.html</loc>
+  <priority>0.8</priority>
+</url>
+
+<!-- lower down pages -->
+<url>
+  <loc>https://norazhao.com/page/glitch-room.html</loc>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/city.html</loc>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/chinese-grid.html</loc>
+  <priority>0.5</priority>
+</url>
+
+<!-- shown on index experiments -->
+<url>
+  <loc>https://norazhao.com/page/main/cuts.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/main/square-pixels.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/main/cards.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/main/synsol-gradient.html</loc>
+  <priority>0.1</priority>
+</url>
+
+
+
+
+
+</urlset>

@@ -112,6 +112,12 @@
 
 <!-- the main three.js script -->
 <script>
+// var r1 = Math.floor(Math.random() *256);
+// var g1 = Math.floor(Math.random() *256);
+// var b1 = Math.floor(Math.random() *256);
+// var color1 = 'rgb('+r1+', '+g1+', '+b1+')';
+// console.log(color1);
+
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -135,14 +141,15 @@ document.addEventListener("DOMContentLoaded", function(e) {
     let sNoise = document.querySelector('#snoise-function').textContent
     // make a rectangle
     let geometry = new THREE.PlaneGeometry(400, 400, 100, 100);
+
     // and define its material using the shader
     let material = new THREE.ShaderMaterial({
         // the uniform variables. they update the mesh in real time
         uniforms: {
             u_bg:     {type: 'v3', value: rgb(255, 255, 255)}, // highlight
-            u_bgMain: {type: 'v3', value: rgb(248,193,74)},    // left side
+            u_bgMain: {type: 'v3', value: rgb(248, 193, 74)},  // left side 
             u_color1: {type: 'v3', value: rgb(255,255,255)},   // main changing colour
-            u_color2: {type: 'v3', value: rgb(84,78,145)},     // right side
+            u_color2: {type: 'v3', value: rgb(84, 78, 145)},   // right side
             u_time:   {type: 'f',  value: 0},
             u_randomisePosition: { type: 'v2', value: randomisePosition }
         },
