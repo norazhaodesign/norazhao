@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: black;
+      background-color: white;
     }
     img {
       width: 100%;
@@ -23,33 +23,46 @@
       grid-gap: 0;
       overflow: hidden;
     }
+    @media screen and (max-width: 760px) {
+    img {
+      height: 20vh;
+    }
+    .main {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
     </style>
   </head>
   <body>
   </body>
 
   <script type="text/javascript">
-  function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; // The maximum is exclusive and the minimum is inclusive
-    }
+    const n = 15; // number of values needed
+    const arr = []; // initial empty array 
+    do { 
+      const randomNumber = Math.floor(Math.random() * 477) + 1 // generating random integer from 1 to the given number
+      if (!arr.includes(randomNumber)) { 
+        arr.push(randomNumber); 
+      } // pushing into the array only if the array does not contain it  
+    } while (arr.length < n); 
+    console.log(arr); // printing the array elements 
+
     document.write('<div class="main">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
-    document.write('<img src="../../img/cards/p' + getRandomInt(1, 477) + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[0] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[1] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[2] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[3] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[4] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[5] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[6] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[7] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[8] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[9] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[10] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[11] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[12] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[13] + '.png">');
+    document.write('<img src="../../img/cards/p' + arr[14] + '.png">');
     document.write('</div>');
   </script>
 </html>
