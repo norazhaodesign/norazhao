@@ -154,6 +154,7 @@ main a:visited {
   height: 60vh;
   overflow: hidden;
 }
+
 .iframeWrapper {
   position: relative;
   overflow: auto;
@@ -236,5 +237,8 @@ iframe {
   }
   .iframexto100 {
     padding-top: 100%;
+  }
+  .iframexto110 {
+    padding-top: 110%;
   }
 }
