@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Weather 可视天气</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="navigation"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#navigation").load("navigation.html");
+  });
+</script>
+
+<main>
+<p class="en indent headerText">
+  A system which takes live weather data of designated city and generates corresponding model upon request.
+</p>
+<p class="zh indent headerText">
+  一个从数据库中获取指定城市实时天气数据并生成相应模型的系统。
+</p>
+
+<h1 class="en">Visual Weather</h1>
+<h1 class="zh">可视天气</h1>
+
+<div class="iframeWrapper iframe60 iframexto110">
+  <iframe src="page/city.html"></iframe>
+</div>
+<h6 class="en imgDescription">△ Type in name of a city in English and click the search button to generate the visuals.</h6>
+<h6 class="zh imgDescription">△ 用英文输入城市名称，然后单击“搜索”以获取视觉输出。</h6>
+</main>
+
+<p class="en indent bodyText">
+  This model fetches the live weather data of designated city and transform those into aspects of the visuals. It means to give an intuitive interpretation of the weather visually and somewhat bridging other senses with sight.
+  <br>
+  Wind data determins the movement of colour spots. Humidity, clouds and pressure together generate the first colour thorugh manipulation of its RGB value. Latitude and longitude calculate the second colour while temprature produces the thrid colour.
+</p>
+<p class="zh indent bodyText">
+  该模型通过获取指定城市的实时天气数据将其转换为视觉效果。这个实验志在通过视觉表现直观地诠释天气信息，将其他感官联系起来。
+  <br>
+  该模型通过风的数据决定色块的运动。以湿度、云和气压值生成对应的RGB值来控制第一个颜色，用经纬度值计算第二个颜色，温度值则用于生成第三个颜色。
+</p>
+
+<div class="pageDivider"></div>
+
+<div class="nextPageDiv">
+  <a href="rtw.html">
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("rtw.html main");
+    });
+  </script>
+</div>
+
+<div id="footer"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#footer").load("footer.html");
+  });
+</script>
+</body>
+</html>

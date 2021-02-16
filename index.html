@@ -18,7 +18,7 @@
 
 <!-- text on the top -->
 <div class="row-container">
-  <div class="firstRow" id="firstRow"> 
+  <div class="firstRow" id="firstRow">
     <p class="en indent headerText">
       I'm an artist and designer practicing across the areas of generative art, branding and graphic design. Refresh for new visuals.
     </p>
@@ -51,28 +51,28 @@
     --top-dis: 0px;
   }
   .firstRow {
-    position: absolute; 
+    position: absolute;
     top: 0; left: 0; right: 0;
   }
   .secondRow {
-    position: absolute; 
+    position: absolute;
     top: var(--top-dis);
-    left: 0; right: 0; bottom: 0; 
+    left: 0; right: 0; bottom: 0;
   }
   .secondRow iframe {
-    display: block; 
-    width: 100%; 
-    height: 100%; 
+    display: block;
+    width: 100%;
+    height: 100%;
     border: none;
   }
 </style>
 
 <script>
-  // ref https://css-tricks.com/updating-a-css-variable-with-javascript/  
+  // ref https://css-tricks.com/updating-a-css-variable-with-javascript/
   let root = document.documentElement;
   root.style.setProperty('--top-dis', document.getElementById('firstRow').clientHeight + "px");
 
-  window.onresize = function() { 
+  window.onresize = function() {
     root.style.setProperty('--top-dis', document.getElementById('firstRow').clientHeight + "px");
   };
 </script>
