@@ -133,18 +133,12 @@ h6.zh {
 }
 
 /* link */
-a:link {
+a:link, a:visited {
   text-decoration: none;
-  color: black;
-}
-a:visited {
-  color: black;
-}
-main a:link { /* not affecting navigation and next project section */
   color: blueviolet;
 }
-main a:visited {
-  color: blueviolet;
+.nextPageDiv a:link, nav a:link, .nextPageDiv a:visited, nav a:visited {
+  color: black;
 }
 
 .pageDivider {
