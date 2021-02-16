@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry on Display 几何展示</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src="/js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="navigation"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#navigation").load("/navigation.html");
+  });
+</script>
+
+<main>
+<p class="en indent headerText">
+  Exhibition of four designer's practice in either an professional or academic context.
+</p>
+<p class="zh indent headerText">
+  展示四位设计师在专业或学术背景下的实践。
+</p>
+
+<h1 class="en">Geometry on Display</h1>
+<h1 class="zh">几何展示</h1>
+
+<div class="grid3 gridOutline" style="grid-gap: 0;">
+  <style>
+    .gridOutline > img {
+      outline: solid 1px black;
+    }
+  </style>
+  <img src="/img/geometry-on-display/1-1.png" alt="Geometry on Display by Nora Zhao">
+  <img src="/img/geometry-on-display/1-2.png" alt="Geometry on Display by Nora Zhao">
+  <img src="/img/geometry-on-display/1-3.png" alt="Geometry on Display by Nora Zhao">
+</div>
+<h6 class="en imgDescription">△ Overview of the poster set.</h6>
+<h6 class="zh imgDescription">△ 本组海报概貌。</h6>
+
+</main>
+
+<p class="en indent bodyText">
+  This set of posters aim at promoting a hypothetical exhibition about visual language and grammar at Kemistry Gallery, London.
+  <br>
+  Each poster mianly shows pattern, shape and line in turn to reflect the theme of this event. Some elements go over the edges to achieve coherence.</p>
+<p class="zh indent bodyText">
+  这组海报旨为伦敦的Kemistry画廊推广有关视觉语言和语法的虚构展览。
+  <br>
+  每张海报的分别依次展示图案、形状和线条以反映本次活动的主题。一些元素会越过边缘以实现海报之间的连贯性。
+</p>
+
+<div class="grid3">
+  <img src="/img/geometry-on-display/2-1.jpg" alt="Geometry on Display by Nora Zhao">
+  <img src="/img/geometry-on-display/2-2.jpg" alt="Geometry on Display by Nora Zhao">
+  <img src="/img/geometry-on-display/2-3.jpg" alt="Geometry on Display by Nora Zhao">
+</div>
+
+<div class="grid1">
+  <img src="/img/geometry-on-display/4-1.jpg" alt="Geometry on Display by Nora Zhao">
+  <img src="/img/geometry-on-display/4-2.jpg" alt="Geometry on Display by Nora Zhao">
+  <img src="/img/geometry-on-display/4-3.jpg" alt="Geometry on Display by Nora Zhao">
+</div>
+
+<!-- <div class="grid1">
+  <img src="/img/geometry-on-display/3.jpg" alt="Geometry on Display by Nora Zhao">
+</div> -->
+
+<div class="pageDivider"></div>
+
+<div class="nextPageDiv">
+  <a href="/project/glitch-room.html">
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("/project/glitch-room.html main");
+    });
+  </script>
+</div>
+
+<div id="footer"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#footer").load("footer.html");
+  });
+</script>
+</body>
+</html>

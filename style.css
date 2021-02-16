@@ -126,7 +126,7 @@ a:link {
 a:visited {
   color: black;
 }
-main a:link { /* not affecting navigation and next project section  */
+main a:link { /* not affecting navigation and next project section */
   color: blueviolet;
 }
 main a:visited {
@@ -154,6 +154,7 @@ main a:visited {
   height: 60vh;
   overflow: hidden;
 }
+
 .iframeWrapper {
   position: relative;
   overflow: auto;
@@ -183,33 +184,31 @@ iframe {
   display: inline;
 }
 /* image gallery grid */
-.grid1 {
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6 {
   display: grid;
-  grid-template-columns: 1fr;
   grid-gap: 4px;
   padding-bottom: 4px;
+}
+.grid1 {
+  grid-template-columns: 1fr;
 }
 .grid2 {
-  display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 4px;
-  padding-bottom: 4px;
 }
 .grid3 {
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 4px;
-  padding-bottom: 4px;
 }
 .grid4 {
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 4px;
-  padding-bottom: 4px;
 }
 .grid5 {
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.grid6 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.flex {
+  display: flex;
   grid-gap: 4px;
   padding-bottom: 4px;
 }
@@ -225,7 +224,24 @@ iframe {
   .gridxto3 {
     grid-template-columns: 1fr 1fr 1fr;
   }
+  .flexto1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .grid1, .grid2, .grid3, .grid4, .grid5, .flex {
+    grid-gap: 1px;
+    padding-bottom: 1px;
+  }
   .hideMobile {
     display: none;
+  }
+  .iframexto80 {
+    padding-top: 80%;
+  }
+  .iframexto100 {
+    padding-top: 100%;
+  }
+  .iframexto110 {
+    padding-top: 110%;
   }
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Practice 设计实践</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src="/js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="navigation"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#navigation").load("/navigation.html");
+  });
+</script>
+
+<main>
+<p class="en indent headerText">
+  Exhibition of four designer's practice in either an professional or academic context.
+</p>
+<p class="zh indent headerText">
+  展示四位设计师在专业或学术背景下的实践。
+</p>
+
+<h1 class="en">Design Practice</h1>
+<h1 class="zh">设计实践</h1>
+
+<img src="/img/design-practice/8.jpg" alt="Design Practice by Nora Zhao">
+</main>
+
+<p class="en indent bodyText">
+  The contents of the publication are drawn from design practitioners (David Bennett, Rebecca May, Peter Chadwick and Kate McLean) whose work is situated in either a professional or an academic context.
+</p>
+<p class="zh indent bodyText">
+  该书的内容取材于设计师（David Bennett，Rebecca May，Peter Chadwick & Kate McLean）。他们的作品来自专业领域或学术领域。
+</p>
+
+<div class="grid1">
+  <img src="/img/design-practice/1.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/2.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/3.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/4.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/5.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/6.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/7.jpg" alt="Design Practice by Nora Zhao">
+  <img src="/img/design-practice/9.jpg" alt="Design Practice by Nora Zhao">
+</div>
+<h6 class="en imgDescription">△ A certain set of rules were adopted to maintain the book’s consistent style.</h6>
+<h6 class="zh imgDescription">△ 书籍在设计上采用了特定规则来保持其的风格一致性。</h6>
+
+
+<div class="pageDivider"></div>
+
+<div class="nextPageDiv">
+  <a href="/project/glitch-room.html">
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("/project/glitch-room.html main");
+    });
+  </script>
+</div>
+
+<div id="footer"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#footer").load("footer.html");
+  });
+</script>
+</body>
+</html>

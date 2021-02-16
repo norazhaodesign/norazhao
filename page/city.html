@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>City</title>
+<style type = "text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: black;
+    }
+    #c {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .row {
+        background-color: black;
+        padding: 2vh calc(1vh + 1.5vw) 0 calc(1vh + 1.5vw);
+    }
+    .menu {
+        padding: calc(4px + .5vh) calc(4px + 1vw);
+        font-family: "helvetica";
+        font-size: calc(10px + .5vw + .5vh);
+        font-weight: 300;
+        text-transform: uppercase;
+    }
+    .menuCity {
+        width: calc(100px + 20vw + 2vh);
+        border: 1px white solid;
+        border-radius: 3px;
+    }
+    .menuBtn {
+        background-color: black;
+        color: white;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+        border: 1px white solid;
+        margin-left: 0.2vw;
+        border-radius: 3px;
+    }
+    .menuBtn:hover {
+        background-color: grey;
+    }
+    #infoDiv {
+        position: absolute; 
+        width: 100vw; 
+        height: 100vh;
+        background-color: rgba(0, 255, 0, 0);
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    #text {
+        display: inline-block;
+        font-family: "helvetica";
+        font-size: calc(16px + 2vw + 2vh);
+        margin-left: 2vw;
+        text-align: left;
+        text-transform: uppercase;
+        color: violet;
+        /* position: fixed;
+        top: 50%; 
+        transform: translateY(-55%); */
+        animation: marquee 8s linear infinite;
+        -webkit-animation: webkit-marquee 8s linear infinite;
+    }
+    @keyframes marquee {
+        0% {
+            transform: translate(0, 100%);
+        }
+        100% {
+            transform: translate(0, -130%);
+        }
+    }
+    @-webkit-keyframes webkit-marquee {
+        0% {
+            -webkit-transform: translate(0, 100%);
+        }
+        100% {
+            -webkit-transform: translate(0, -130%);
+        }
+    }
+</style>
+</head>
+
+<body>
+<!-- input city name and search button -->
+<form onsubmit='return false' class='row'>
+    <input type='text' 
+        class='menu menuCity' 
+        placeholder='Input City Name Here'> 
+    </input>
+    <div type='button' 
+        class='menu menuBtn menuSearch'
+        id="searchCityButton">Search</div>
+</form>
+
+<!-- weather data info div -->
+<div id="infoDiv">
+    <p id="text"></p>
+</div>
+
+<canvas id="c"></canvas>
+
+<script type="module">
+// define the initial values so it won't be shown an error when opening the web page
+var name = "Undefined";
+var clouds = 0;
+var coordLat = 0; var coordLon = 0;
+var temp = 0; var humidity = 0;
+var pressure = 0; var tempMax = 0; var tempMin = 0;
+var windDeg = 0; var windSpeed = 0;
+  
+// get weather data
+function getWeatherData() { 
+    const api_key = 'eae707b81995803ad66994c8d8f53643';
+    
+    const searchButton = document.querySelector('.menuSearch')
+    const input = document.querySelector('.menuCity')
+
+	document.getElementById("searchCityButton").addEventListener('click', e => {
+		const city = input.value;
+		fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`)
+			.then(resp => resp.json())
+			.then(json => {
+				console.log(json);
+                name = json.name;
+				clouds = json.clouds.all;
+
+				coordLat = json.coord.lat;
+				coordLon = json.coord.lon;
+
+				humidity = json.main.humidity;
+				pressure = json.main.pressure;
+
+				temp = json.main.temp;
+				tempMax = json.main.temp_max;
+				tempMin = json.main.temp_min;
+
+				windDeg = json.wind.deg;
+				windSpeed = json.wind.speed;
+			});
+	});
+}
+getWeatherData();
+
+import * as THREE from '../js/three.js-master/build/three.module.js';
+import {EffectComposer} from '../js/three.js-master/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from '../js/three.js-master/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from '../js/three.js-master/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from '../js/three.js-master/examples/jsm/postprocessing/FilmPass.js';
+import {GUI} from '../js/three.js-master/examples/jsm/libs/dat.gui.module.js';
+
+function main() {
+const canvas = document.querySelector('#c');
+const renderer = new THREE.WebGLRenderer({canvas});
+
+const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.x = 0;
+camera.position.y = -0.3;
+camera.position.z = 9; // 5.5 for full screen view, 9 for full sphere view
+
+const scene = new THREE.Scene();
+
+{
+    const color = 0xFFFFFF;
+    const intensity = 4;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
+}
+
+const radius = 5;
+const widthSegments = 12;
+const heightSegments = 12;
+const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
+
+function makeInstance(geometry, color, x, y, z) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const sphere = new THREE.Mesh(geometry, material);
+  scene.add(sphere);
+  sphere.position.x = x;
+  sphere.position.y = y;
+  sphere.position.z = z;
+  return sphere;
+}
+
+const spheres = [
+  makeInstance(geometry, 0x44aa88, 0, 0, 0),
+  makeInstance(geometry, 0x8844aa, 0, 0, 0),
+  makeInstance(geometry, 0xaa8844, 0, 0, 0),
+];
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const bloomPass = new BloomPass(
+    1,    // strength
+    25,   // kernel size
+    4,    // sigma ?
+    256,  // blur render target resolution
+);
+composer.addPass(bloomPass);
+
+const filmPass = new FilmPass(
+    4,     // noise intensity
+    2,     // scanline intensity
+    170,    // scanline count
+    false, // grayscale
+);
+filmPass.renderToScreen = true;
+composer.addPass(filmPass);
+
+function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+        renderer.setSize(width, height, false);
+    }
+    return needResize;
+}
+
+// const gui = new GUI();
+// {
+//     const folder = gui.addFolder('BloomPass');
+//     folder.add(bloomPass.copyUniforms.opacity, 'value', 0, 10).name('strength');
+//     folder.open();
+// }
+// {
+//     const folder = gui.addFolder('FilmPass');
+//     folder.add(filmPass.uniforms.grayscale, 'value').name('grayscale');
+//     folder.add(filmPass.uniforms.nIntensity, 'value', 0, 10).name('noise intensity');
+//     folder.add(filmPass.uniforms.sIntensity, 'value', 0, 10).name('scanline intensity');
+//     folder.add(filmPass.uniforms.sCount, 'value', 0, 1000).name('scanline count');
+//     folder.open();
+// }
+
+let then = 0;
+function render(now) {
+    now *= 0.001;  // convert to seconds
+    const deltaTime = now - then;
+    then = now;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      composer.setSize(canvas.width, canvas.height);
+    }
+    
+    // fallback value when no value is returned
+    var windDegTrue = windDeg || 5;
+    var windSpeedTrue = windSpeed || 5;
+    var humidityTrue = humidity || 50;
+    var cloudsTrue = clouds || 50;
+    var pressureTrue = pressure || 70;
+    var coordLatTrue = coordLat || 90;
+    var coordLonTrue = coordLon || 40;
+    var tempTrue = temp || 30;
+    var tempMaxTrue = tempMax || 25;
+    var tempMinTrue = tempMin || 20;
+
+    // have weather data control the sphere movements and look
+    spheres[0].rotation.x += windDegTrue/360 * 0.001;
+	spheres[0].rotation.y += windDegTrue/360 * 0.001;
+	spheres[0].rotation.z -= windSpeedTrue * 0.001;
+
+	spheres[1].rotation.x += windDegTrue/360 * 0.001;
+	spheres[1].rotation.y -= windDegTrue/360 * 0.001;
+	spheres[1].rotation.z -= windSpeedTrue * 0.001;
+
+	spheres[2].rotation.x -= windDegTrue/360 * 0.001;
+	spheres[2].rotation.y += windDegTrue/360 * 0.001;
+	spheres[2].rotation.z += windSpeedTrue * 0.001;
+
+	var r1 = Math.floor(humidityTrue /100 *256);
+	var g1 = Math.floor(cloudsTrue /100 *256);
+	var b1 = Math.floor(pressureTrue %255);
+	spheres[0].material.color.set('rgb('+r1+','+g1+','+b1+')');
+
+	var r2 = Math.floor(Math.abs(coordLatTrue) %255);
+	var g2 = Math.floor(Math.abs(coordLonTrue) %255);
+	var b2 = Math.floor(Math.abs(coordLatTrue + coordLonTrue) %255);
+	spheres[1].material.color.set('rgb('+r2+','+g2+','+b2+')');
+
+	var r3 = Math.floor(Math.abs(tempTrue %255));
+	var g3 = Math.floor(Math.abs(tempMaxTrue + (tempMaxTrue - tempMinTrue) *5 %255));
+	var b3 = Math.floor(Math.abs(tempMinTrue - (tempMaxTrue - tempMinTrue) *5 %255));
+	spheres[2].material.color.set('rgb('+r3+','+g3+','+b3+')');
+
+    composer.render(deltaTime);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+main();
+
+document.getElementById("searchCityButton").onclick = setInterval(function() { // set interval to give it some time to fetch the data
+    var cityVal = name;
+    var cloudsVal = clouds; 
+    var coordLatVal = coordLat; 
+    var coordLonVal = coordLon; 
+    var humidityVal = humidity; 
+    var pressureVal = pressure; 
+    var tempVal = temp; 
+    var tempMaxVal = tempMax; 
+    var tempMinVal = tempMin; 
+    var windDegVal = windDeg; 
+    var windSpeedVal = windSpeed; 
+
+    // display weather data on screen
+    var str = "City: " + cityVal 
+        + "<br>" + "Clouds: " + cloudsVal 
+        + "<br>" + "Latitude: " + coordLatVal   
+        + "<br>" + "Longitude: " + coordLonVal
+        + "<br>" + "Humidity: " + humidityVal
+        + "<br>" + "Pressure: " + pressureVal
+        + "<br>" + "Temperature: " + tempVal
+        + "<br>" + "Max Temp: " + tempMaxVal
+        + "<br>" + "Min Temp: " + tempMinVal
+        + "<br>" + "Wind Degree: " + windDegVal
+        + "<br>" + "Wind Speed: " + windSpeedVal
+    ; 
+    document.getElementById("text").innerHTML = str; 
+
+    // set random color to the info text
+    var gt = Math.floor(Math.abs(coordLatVal) %255);
+    var bt = Math.floor(Math.abs(coordLonVal) %255);
+    var rt = Math.floor(Math.abs(coordLatVal + coordLonVal) %255);
+    document.getElementById("text").style.color = 'rgb('+rt+','+gt+','+bt+')';
+}, 50)
+
+</script>
+</body>
+</html>

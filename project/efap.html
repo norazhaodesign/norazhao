@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EFAP</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src="/js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="navigation"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#navigation").load("/navigation.html");
+  });
+</script>
+
+<main>
+<p class="en indent headerText">
+  A thesis which explores the expanded field of architectural publishing.
+</p>
+<p class="zh indent headerText">
+  一篇探讨建筑出版的扩展领域的论文。
+</p>
+
+<h1 class="en">EFAP</h1>
+<h1 class="zh">EFAP</h1>
+
+<img src="/img/efap/1.jpg" alt="EFAP by Nora Zhao">
+</main>
+
+<p class="en indent bodyText">
+  A thesis by Carlos Romo-Melgar exploring the role of speculative graphic design in the expanded field of architectural publishing.
+</p>
+<p class="zh indent bodyText">
+  本书由Carlos Romo-Melgar撰写，论文探讨了思辨设计在建筑出版的扩展领域中的应用。
+</p>
+
+<div class="grid1">
+  <img src="/img/efap/2.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/3.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/4.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/5.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/6.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/7.jpg" alt="EFAP by Nora Zhao">  
+  <img src="/img/efap/8.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/9.jpg" alt="EFAP by Nora Zhao">
+  <img src="/img/efap/10.jpg" alt="EFAP by Nora Zhao">
+</div>
+
+<div class="pageDivider"></div>
+
+<div class="nextPageDiv">
+  <a href="/project/glitch-room.html">
+    <p class="en nextText">Next Project</p>
+    <p class="zh nextText">下个项目</p>
+    <div id="nextPage"></div>
+  </a>
+  <script type="text/javascript">
+    $(function() {
+      $("#nextPage").load("/project/glitch-room.html main");
+    });
+  </script>
+</div>
+
+<div id="footer"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#footer").load("footer.html");
+  });
+</script>
+</body>
+</html>
