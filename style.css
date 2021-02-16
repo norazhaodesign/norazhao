@@ -70,6 +70,20 @@ h1.zh {
   margin-bottom: 2vmax;
 }
 
+h2 {
+  font-family: "gt-black", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: calc(10px + .8vw + .8vh);
+  margin-top: calc(10vh + 4vw);
+  margin-bottom: 0;
+}
+h2.zh {
+  font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
+  font-weight: 500;
+
+}
+
 /* body text */
 p {
   font-family: "canela-thin", serif;
@@ -153,6 +167,10 @@ main a:visited {
   width: 100%;
   height: 60vh;
   overflow: hidden;
+}
+
+.projectDivider {
+  border-bottom: 1px solid black;
 }
 
 .iframeWrapper {
