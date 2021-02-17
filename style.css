@@ -122,13 +122,13 @@ h6 {
   line-height: calc((7px + .2vw + .2vh) * 1.2);
   font-weight: normal;
   opacity: 0.55;
-  margin: 0.5vmax 1.5vmax 0.5vmax 0;
+  margin: calc(.6vh + .6vw) 1vmax calc(1vh + 1vw) 0;
 }
 h6.zh {
   font-family: "Lantinghei SC", "兰亭黑-简", "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 .imgDescription {
-  max-width: calc(70px + 6vw + 6vh);
+  max-width: calc(70px + 9vw + 9vh);
   margin-left: 1.5vmax;
 }
 
