@@ -139,7 +139,7 @@
           $(".en").css("display", "none");
         }
       });
-      $("input[type=\"radio\"]").click = setTimeout(function() { // do it again in 20 milliseconds
+      $("input[type=\"radio\"]").click = setInterval(function() { // do every 500 milliseconds
         if (document.getElementById('enBtn').checked) {
           $(".en").css("display", "block");
           $(".zh").css("display", "none");
@@ -148,7 +148,7 @@
           $(".zh").css("display", "block");
           $(".en").css("display", "none");
         }
-      }, 100);
+      }, 500);
     </script>
 
 
