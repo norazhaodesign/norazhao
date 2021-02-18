@@ -305,7 +305,7 @@ function render(now) {
 }
 main();
 
-document.getElementById("searchCityButton").onclick = setInterval(function() { // set interval to give it some time to fetch the data
+document.getElementById("searchCityButton").onclick = setInterval(function() { // set interval to give it some time to fetch the data & update the page
     var cityVal = name;
     var cloudsVal = clouds; 
     var coordLatVal = coordLat; 
@@ -338,7 +338,7 @@ document.getElementById("searchCityButton").onclick = setInterval(function() { /
     var bt = Math.floor(Math.abs(coordLonVal) %255);
     var rt = Math.floor(Math.abs(coordLatVal + coordLonVal) %255);
     document.getElementById("text").style.color = 'rgb('+rt+','+gt+','+bt+')';
-}, 50)
+}, 20)
 
 </script>
 </body>

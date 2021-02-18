@@ -75,23 +75,23 @@
     <!-- language selector ---------------------------------------- -->
     <div id="radioToolbar">
       <input type="radio" id="enBtn" name="language" value="en" checked>
-      <label for="enBtn">
+        <label for="enBtn">
+          <p style="font-family: 'canela-thin', serif;
+                    font-size: 2vmax;
+                    margin: 0;">English</p>
+        </label>
         <p style="font-family: 'canela-thin', serif;
                   font-size: 2vmax;
-                  margin: 0;">English</p>
-      </label>
-      <p style="font-family: 'canela-thin', serif;
-                font-size: 2vmax;
-                display: inline-block;
-                margin: 0;">·</p>
+                  display: inline-block;
+                  margin: 0;">·</p>
       <input type="radio" id="zhBtn" name="language" value="zh">
-      <label for="zhBtn">
-        <p style="font-family: 'STSong', '华文宋体', 'NSimSun', '新宋体', 'SimSun', '宋体', serif;
-                  font-size: 1.8vmax;
-                  position: relative;
-                  bottom: 0.21vmax;
-                  margin: 0;">中文</p>
-      </label>
+        <label for="zhBtn">
+          <p style="font-family: 'STSong', '华文宋体', 'NSimSun', '新宋体', 'SimSun', '宋体', serif;
+                    font-size: 1.8vmax;
+                    position: relative;
+                    bottom: 0.21vmax;
+                    margin: 0;">中文</p>
+        </label>
     </div>
     <style media="screen">
       /* (style ref https://jsfiddle.net/markheath/azk2cL45) */
@@ -119,26 +119,36 @@
     <script type="text/javascript">
       // record & retrive the selection status (ref https://stackoverflow.com/a/53298040/11975753)
       $(function() { // call the function once all the DOM elements of the page are ready to be used
-        $("[name='language']").click(function(){ // when click on the language
+        $("input[type=\"radio\"]").click(function() { // when click on the language
           var value = $(this).val(); // change "value"
           localStorage.setItem("option", value); // and store it to local storage in "option"
         });
-        var itemValue = localStorage.getItem("option"); // get "option" value
-        if (itemValue !== null) { // if the value is not null
-          $("input[value=\""+itemValue+"\"]").click(); // run a click
-        }
+        var langValue = localStorage.getItem("option"); // get "option" value
+        if (langValue !== null) { // if the value is not null
+          $("input[value=\""+langValue+"\"]").click(); // run a click
+        } 
       });
       // change the display of page contents based on selected language
-      $("[name='language']").click(function() {
+      $("input[type=\"radio\"]").click(function() { // do it when page is loaded
         if (document.getElementById('enBtn').checked) {
           $(".en").css("display", "block");
           $(".zh").css("display", "none");
         }
-        else if (document.getElementById('zhBtn').checked) {
+        else {
           $(".zh").css("display", "block");
           $(".en").css("display", "none");
         }
       });
+      $("input[type=\"radio\"]").click = setTimeout(function() { // do it again in 20 milliseconds
+        if (document.getElementById('enBtn').checked) {
+          $(".en").css("display", "block");
+          $(".zh").css("display", "none");
+        }
+        else {
+          $(".zh").css("display", "block");
+          $(".en").css("display", "none");
+        }
+      }, 20);
     </script>
 
 
