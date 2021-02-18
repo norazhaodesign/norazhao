@@ -146,7 +146,7 @@ a:link, a:visited {
 }
 
 .pageDivider {
-  margin-top: 20vh;
+  margin-top: 28vh;
   width: 100%;
   border-bottom: 1px solid dimgray;
 }
@@ -199,6 +199,7 @@ iframe {
 .inline {
   display: inline;
 }
+
 /* image gallery grid */
 .grid1, .grid2, .grid3, .grid4, .grid5, .grid6 {
   display: grid;
@@ -231,6 +232,9 @@ iframe {
 
 /* mobile layout */
 @media screen and (max-width: 760px) {
+  .hideMobile {
+    display: none;
+  }
   .gridxto1 {
     grid-template-columns: 1fr;
   }
@@ -250,9 +254,6 @@ iframe {
   .grid1, .grid2, .grid3, .grid4, .grid5, .flex {
     grid-gap: 1px;
     padding-bottom: 1px;
-  }
-  .hideMobile {
-    display: none;
   }
   .iframexto80 {
     padding-top: 80%;
