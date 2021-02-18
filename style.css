@@ -90,15 +90,24 @@ p.zh {
     margin-top: 6vmax; /* move page content down to make space for the menu button */
   }
 }
-.bodyText, .listText {
+.bodyText {
   padding-top: 3vmax;
   padding-bottom: 3vmax;
 }
-.bodyText br {
+br {
   content: "";
   margin-bottom: 2vmax;
   display: block;
 }
+br.listBreak {
+  margin-bottom: 0;
+}
+br.dividerLine {
+  padding-top: 1.8vmax;
+  width: 20vw;
+  border-bottom: 1px solid black;
+}
+
 
 /* h6 text */
 h6 {
