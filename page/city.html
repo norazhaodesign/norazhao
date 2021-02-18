@@ -59,22 +59,23 @@
         text-align: left;
         text-transform: uppercase;
         animation: marquee 8s linear infinite;
-        -webkit-animation: webkit-marquee 8s linear infinite;
+        -webkit-animation: -webkit-marquee 8s linear infinite;
+        -webkit-animation-delay: .1s; /* work around the problem of animation not starting on ios devices */
     }
     @keyframes marquee {
         0% {
             transform: translate(0, 100%);
         }
         100% {
-            transform: translate(0, -130%);
+            transform: translate(0, -120%);
         }
     }
-    @-webkit-keyframes webkit-marquee {
+    @-webkit-keyframes -webkit-marquee {
         0% {
             -webkit-transform: translate(0, 100%);
         }
         100% {
-            -webkit-transform: translate(0, -130%);
+            -webkit-transform: translate(0, -120%);
         }
     }
 </style>
@@ -340,7 +341,6 @@ document.getElementById("searchCityButton").onclick = setInterval(function() { /
     var rt = Math.floor(Math.abs(coordLatVal + coordLonVal) %255);
     document.getElementById("text").style.color = 'rgb('+rt+','+gt+','+bt+')';
 }, 20)
-
 </script>
 </body>
 </html>
