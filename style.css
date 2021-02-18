@@ -10,18 +10,6 @@
   font-family: "haas";
   src: url(font/NeueHaasDisplay-Roman.ttf);
 }
-/* @font-face {
-  font-family: "songti-light";
-  src: url(font/songti-light.ttf);
-} */
-/* @font-face {
-  font-family: "lanting-heavy";
-  src: url(font/lantinghei-pro-heavy.ttf);
-} */
-/* @font-face {
-  font-family: "fangjunhei-cu";
-  src: url(font/fz-fangjunhei-cu.ttf);
-} */
 
 .zh {
   display: none;
