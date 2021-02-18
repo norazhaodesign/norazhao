@@ -118,14 +118,14 @@
     </style>
     <script type="text/javascript">
       // record & retrive the selection status (ref https://stackoverflow.com/a/53298040/11975753)
-      $(function() {
-        $("[name='language']").click(function(){
-          var value = $(this).val();
-          localStorage.setItem("option", value);
+      $(function() { // call the function once all the DOM elements of the page are ready to be used
+        $("[name='language']").click(function(){ // when click on the language
+          var value = $(this).val(); // change "value"
+          localStorage.setItem("option", value); // and store it to local storage in "option"
         });
-        var itemValue = localStorage.getItem("option");
-        if (itemValue !== null) {
-          $("input[value=\""+itemValue+"\"]").click();
+        var itemValue = localStorage.getItem("option"); // get "option" value
+        if (itemValue !== null) { // if the value is not null
+          $("input[value=\""+itemValue+"\"]").click(); // run a click
         }
       });
       // change the display of page contents based on selected language
