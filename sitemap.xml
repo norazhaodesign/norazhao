@@ -183,6 +183,38 @@
 <priority>0.8</priority>
 </url>
 
+<!-- ef-ap -->
+<url>
+<loc>https://norazhao.com/project/ef-ap.html</loc>
+<priority>0.8</priority>
+</url>
+
+<!-- design practice -->
+<url>
+<loc>https://norazhao.com/project/design-practice.html</loc>
+<priority>0.8</priority>
+</url>
+
+<!-- mini-sites -->
+<url>
+<loc>https://norazhao.com/project/mini-sites.html</loc>
+<priority>0.8</priority>
+</url>
+
+<!-- posters -->
+<url>
+<loc>https://norazhao.com/project/posters.html</loc>
+<priority>0.8</priority>
+</url>
+
+<!-- books and booklets -->
+<url>
+<loc>https://norazhao.com/project/books-and-booklets.html</loc>
+<priority>0.8</priority>
+</url>
+
+
+
 <!-- lower down pages -->
 <url>
   <loc>https://norazhao.com/page/glitch-room.html</loc>
