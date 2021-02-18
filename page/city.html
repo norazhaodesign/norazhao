@@ -58,10 +58,6 @@
         margin-left: 2vw;
         text-align: left;
         text-transform: uppercase;
-        color: violet;
-        /* position: fixed;
-        top: 50%; 
-        transform: translateY(-55%); */
         animation: marquee 8s linear infinite;
         -webkit-animation: webkit-marquee 8s linear infinite;
     }
@@ -95,6 +91,11 @@
         class='menu menuBtn menuSearch'
         id="searchCityButton">Search</div>
 </form>
+<script>
+    $('.menuCity').on('click', function(){
+        $(window).off('resize');
+    });
+</script>
 
 <!-- weather data info div -->
 <div id="infoDiv">
