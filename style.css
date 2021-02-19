@@ -128,9 +128,11 @@ h6.zh {
 
 h1.zh {
   font-family: "gt-black", "Lantinghei SC", 兰亭黑-简, "PingFang SC", 苹方, "SimHei", 黑体, "Microsoft YaHei", 微软雅黑, "Hiragino Sans GB", "Source Han Sans CN", 思源黑体, sans-serif;
+  text-transform: uppercase;
 }
 h2.zh, h6.zh, p.zh {
   font-family: "Lantinghei SC", 兰亭黑-简, "PingFang SC", 苹方, "SimHei", 黑体, "Microsoft YaHei", 微软雅黑, "Hiragino Sans GB", "Source Han Sans CN", 思源黑体, sans-serif;
+  text-transform: uppercase;
 }
 
 /* link */
