@@ -36,7 +36,8 @@
   }
 
   // place geometry
-  var [obj1, obj2, obj3] = [getSphere(5, 6, 6), getSphere(5, 6, 6), getSphere(5, 6, 6)];
+  // getSphere(radius, widthSegments, heightSegments)
+  var [obj1, obj2, obj3] = [getSphere(5, 4, 4), getSphere(5, 4, 4), getSphere(5, 4, 4)];
 
   var group = new THREE.Group();
   group.add(obj1, obj2, obj3);
