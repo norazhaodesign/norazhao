@@ -8,15 +8,15 @@
 	<div id="webgl">
 	</div>
 
-	<script src="../../js/three.min.js"></script>
-	<script src="../../js/orbit-controls.js"></script>
+	<script src="/js/three.min.js"></script>
+	<script src="/js/orbit-controls.js"></script>
 	<script>
 		// scene
 		var scene = new THREE.Scene();
 
 		// camera
 		var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000); // (fov, aspect, near, far)
-		camera.position.set(0, 0, 7);
+		camera.position.set(0, 0, 2.8);
 		camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 		// responsive
@@ -35,8 +35,8 @@
 
 		// define geometry
 		function getSphere() {
-			var geometry = new THREE.SphereGeometry(1, 3, 3); // (radius, width segments, height segments)
-			var material = new THREE.MeshBasicMaterial({
+			var geometry = new THREE.SphereGeometry(1, 2, 2); // (radius, width segments, height segments)
+			var material = new THREE.MeshLambertMaterial({
 				color: 0xffffff,
 				transparent: true,
 				opacity: 1,
@@ -45,6 +45,18 @@
 			var mesh = new THREE.Mesh(geometry, material);
 			return mesh;
 		}
+
+		// add lighting
+		const light1 = new THREE.HemisphereLight(0xf6e86d, 0xb351f5, 0.5);
+		scene.add(light1);
+		const light2 = new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5);
+		scene.add(light2);
+		const light3 = new THREE.DirectionalLight(0xffffff, 8);
+		light3.position.set(0,-10,0)
+		scene.add(light3);
+		const light4 = new THREE.DirectionalLight(0xffff00, 1);
+		light4.position.set(-10, -10, -10)
+		scene.add(light4);
 
 		// place geometry
 		var [obj1, obj2, obj3, obj4] = [getSphere(), getSphere(), getSphere(), getSphere()];
@@ -66,7 +78,7 @@
 		var renderer = new THREE.WebGLRenderer({
 			preserveDrawingBuffer: true
 		});
-		renderer.setClearColor("rgb(0, 0, 0)"); // background color
+		renderer.setClearColor("rgb(245,248,255)"); // background color
 		document.getElementById("webgl").appendChild(renderer.domElement);
 
 		// orbit control
