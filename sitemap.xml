@@ -112,15 +112,15 @@
 
 <!-- shown on index experiments -->
 <url>
-  <loc>https://norazhao.com/page/main/colour-cuts.html</loc>
+  <loc>https://norazhao.com/page/colour-cuts.html</loc>
   <priority>0.1</priority>
 </url>
 <url>
-  <loc>https://norazhao.com/page/main/pattern-cards.html</loc>
+  <loc>https://norazhao.com/page/pattern-cards.html</loc>
   <priority>0.1</priority>
 </url>
 <url>
-  <loc>https://norazhao.com/page/main/synsol-gradient.html</loc>
+  <loc>https://norazhao.com/page/synsol-gradient.html</loc>
   <priority>0.1</priority>
 </url>
 
