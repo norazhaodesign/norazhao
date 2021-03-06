@@ -47,11 +47,22 @@
     return mesh;
   }
 
+  function getIcosahedron(e, f) {
+    var geometry = new THREE.IcosahedronGeometry(e, f);
+    var material = new THREE.MeshLambertMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.8,
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    return mesh;
+  }
+
   // place geometry
   // getSphere(radius, widthSegments, heightSegments)
   // getTorus(radius, tube, radialSegments, tubularSegments)
   var [obj1, obj2, obj3, obj4, obj5] = [
-    getSphere(5, 260, 260), 
+    getSphere(5, 200, 200), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
     getSphere(6.2, 2, 2), 
     getSphere(7, 2, 2),
     getTorus(6.5, 0.2, 16, 100),
