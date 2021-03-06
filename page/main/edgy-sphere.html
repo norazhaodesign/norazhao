@@ -47,14 +47,14 @@
 		}
 
 		// add lighting
-		const light1 = new THREE.HemisphereLight(0xf6e86d, 0xb351f5, 0.5);
+		const light1 = new THREE.HemisphereLight('rgb(255, 255, 100)', 'rgb(180, 80, 245)', 0.5);
 		scene.add(light1);
-		const light2 = new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5);
+		const light2 = new THREE.HemisphereLight('rgb(255, 255, 187)', 'rgb(30, 30, 100)', 0.5);
 		scene.add(light2);
-		const light3 = new THREE.DirectionalLight(0xffffff, 8);
-		light3.position.set(0,-10,0)
+		const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 8);
+		light3.position.set(0, -10, 0)
 		scene.add(light3);
-		const light4 = new THREE.DirectionalLight(0xffff00, 1);
+		const light4 = new THREE.DirectionalLight('rgb(255, 255, 255)', 1);
 		light4.position.set(-10, -10, -10)
 		scene.add(light4);
 
@@ -87,7 +87,7 @@
 
 		// update
 		var clock = new THREE.Clock();
-		var rotSpeed = Array.from({length: 12}, () => getRandom(0.002, 0.004)); // bigger -> rotates faster
+		var rotSpeed = Array.from({length: 12}, () => getRandom(0.002, 0.003)); // bigger -> rotates faster
 		var colSpeed = Array.from({length: 12}, () => getRandom(2, 3)); // bigger -> color changes slower
 		var colStart = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI)); // random color starting point
 

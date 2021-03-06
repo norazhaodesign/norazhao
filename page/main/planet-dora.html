@@ -8,6 +8,7 @@
 
 <body>
 <script src="/js/three.min.js"></script>
+<script src="/js/orbit-controls.js"></script>
 <style>
   html, body {margin:0; padding:0; overflow: hidden; height: 100%; width: 100%;}
 </style>
@@ -52,7 +53,7 @@
     var material = new THREE.MeshLambertMaterial({
       color: 0xffffff,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.6,
     });
     var mesh = new THREE.Mesh(geometry, material);
     return mesh;
@@ -61,6 +62,7 @@
   // place geometry
   // getSphere(radius, widthSegments, heightSegments)
   // getTorus(radius, tube, radialSegments, tubularSegments)
+  // getIcosahedron(radius, detail)
   var [obj1, obj2, obj3, obj4, obj5] = [
     getSphere(5, 200, 200), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
     getSphere(6.2, 2, 2), 
@@ -74,10 +76,10 @@
   group.scale.set(1, 1, 1);
 
   // add lighting
-  const light1 = new THREE.HemisphereLight(0xffffff, 0x00ffff, 1.2);
-  const light2 = new THREE.DirectionalLight(0xffffff, 2);
+  const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1.2);
+  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 2);
   light2.position.set(-2, -10, 2)
-  const light3 = new THREE.DirectionalLight(0xff0000, 1.5);
+  const light3 = new THREE.DirectionalLight('rgb(255, 0, 0)', 1.5);
   light3.position.set(10, 2, 8)
   scene.add(light1, light2, light3);
 
@@ -95,6 +97,10 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor('rgb(245,248,255)');
   document.getElementById('webgl').appendChild(renderer.domElement);
+
+  // orbit control
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableZoom = false;
 
   // update
   var clock = new THREE.Clock();
