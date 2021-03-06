@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Colour Cuts</title>
+<title>Planet Dora</title>
 </head>
 
 <body>
@@ -19,16 +19,28 @@
 
   // camera
   var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 0, 1);
+  camera.position.set(0, 0, 20);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   // define geometry
   function getSphere(x, y, z) {
     var geometry = new THREE.SphereGeometry(x, y, z);
-    var material = new THREE.MeshBasicMaterial({
+    var material = new THREE.MeshLambertMaterial({
       color: 0xffffff,
       transparent: true,
-      opacity: 1,
+      opacity: 0.6,
+      side: THREE.DoubleSide
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    return mesh;
+  }
+  
+  function getTorus(a, b, c, d) {
+    var geometry = new THREE.TorusGeometry(a, b, c, d);
+    var material = new THREE.MeshLambertMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.6,
       side: THREE.DoubleSide
     });
     var mesh = new THREE.Mesh(geometry, material);
@@ -37,31 +49,52 @@
 
   // place geometry
   // getSphere(radius, widthSegments, heightSegments)
-  var [obj1, obj2, obj3] = [getSphere(5, 4, 4), getSphere(5, 4, 4), getSphere(5, 4, 4)];
+  // getTorus(radius, tube, radialSegments, tubularSegments)
+  var [obj1, obj2, obj3, obj4, obj5] = [
+    getSphere(5, 260, 260), 
+    getSphere(6.2, 2, 2), 
+    getSphere(7, 2, 2),
+    getTorus(6.5, 0.2, 16, 100),
+    getTorus(7, 0.22, 16, 100)]
 
   var group = new THREE.Group();
-  group.add(obj1, obj2, obj3);
+  group.add(obj1, obj2, obj3, obj4, obj5);
   group.position.set(0, 0, 0);
   group.scale.set(1, 1, 1);
 
-  // initail rotation status
+  // add lighting
+  const light1 = new THREE.HemisphereLight(0xffffff, 0x00ffff, 1.2);
+  const light2 = new THREE.DirectionalLight(0xffffff, 2);
+  light2.position.set(-2, -10, 2)
+  const light3 = new THREE.DirectionalLight(0xff0000, 1.5);
+  light3.position.set(10, 2, 8)
+  scene.add(light1, light2, light3);
+
+  // initial rotation status
   obj1.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
   obj2.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
   obj3.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+  obj4.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
+  obj5.rotation.set(Math.random() * Math.PI * 2, Math.random() * Math.PI * 2, Math.random() * Math.PI * 2);
 
   scene.add(group);
 
   // render
   var renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor('rgb(255, 255, 255)');
+  renderer.setClearColor('rgb(245,248,255)');
   document.getElementById('webgl').appendChild(renderer.domElement);
 
   // update
   var clock = new THREE.Clock();
 
   // bigger > rotation faster
-  var [n1, n2, n3, n4, n5, n6, n7, n8, n9] = [Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005, Math.random() * 0.0004 + 0.0005];
+  var [n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15] = [
+    Math.random() * 0.0004 + 0.001, Math.random() * 0.0004 + 0.001, Math.random() * 0.0004 + 0.001, 
+    Math.random() * 0.0004 + 0.002, Math.random() * 0.0004 + 0.002, Math.random() * 0.0004 + 0.002, 
+    Math.random() * 0.0004 + 0.002, Math.random() * 0.0004 + 0.002, Math.random() * 0.0004 + 0.002, 
+    Math.random() * 0.0004 + 0.005, Math.random() * 0.0004 + 0.005, Math.random() * 0.0004 + 0.005, 
+    Math.random() * 0.0004 + 0.005, Math.random() * 0.0004 + 0.005, Math.random() * 0.0004 + 0.005];
 
   var randomR1 = (Math.PI * 2) * Math.random();
   var randomG1 = (Math.PI * 2) * Math.random();
@@ -72,19 +105,32 @@
   var randomR3 = (Math.PI * 2) * Math.random();
   var randomG3 = (Math.PI * 2) * Math.random();
   var randomB3 = (Math.PI * 2) * Math.random();
+  var randomR4 = (Math.PI * 2) * Math.random();
+  var randomG4 = (Math.PI * 2) * Math.random();
+  var randomB4 = (Math.PI * 2) * Math.random();
+  var randomR5 = (Math.PI * 2) * Math.random();
+  var randomG5 = (Math.PI * 2) * Math.random();
+  var randomB5 = (Math.PI * 2) * Math.random();
 
   // bigger > color change slower
-  var [t1, t2, t3, t4, t5, t6, t7, t8, t9] = [Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5, Math.random() + 5];
+  var [t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15] = [
+    Math.random() + 5, Math.random() + 5, Math.random() + 5, 
+    Math.random() + 5, Math.random() + 5, Math.random() + 5, 
+    Math.random() + 5, Math.random() + 5, Math.random() + 5, 
+    Math.random() + 5, Math.random() + 5, Math.random() + 5, 
+    Math.random() + 5, Math.random() + 5, Math.random() + 5];
 
   var update = function() {
 
     obj1.rotation.x -= n1; obj1.rotation.y += n2; obj1.rotation.z -= n3;
     obj2.rotation.x += n4; obj2.rotation.y -= n5; obj2.rotation.z -= n6;
     obj3.rotation.x -= n7; obj3.rotation.y += n8; obj3.rotation.z += n9;
+    obj4.rotation.x += n10; obj4.rotation.y -= n11; obj4.rotation.z += n12;
+    obj5.rotation.x -= n13; obj5.rotation.y += n14; obj5.rotation.z -= n15;
 
     var timeElapsed = clock.getElapsedTime();
 
-    // sound value to decide color brightness
+    // colour change control
       var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 * 100 + 56);
       var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 * 100 + 56);
       var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 * 100 + 56);
@@ -99,6 +145,16 @@
       var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 * 156 + 100);
       var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 * 156 + 100);
       obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
+
+      var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 * 156 + 100);
+      var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 * 156 + 100);
+      var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 * 156 + 100);
+      obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
+
+      var r5 = Math.floor((Math.sin(timeElapsed/t13 + randomR5) +1) /2 * 156 + 100);
+      var g5 = Math.floor((Math.sin(timeElapsed/t14 + randomG5) +1) /2 * 156 + 100);
+      var b5 = Math.floor((Math.sin(timeElapsed/t15 + randomB5) +1) /2 * 156 + 100);
+      obj5.material.color.set('rgb('+r5+','+g5+','+b5+')');
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
