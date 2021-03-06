@@ -135,9 +135,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.body.appendChild( renderer.domElement )
     
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000 );
     let vCheck = false;
-    camera.position.z = 5;
+    camera.position.z = 10;
 
     var randomisePosition = new THREE.Vector2(1, 2);
     // the shader from earlier
@@ -150,9 +150,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         // the uniform variables. they update the mesh in real time
         uniforms: {
             u_bg:     {type: 'v3', value: rgb(255, 255, 255)}, // highlight
-            u_bgMain: {type: 'v3', value: rgb(248, 193, 74)},  // left side 
-            u_color1: {type: 'v3', value: rgb(255,255,255)},   // main changing colour
-            u_color2: {type: 'v3', value: rgb(84, 78, 145)},   // right side
+            u_bgMain: {type: 'v3', value: rgb(255, 243, 144)}, // left side 
+            u_color1: {type: 'v3', value: rgb(131, 195, 255)}, // main changing colour
+            u_color2: {type: 'v3', value: rgb(165, 140, 216)}, // right side
             u_time:   {type: 'f',  value: 0},
             u_randomisePosition: { type: 'v2', value: randomisePosition }
         },
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     // combine the shape and its material to make what is displayed on the screen
     let mesh = new THREE.Mesh(geometry, material);
-    mesh.position.set(0, 60, -400);
+    mesh.position.set(0, 40, -400);
     mesh.scale.multiplyScalar(4); // set default to 4
     scene.add(mesh);
     renderer.render( scene, camera );
@@ -194,6 +194,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
         
         // generate a random R, G, B value using R(), G(), and B()
         mesh.material.uniforms.u_color1.value = new THREE.Vector3(R(x,y,t/2), G(x,y,t/2), B(x,y,t/2));
+
+        mesh.material.uniforms.u_color2.value = new THREE.Vector3(G(x,y,t/2), B(x,y,t/2), R(x,y,t/2));
+        mesh.material.uniforms.u_bgMain.value = new THREE.Vector3(B(x,y,t/2), R(x,y,t/2), G(x,y,t/2));
 
         // have t representing time
         mesh.material.uniforms.u_time.value = t;
