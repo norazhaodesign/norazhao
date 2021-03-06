@@ -51,10 +51,10 @@
 		scene.add(light1);
 		const light2 = new THREE.HemisphereLight('rgb(255, 255, 187)', 'rgb(30, 30, 100)', 0.5);
 		scene.add(light2);
-		const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 8);
+		const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 2.2);
 		light3.position.set(0, -10, 0)
 		scene.add(light3);
-		const light4 = new THREE.DirectionalLight('rgb(255, 255, 255)', 1);
+		const light4 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.8);
 		light4.position.set(-10, -10, -10)
 		scene.add(light4);
 
@@ -102,7 +102,7 @@
 			var timeElapsed = clock.getElapsedTime();
 			var rgbValue = [];
 			for (var i = 0, length = 12; i < length; i++) {
-				rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colStart[i]) + 1) / 2 * 256));
+				rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colStart[i]) + 1) / 2 * 156 + 100));
 			}
 
 			obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
