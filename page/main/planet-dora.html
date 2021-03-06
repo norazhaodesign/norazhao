@@ -23,6 +23,15 @@
   camera.position.set(0, 0, 20);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
+  // responsive
+  window.addEventListener("resize", onWindowResize, false);
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
   // define geometry
   function getSphere(x, y, z) {
     var geometry = new THREE.SphereGeometry(x, y, z);

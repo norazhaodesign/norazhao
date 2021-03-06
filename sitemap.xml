@@ -112,15 +112,11 @@
 
 <!-- shown on index experiments -->
 <url>
-  <loc>https://norazhao.com/page/main/cuts.html</loc>
+  <loc>https://norazhao.com/page/main/colour-cuts.html</loc>
   <priority>0.1</priority>
 </url>
 <url>
-  <loc>https://norazhao.com/page/main/square-pixels.html</loc>
-  <priority>0.1</priority>
-</url>
-<url>
-  <loc>https://norazhao.com/page/main/cards.html</loc>
+  <loc>https://norazhao.com/page/main/pattern-cards.html</loc>
   <priority>0.1</priority>
 </url>
 <url>
