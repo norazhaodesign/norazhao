@@ -19,7 +19,7 @@
 	var scene = new THREE.Scene();
 
 	// camera
-	var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1.2); // (fov, aspect, near, far) * make far small so there is only things on the surface showing up
+	var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1.3); // (fov, aspect, near, far) * make far small so there is only things on the surface showing up
 	camera.position.set(0, 0, 2);
 	camera.lookAt(new THREE.Vector3(0, 0, 0));
 
@@ -39,24 +39,62 @@
 
 	// define geometry
 	function getSphere(x, y, z) {
-		var geometry = new THREE.SphereGeometry(x, y, z);
-		var material = new THREE.MeshBasicMaterial({
+	var geometry = new THREE.SphereGeometry(x, y, z);
+	var material = new THREE.MeshLambertMaterial({
 		color: 0xffffff,
 		transparent: true,
-		opacity: 1,
+		opacity: 0.6,
 		side: THREE.DoubleSide
-		});
-		var mesh = new THREE.Mesh(geometry, material);
-		return mesh;
+	});
+	var mesh = new THREE.Mesh(geometry, material);
+	return mesh;
+	}
+
+	function getTorus(a, b, c, d) {
+	var geometry = new THREE.TorusGeometry(a, b, c, d);
+	var material = new THREE.MeshLambertMaterial({
+		color: 0xffffff,
+		transparent: true,
+		opacity: 0.6,
+		side: THREE.DoubleSide
+	});
+	var mesh = new THREE.Mesh(geometry, material);
+	return mesh;
+	}
+
+	function getIcosahedron(e, f) {
+	var geometry = new THREE.IcosahedronGeometry(e, f);
+	var material = new THREE.MeshLambertMaterial({
+		color: 0xffffff,
+		transparent: true,
+		opacity: 0.6,
+	});
+	var mesh = new THREE.Mesh(geometry, material);
+	return mesh;
 	}
 
 	// place geometry
-	var [obj1, obj2, obj3, obj4] = [getSphere(1, 4, 3), getSphere(1, 4, 2), getSphere(1, 3, 4), getSphere(1, 3, 3)];
+	// getSphere(radius, widthSegments, heightSegments)
+	// getTorus(radius, tube, radialSegments, tubularSegments)
+	// getIcosahedron(radius, detail)
+	var [obj1, obj2, obj3, obj4] = [
+		getSphere(1, 4, 3), 
+		getIcosahedron(0.93, 0), 
+		getTorus(0.8, 0.12, 6, 6), 
+		getSphere(1, 3, 3)];
 
 	var group = new THREE.Group();
 	group.add(obj1, obj2, obj3, obj4);
 	group.position.set(0, 0, 0);
 	group.scale.set(1, 1, 1);
+
+	// add lighting
+	const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1.2);
+	const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 1.6);
+	light2.position.set(-2, -10, 2)
+	const light3 = new THREE.DirectionalLight('rgb(255, 0, 0)', 1.2);
+	light3.position.set(10, 2, 8)
+	scene.add(light1, light2, light3);
 
 	var iniPosition = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI));
 	obj1.rotation.set(iniPosition[0], iniPosition[1], iniPosition[2]);
@@ -70,7 +108,7 @@
 	var renderer = new THREE.WebGLRenderer({
 		preserveDrawingBuffer: true
 	});
-	renderer.setClearColor("rgb(0, 0, 0)"); // background color
+	renderer.setClearColor('rgb(245,248,255)'); // background color
 	document.getElementById("webgl").appendChild(renderer.domElement);
 
 	// orbit control
@@ -79,7 +117,7 @@
 
 	// update
 	var clock = new THREE.Clock();
-	var rotSpeed = Array.from({length: 12}, () => getRandom(0.002, 0.008)); // bigger -> rotates faster
+	var rotSpeed = Array.from({length: 12}, () => getRandom(0.002, 0.004)); // bigger -> rotates faster
 	var colSpeed = Array.from({length: 12}, () => getRandom(2, 3)); // bigger -> color changes slower
 	var colStart = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI)); // random color starting point
 
@@ -94,7 +132,7 @@
 		var timeElapsed = clock.getElapsedTime();
 		var rgbValue = [];
 		for (var i = 0, length = 12; i < length; i++) {
-			rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colStart[i]) + 1) / 2 * 256));
+			rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colStart[i]) + 1) / 2 * 200 + 56));
 		}
 
 		obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
