@@ -104,6 +104,7 @@
   var renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
   renderer.setClearColor("rgb(245,248,255)"); // background color
   document.getElementById("webgl").appendChild(renderer.domElement);
+  var clock = new THREE.Clock();
 
   function update() {
     // rotation
@@ -113,11 +114,10 @@
     obj4.rotation.x -= rotSpeed[9]; obj4.rotation.y -= rotSpeed[10]; obj4.rotation.z += rotSpeed[11];
 
     // color change
-    var clock = new THREE.Clock();
     var timeElapsed = clock.getElapsedTime();
     var rgbValue = [];
     for (var i = 0, length = 12; i < length; i++) { // change length value here
-      rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colInitial[i]) + 1) / 2 * 200 + 56));
+      rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colInitial[i]) + 1) / 2 * 156 + 100));
     }
     obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
     obj2.material.color.set("rgb(" + rgbValue[3] + ", " + rgbValue[4] + ", " + rgbValue[5] + ")");

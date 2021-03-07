@@ -94,7 +94,7 @@
   var rotSpeed2 = Array.from({length: 6}, () => getRandom(0.0014, 0.0024));
   var rotSpeed3 = Array.from({length: 6}, () => getRandom(0.0024, 0.0064)); // bigger -> rotates faster
   var colInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random color starting point
-  var colSpeed = Array.from({length: 15}, () => getRandom(2, 3)); // bigger -> color changes slower
+  var colSpeed = Array.from({length: 15}, () => getRandom(3, 5)); // bigger -> color changes slower
 
   // initial rotation status
   obj1.rotation.set(rotInitial[0], rotInitial[1], rotInitial[2]);
@@ -108,6 +108,7 @@
   var renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
   renderer.setClearColor('rgb(245,248,255)'); // background color
   document.getElementById('webgl').appendChild(renderer.domElement);
+  var clock = new THREE.Clock();
 
   function update() {
     // rotation
@@ -118,11 +119,10 @@
     obj5.rotation.x += rotSpeed3[3]; obj2.rotation.y -= rotSpeed3[4]; obj2.rotation.z -= rotSpeed3[5];
 
     // color change
-    var clock = new THREE.Clock();
     var timeElapsed = clock.getElapsedTime();
     var rgbValue = [];
     for (var i = 0, length = 15; i < length; i++) { // change length value here
-      rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colInitial[i]) + 1) / 2 * 200 + 56));
+      rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colInitial[i]) + 1) / 2 * 156 + 100));
     }
     obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
     obj2.material.color.set("rgb(" + rgbValue[3] + ", " + rgbValue[4] + ", " + rgbValue[5] + ")");
