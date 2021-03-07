@@ -91,8 +91,8 @@
   function getRandom(min, max) {return Math.random() * (max - min) + min;}
   var rotInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
   var rotSpeed1 = Array.from({length: 3}, () => getRandom(0.0004, 0.0014));
-  var rotSpeed2 = Array.from({length: 6}, () => getRandom(0.0014, 0.0024));
-  var rotSpeed3 = Array.from({length: 6}, () => getRandom(0.0024, 0.0064)); // bigger -> rotates faster
+  var rotSpeed2 = Array.from({length: 6}, () => getRandom(0.0014, 0.0034));
+  var rotSpeed3 = Array.from({length: 6}, () => getRandom(0.0034, 0.0064)); // bigger -> rotates faster
   var colInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random color starting point
   var colSpeed = Array.from({length: 15}, () => getRandom(3, 5)); // bigger -> color changes slower
 
@@ -113,10 +113,10 @@
   function update() {
     // rotation
     obj1.rotation.x += rotSpeed1[0]; obj1.rotation.y += rotSpeed1[1]; obj1.rotation.z -= rotSpeed1[2];
-    obj2.rotation.x += rotSpeed2[0]; obj1.rotation.y += rotSpeed2[1]; obj1.rotation.z -= rotSpeed2[2];
-    obj3.rotation.x += rotSpeed2[3]; obj2.rotation.y -= rotSpeed2[4]; obj2.rotation.z -= rotSpeed2[5];
-    obj4.rotation.x += rotSpeed3[0]; obj1.rotation.y += rotSpeed3[1]; obj1.rotation.z -= rotSpeed3[2];
-    obj5.rotation.x += rotSpeed3[3]; obj2.rotation.y -= rotSpeed3[4]; obj2.rotation.z -= rotSpeed3[5];
+    obj2.rotation.x += rotSpeed2[0]; obj2.rotation.y += rotSpeed2[1]; obj2.rotation.z -= rotSpeed2[2];
+    obj3.rotation.x += rotSpeed2[3]; obj3.rotation.y -= rotSpeed2[4]; obj3.rotation.z -= rotSpeed2[5];
+    obj4.rotation.x += rotSpeed3[0]; obj4.rotation.y += rotSpeed3[1]; obj4.rotation.z -= rotSpeed3[2];
+    obj5.rotation.x += rotSpeed3[3]; obj5.rotation.y -= rotSpeed3[4]; obj5.rotation.z -= rotSpeed3[5];
 
     // color change
     var timeElapsed = clock.getElapsedTime();
