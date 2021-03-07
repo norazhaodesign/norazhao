@@ -32,9 +32,9 @@
   // add lighting
   const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1);
   const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.5);
-    light2.position.set(-20, -20, 20);
+  light2.position.set(-20, -20, 20);
   const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.5);
-    light3.position.set(20, 20, 20);
+  light3.position.set(20, 20, 20);
   scene.add(light1, light2, light3);
 
   // define geometry
