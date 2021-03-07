@@ -18,79 +18,55 @@
   <priority>0.8</priority>
 </url>
 
-<!-- glitch room -->
+<!-- work -->
 <url>
   <loc>https://norazhao.com/work/glitch-room.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- glitch pattern -->
 <url>
   <loc>https://norazhao.com/work/glitch-pattern.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- visual weather -->
 <url>
   <loc>https://norazhao.com/work/visual-weather.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- rtw -->
 <url>
   <loc>https://norazhao.com/work/rtw.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- omdia -->
 <url>
   <loc>https://norazhao.com/work/omdia.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- peacebird -->
 <url>
   <loc>https://norazhao.com/work/peacebird.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- byton -->
 <url>
   <loc>https://norazhao.com/work/byton.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- chinese grid -->
 <url>
   <loc>https://norazhao.com/work/chinese-grid.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- ef-ap -->
 <url>
   <loc>https://norazhao.com/work/ef-ap.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- design practice -->
 <url>
   <loc>https://norazhao.com/work/design-practice.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- mini-sites -->
 <url>
   <loc>https://norazhao.com/work/mini-sites.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- books and booklets -->
 <url>
   <loc>https://norazhao.com/work/books-and-booklets.html</loc>
   <priority>0.8</priority>
 </url>
-
-<!-- posters and leaflets -->
 <url>
   <loc>https://norazhao.com/work/posters-and-leaflets.html</loc>
   <priority>0.8</priority>
@@ -102,7 +78,7 @@
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://norazhao.com/page/city.html</loc>
+  <loc>https://norazhao.com/page/visual-weather.html</loc>
   <priority>0.5</priority>
 </url>
 <url>
@@ -116,7 +92,27 @@
   <priority>0.1</priority>
 </url>
 <url>
+  <loc>https://norazhao.com/page/colour-cut-float.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/edgy-sphere.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
   <loc>https://norazhao.com/page/pattern-card.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/planet-dora.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/ring-hug.html</loc>
+  <priority>0.1</priority>
+</url>
+<url>
+  <loc>https://norazhao.com/page/ring.html</loc>
   <priority>0.1</priority>
 </url>
 <url>
