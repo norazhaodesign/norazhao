@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SYNSOL GRADIENT · NORA ZHAO 赵子娴</title>
+  <title>GRADIENT ARC · NORA ZHAO 赵子娴</title>
   <style>
       html, body {margin:0; padding:0; overflow: hidden; height: 100%; width: 100%;}
   </style>
@@ -32,8 +32,7 @@
     vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
 
     vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-    m = m*m ;
-    m = m*m ;
+    m = m ;
     vec3 x = 2.0 * fract(p * C.www) - 1.0;
     vec3 h = abs(x) - 0.5;
     vec3 ox = floor(x + 0.5);
@@ -60,14 +59,14 @@
     vUv = uv;
     // 1st number adjusts the number to control how many folds the mesh has
     // 2nd number adjusts how fast the folds move
-    vDistortion = snoise(vUv.xx * 2. - u_randomisePosition * 0.15); // vertical folds
-    xDistortion = snoise(vUv.yy * 2. - u_randomisePosition * 0.05); // horizeontal folds
+    vDistortion = snoise(vUv.xx * 2. - u_randomisePosition * 0.45); // vertical folds
+    xDistortion = snoise(vUv.yy * 2. - u_randomisePosition * 0.45); // horizeontal folds
     vec3 pos = position;
     
     // adjust the number to control how distorted the mesh is
-    pos.x += (xDistortion * 10.); // on x
-    pos.y += (vDistortion * 10.); // on y
-    pos.z += (vDistortion * 5.); // on z
+    pos.x += (xDistortion * 3.); // on x
+    pos.y += (vDistortion * 2.); // on y
+    pos.z += (vDistortion * 3.); // on z
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
   }
@@ -76,10 +75,10 @@
 <!-- vUv & uv: variables which carry information on the vertex we are currently adjusting -->
 <script id="fragment-shader" type="x-shader/x-fragment"> 
   vec3 rgb(float r, float g, float b) {
-      return vec3(r / 255., g / 255., b / 255.);
+    return vec3(r / 255., g / 255., b / 255.);
   }
   vec3 rgb(float c) {
-      return vec3(c / 255., c / 255., c / 255.);
+    return vec3(c / 255., c / 255., c / 255.);
   }
 
   uniform vec3 u_bg;
@@ -101,8 +100,8 @@
     float noise2 = snoise(vUv * 2. + u_time * 0.3); // vertical shake of the light spots
 
     vec3 color = bg;
-    color = mix(color, c1, noise1 * .6);
-    color = mix(color, c2, noise2 * .4);
+    color = mix(color, c1, noise1 * .1);
+    color = mix(color, c2, noise2 * .1);
 
     color = mix(color, mix(c1, c2, vUv.x), vDistortion);
 
@@ -131,15 +130,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
   document.body.appendChild( renderer.domElement )
   
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 10000 );
   let vCheck = false;
-  camera.position.z = 10;
+  camera.position.set(0, 0, 240); // set to 800 for full view and 240 for display
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   var randomisePosition = new THREE.Vector2(1, 2);
   // the shader from earlier
   let sNoise = document.querySelector('#snoise-function').textContent
   // make a rectangle
-  let geometry = new THREE.PlaneGeometry(400, 400, 100, 100);
+  let geometry = new THREE.PlaneGeometry(700, 700, 100, 100);
 
   // and define its material using the shader
   let material = new THREE.ShaderMaterial({
@@ -158,10 +158,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
   // combine the shape and its material to make what is displayed on the screen
   let mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(0, 40, -400);
-  mesh.scale.multiplyScalar(4); // set default to 4
+  mesh.position.set(0, 0, 0);
+  mesh.scale.multiplyScalar(1); // mesh scale
   scene.add(mesh);
-  renderer.render( scene, camera );
+  renderer.render(scene, camera);
+
+  // initial rotation status
+  function getRandom(min, max) {return Math.random() * (max - min) + min;}
+  var rotInitial = Array.from({length: 3}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
+  mesh.rotation.set(0, 0, rotInitial[2]);
+
 
   // generate random R, G, B values
   var R = function(x, y, t) {
@@ -184,6 +190,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
   const animate = function () {
     requestAnimationFrame( animate );
     renderer.render( scene, camera );
+    // mesh.rotation.z += 0.001;
 
     // the uniform variables from earlier. now to update the randomisePosition variable with the j variable, producing a random z and x position as shown in the shader
     mesh.material.uniforms.u_randomisePosition.value = new THREE.Vector2(j, j);
@@ -212,8 +219,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     // increase t by a certain value every frame
-    j = j + 0.01; // how fast the mesh moves
-    t = t + 0.01; // how fast the colour moves
+    j = j + 0.002; // how fast the mesh moves
+    t = t + 0.001; // how fast the colour moves
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
