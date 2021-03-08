@@ -66,7 +66,7 @@
   // value generation
   function getRandom(min, max) {return Math.random() * (max - min) + min;}
   var rotInitial = Array.from({length: 9}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
-  var rotSpeed = Array.from({length: 9}, () => getRandom(0.0004, 0.0009)); // bigger -> rotates faster
+  var rotSpeed = Array.from({length: 9}, () => getRandom(0.0004, 0.0006)); // bigger -> rotates faster
   var colInitial = Array.from({length: 9}, () => getRandom(0, 2 * Math.PI)); // random color starting point
   var colSpeed = Array.from({length: 9}, () => getRandom(2, 4)); // bigger -> color changes slower
 
