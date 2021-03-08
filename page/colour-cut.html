@@ -31,11 +31,12 @@
 
   // add lighting
   const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1);
-  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.5);
-  light2.position.set(-20, -20, 20);
-  const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.5);
-  light3.position.set(20, 20, 20);
-  scene.add(light1, light2, light3);
+  const light2 = new THREE.HemisphereLight('rgb(0, 255, 255)', 'rgb(255, 255, 255)', 0.8);
+  const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.2);
+  light3.position.set(-20, -20, 20);
+  const light4 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.2);
+  light4.position.set(20, 20, 20);
+  scene.add(light1, light2, light3, light4);
 
   // define geometry
   function getSphere(x, y, z) {
@@ -67,7 +68,7 @@
   var rotInitial = Array.from({length: 9}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
   var rotSpeed = Array.from({length: 9}, () => getRandom(0.0004, 0.0009)); // bigger -> rotates faster
   var colInitial = Array.from({length: 9}, () => getRandom(0, 2 * Math.PI)); // random color starting point
-  var colSpeed = Array.from({length: 9}, () => getRandom(2, 3)); // bigger -> color changes slower
+  var colSpeed = Array.from({length: 9}, () => getRandom(2, 4)); // bigger -> color changes slower
 
   // initial rotation status
   obj1.rotation.set(rotInitial[0], rotInitial[1], rotInitial[2]);
