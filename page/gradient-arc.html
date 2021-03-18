@@ -123,111 +123,107 @@ function rgb(r, g, b) {
   return new THREE.Vector3(r, g, b);
 }
 
-document.addEventListener("DOMContentLoaded", function(e) {
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setClearColor('rgb(245,248,255)'); // background color
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  document.body.appendChild( renderer.domElement )
+const renderer = new THREE.WebGLRenderer();
+renderer.setClearColor('rgb(245,248,255)'); // background color
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement )
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 10000 );
+let vCheck = false;
+camera.position.set(0, 0, 240); // set to 800 for full view and 240 for display
+camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+var randomisePosition = new THREE.Vector2(1, 2);
+// the shader from earlier
+let sNoise = document.querySelector('#snoise-function').textContent
+// make a rectangle
+let geometry = new THREE.PlaneGeometry(700, 700, 100, 100);
+
+// and define its material using the shader
+let material = new THREE.ShaderMaterial({
+  // the uniform variables. they update the mesh in real time
+  uniforms: {
+    u_bg:     {type: 'v3', value: rgb(255, 255, 255)}, // highlight
+    u_bgMain: {type: 'v3', value: rgb(255, 243, 144)}, // left side 
+    u_color1: {type: 'v3', value: rgb(131, 195, 255)}, // main changing colour
+    u_color2: {type: 'v3', value: rgb(165, 140, 216)}, // right side
+    u_time:   {type: 'f',  value: 0},
+    u_randomisePosition: { type: 'v2', value: randomisePosition }
+  },
+  fragmentShader: sNoise + document.querySelector('#fragment-shader').textContent,
+  vertexShader: sNoise + document.querySelector('#vertex-shader').textContent,
+});
+
+// combine the shape and its material to make what is displayed on the screen
+let mesh = new THREE.Mesh(geometry, material);
+mesh.position.set(0, 0, 0);
+mesh.scale.multiplyScalar(1); // mesh scale
+scene.add(mesh);
+renderer.render(scene, camera);
+
+// initial rotation status
+function getRandom(min, max) {return Math.random() * (max - min) + min;}
+var rotInitial = Array.from({length: 3}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
+mesh.rotation.set(0, 0, rotInitial[2]);
+
+// generate random R, G, B values
+var R = function(x, y, t) {
+  return( Math.floor(192 + 64*Math.cos( (x*x-y*y)/300 + t )) );
+}
+var G = function(x, y, t) {
+  return( Math.floor(192 + 64*Math.sin( (x*x*Math.cos(t/4)+y*y*Math.sin(t/3))/300 ) ) );
+}
+var B = function(x, y, t) {
+  return( Math.floor(192 + 64*Math.sin( 5*Math.sin(t/9) + ((x-100)*(x-100)+(y-100)*(y-100))/1100) ) );
+}
+
+// two variables to generate the warp of the sheet
+let t = 0;
+let j = 0;
+// set x and y as random integers
+let x = randomInteger(0, 32);
+let y = randomInteger(0, 32);
+
+const animate = function () {
+  requestAnimationFrame( animate );
+  renderer.render( scene, camera );
+  // mesh.rotation.z += 0.001;
+
+  // the uniform variables from earlier. now to update the randomisePosition variable with the j variable, producing a random z and x position as shown in the shader
+  mesh.material.uniforms.u_randomisePosition.value = new THREE.Vector2(j, j);
   
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 10000 );
-  let vCheck = false;
-  camera.position.set(0, 0, 240); // set to 800 for full view and 240 for display
-  camera.lookAt(new THREE.Vector3(0, 0, 0));
+  // generate a random R, G, B value using R(), G(), and B()
+  mesh.material.uniforms.u_color1.value = new THREE.Vector3(R(x,y,t/2), G(x,y,t/2), B(x,y,t/2));
+  mesh.material.uniforms.u_color2.value = new THREE.Vector3(G(x,y,t/2), B(x,y,t/2), R(x,y,t/2));
+  mesh.material.uniforms.u_bgMain.value = new THREE.Vector3(B(x,y,t/2), R(x,y,t/2), G(x,y,t/2));
 
-  var randomisePosition = new THREE.Vector2(1, 2);
-  // the shader from earlier
-  let sNoise = document.querySelector('#snoise-function').textContent
-  // make a rectangle
-  let geometry = new THREE.PlaneGeometry(700, 700, 100, 100);
-
-  // and define its material using the shader
-  let material = new THREE.ShaderMaterial({
-    // the uniform variables. they update the mesh in real time
-    uniforms: {
-      u_bg:     {type: 'v3', value: rgb(255, 255, 255)}, // highlight
-      u_bgMain: {type: 'v3', value: rgb(255, 243, 144)}, // left side 
-      u_color1: {type: 'v3', value: rgb(131, 195, 255)}, // main changing colour
-      u_color2: {type: 'v3', value: rgb(165, 140, 216)}, // right side
-      u_time:   {type: 'f',  value: 0},
-      u_randomisePosition: { type: 'v2', value: randomisePosition }
-    },
-    fragmentShader: sNoise + document.querySelector('#fragment-shader').textContent,
-    vertexShader: sNoise + document.querySelector('#vertex-shader').textContent,
-  });
-
-  // combine the shape and its material to make what is displayed on the screen
-  let mesh = new THREE.Mesh(geometry, material);
-  mesh.position.set(0, 0, 0);
-  mesh.scale.multiplyScalar(1); // mesh scale
-  scene.add(mesh);
-  renderer.render(scene, camera);
-
-  // initial rotation status
-  function getRandom(min, max) {return Math.random() * (max - min) + min;}
-  var rotInitial = Array.from({length: 3}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
-  mesh.rotation.set(0, 0, rotInitial[2]);
-
-
-  // generate random R, G, B values
-  var R = function(x, y, t) {
-    return( Math.floor(192 + 64*Math.cos( (x*x-y*y)/300 + t )) );
-  }
-  var G = function(x, y, t) {
-    return( Math.floor(192 + 64*Math.sin( (x*x*Math.cos(t/4)+y*y*Math.sin(t/3))/300 ) ) );
-  }
-  var B = function(x, y, t) {
-    return( Math.floor(192 + 64*Math.sin( 5*Math.sin(t/9) + ((x-100)*(x-100)+(y-100)*(y-100))/1100) ) );
-  }
-
-  // two variables to generate the warp of the sheet
-  let t = 0;
-  let j = 0;
-  // set x and y as random integers
-  let x = randomInteger(0, 32);
-  let y = randomInteger(0, 32);
-
-  const animate = function () {
-    requestAnimationFrame( animate );
-    renderer.render( scene, camera );
-    // mesh.rotation.z += 0.001;
-
-    // the uniform variables from earlier. now to update the randomisePosition variable with the j variable, producing a random z and x position as shown in the shader
-    mesh.material.uniforms.u_randomisePosition.value = new THREE.Vector2(j, j);
-    
-    // generate a random R, G, B value using R(), G(), and B()
-    mesh.material.uniforms.u_color1.value = new THREE.Vector3(R(x,y,t/2), G(x,y,t/2), B(x,y,t/2));
-
-    mesh.material.uniforms.u_color2.value = new THREE.Vector3(G(x,y,t/2), B(x,y,t/2), R(x,y,t/2));
-    mesh.material.uniforms.u_bgMain.value = new THREE.Vector3(B(x,y,t/2), R(x,y,t/2), G(x,y,t/2));
-
-    // have t representing time
-    mesh.material.uniforms.u_time.value = t;
-    // every 2 ticks of t, we adjust x so it never goes below 0 or above 32
-    if(t % 0.1 == 0) {         
-      if(vCheck == false) {
-        x -= 1;
-        if(x <= 0) {
-          vCheck = true;
-        }
-      } else {
-        x += 1;
-        if(x >= 32) {
-          vCheck = false;
-        }
+  // have t representing time
+  mesh.material.uniforms.u_time.value = t;
+  // every 2 ticks of t, we adjust x so it never goes below 0 or above 32
+  if(t % 0.1 == 0) {         
+    if(vCheck == false) {
+      x -= 1;
+      if(x <= 0) {
+        vCheck = true;
+      }
+    } else {
+      x += 1;
+      if(x >= 32) {
+        vCheck = false;
       }
     }
+  }
 
-    // increase t by a certain value every frame
-    j = j + 0.002; // how fast the mesh moves
-    t = t + 0.001; // how fast the colour moves
+  // increase t by a certain value every frame
+  j = j + 0.002; // how fast the mesh moves
+  t = t + 0.001; // how fast the colour moves
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
-    renderer.render (scene, camera);
-  };
-  animate();
-});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
+  renderer.render (scene, camera);
+};
+animate();
 </script>
 </body>
 </html>
