@@ -54,6 +54,7 @@ h1 {
   margin: 20vh 1.5vmax 1vmax 1.5vmax;
 }
 h1.zh {
+  font-weight: 600;
   margin-bottom: 2vmax;
 }
 
