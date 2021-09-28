@@ -32,11 +32,15 @@
   // add lighting
   const light1 = new THREE.HemisphereLight('rgb(255, 255, 100)', 'rgb(180, 80, 245)', 0.5);
   const light2 = new THREE.HemisphereLight('rgb(255, 255, 187)', 'rgb(30, 30, 100)', 0.5);
-  const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 2.2);
-  light3.position.set(0, -10, 0)
-  const light4 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.8);
-  light4.position.set(-10, -10, -10)
-  scene.add(light1, light2, light3, light4);
+  const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 1.4);
+  light3.position.set(0, -10, 0) // bottom
+  const light4 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.5);
+  light4.position.set(-10, 0, 0) //left
+  const light5 = new THREE.DirectionalLight('rgb(255, 255, 255)', 1.4);
+  light5.position.set(0, 10, 0) //top
+  const light6 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.5);
+  light6.position.set(10, 0, 0) //right
+  scene.add(light1, light2, light3, light4, light5, light6);
 
   // define geometry
   function getSphere() {
