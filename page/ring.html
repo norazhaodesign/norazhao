@@ -19,7 +19,7 @@
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
-  camera.position.set(0, 0, 22);
+  camera.position.set(0, 0, 8.5);
 
   // responsive
   window.addEventListener("resize", onWindowResize, false);
@@ -31,9 +31,9 @@
 
   // add lighting
   const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 255)', 1);
-  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.8);
+  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.2);
   light2.position.set(-2, -10, -2)
-  const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.8);
+  const light3 = new THREE.DirectionalLight('rgb(255, 255, 255)', 0.6);
   light3.position.set(10, 2, 8)
   scene.add(light1, light2, light3);
 
@@ -53,11 +53,11 @@
   // place geometry
   // getTorus(radius, tube, radialSegments, tubularSegments)
   var [obj1, obj2, obj3, obj4, obj5] = [
-    getTorus(6, 0.2, 16, 100),
-    getTorus(6.4, 0.2, 16, 100),
-    getTorus(6.8, 0.2, 16, 100),
-    getTorus(7.2, 0.2, 16, 100),
-    getTorus(7.6, 0.2, 16, 100)
+    getTorus(6, 0.4, 16, 100),
+    getTorus(6.4, 0.4, 16, 100),
+    getTorus(6.8, 0.4, 16, 100),
+    getTorus(7.2, 0.4, 16, 100),
+    getTorus(7.6, 0.4, 16, 100)
   ];
   var group = new THREE.Group();
   group.add(obj1, obj2, obj3, obj4, obj5);
