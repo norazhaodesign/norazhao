@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COLOUR CUT FLOAT · NORA ZHAO 赵子娴</title>
+  <title>DORA SPHERE · NORA ZHAO 赵子娴</title>
 </head>
 
 <body>
@@ -11,15 +11,15 @@
 <script src="/js/orbit-controls.js"></script>
 <style>
   html, body {margin:0; padding:0; overflow: hidden; height: 100%; width: 100%;}
-  </style>
+</style>
 
 <div id="webgl"></div>
 <script>
   // create scene & camera
   var scene = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1.2); // (fov, aspect, near, far) * make far small so there is only things on the surface showing up
+  var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
-  camera.position.set(0, 0, 1);
+  camera.position.set(0, 0, 20);
 
   // responsive
   window.addEventListener("resize", onWindowResize, false);
@@ -30,10 +30,10 @@
   }
 
   // add lighting
-  const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1);
-  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 1.6);
+  const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1.2);
+  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 2);
   light2.position.set(-2, -10, 2)
-  const light3 = new THREE.DirectionalLight('rgb(255, 0, 0)', 1);
+  const light3 = new THREE.DirectionalLight('rgb(255, 0, 0)', 1.5);
   light3.position.set(10, 2, 8)
   scene.add(light1, light2, light3);
 
@@ -49,90 +49,65 @@
     var mesh = new THREE.Mesh(geometry, material);
     return mesh;
   }
-  function getTorus(a, b, c, d) {
-    var geometry = new THREE.TorusGeometry(a, b, c, d);
-    var material = new THREE.MeshLambertMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.6,
-      side: THREE.DoubleSide
-    });
-    var mesh = new THREE.Mesh(geometry, material);
-    return mesh;
-  }
-  function getIcosahedron(e, f) {
-    var geometry = new THREE.IcosahedronGeometry(e, f);
-    var material = new THREE.MeshLambertMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.8,
-    });
-    var mesh = new THREE.Mesh(geometry, material);
-    return mesh;
-  }
 
   // place geometry
   // getSphere(radius, widthSegments, heightSegments)
-  // getTorus(radius, tube, radialSegments, tubularSegments)
-  // getIcosahedron(radius, detail)
-  var [obj1, obj2, obj3, obj4] = [
-    getSphere(1, 4, 3), 
-    getSphere(0.9, 4, 200), 
-    getTorus(0.8, 0.2, 3, 200), 
-    getSphere(0.95, 3, 3)
+  var [obj1, obj2, obj3] = [
+    getSphere(5, 100, 100), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
+    getSphere(3, 100, 100),
+    getSphere(3, 100, 100)
   ];
+  obj2.position.set(-10, 0, 0);
+  obj3.position.set(10, 0, 0);
   var group = new THREE.Group();
-  group.add(obj1, obj2, obj3, obj4);
+  group.add(obj1, obj2, obj3);
   group.position.set(0, 0, 0);
   group.scale.set(1, 1, 1);
 
   // value generation
   function getRandom(min, max) {return Math.random() * (max - min) + min;}
-  var rotInitial = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
-  var rotSpeed = Array.from({length: 12}, () => getRandom(0.0008, 0.001)); // bigger -> rotates faster
-  var colInitial = Array.from({length: 12}, () => getRandom(0, 2 * Math.PI)); // random color starting point
-  var colSpeed = Array.from({length: 12}, () => getRandom(2, 3)); // bigger -> color changes slower
+  var rotInitial = Array.from({length: 9}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
+  var rotSpeed1 = Array.from({length: 3}, () => getRandom(0.0004, 0.0014));
+  var rotSpeed2 = Array.from({length: 6}, () => getRandom(0.0014, 0.0034));
+  var rotSpeed3 = Array.from({length: 6}, () => getRandom(0.0034, 0.0064)); // bigger -> rotates faster
+  var colInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random color starting point
+  var colSpeed = Array.from({length: 15}, () => getRandom(3, 5)); // bigger -> color changes slower
 
   // initial rotation status
   obj1.rotation.set(rotInitial[0], rotInitial[1], rotInitial[2]);
   obj2.rotation.set(rotInitial[3], rotInitial[4], rotInitial[5]);
   obj3.rotation.set(rotInitial[6], rotInitial[7], rotInitial[8]);
-  obj4.rotation.set(rotInitial[9], rotInitial[10], rotInitial[11]);
   scene.add(group);
 
   // render
   var renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
-  renderer.setClearColor("rgb(245,248,255)"); // background color
-  document.getElementById("webgl").appendChild(renderer.domElement);
+  renderer.setClearColor('rgb(245,248,255)'); // background color
+  document.getElementById('webgl').appendChild(renderer.domElement);
   var clock = new THREE.Clock();
 
   function update() {
     // rotation
-    obj1.rotation.x += rotSpeed[0]; obj1.rotation.y += rotSpeed[1]; obj1.rotation.z -= rotSpeed[2];
-    obj2.rotation.x += rotSpeed[3]; obj2.rotation.y -= rotSpeed[4]; obj2.rotation.z -= rotSpeed[5];
-    obj3.rotation.x -= rotSpeed[6]; obj3.rotation.y += rotSpeed[7]; obj3.rotation.z += rotSpeed[8];
-    obj4.rotation.x -= rotSpeed[9]; obj4.rotation.y -= rotSpeed[10]; obj4.rotation.z += rotSpeed[11];
+    obj1.rotation.x += rotSpeed1[0]; obj1.rotation.y += rotSpeed1[1]; obj1.rotation.z -= rotSpeed1[2];
+    obj2.rotation.x += rotSpeed2[0]; obj2.rotation.y += rotSpeed2[1]; obj2.rotation.z -= rotSpeed2[2];
+    obj3.rotation.x += rotSpeed2[3]; obj3.rotation.y -= rotSpeed2[4]; obj3.rotation.z -= rotSpeed2[5];
 
     // color change
     var timeElapsed = clock.getElapsedTime();
     var rgbValue = [];
-    for (var i = 0, length = 12; i < length; i++) { // change length value here
+    for (var i = 0, length = 9; i < length; i++) { // change length value here
       rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colInitial[i]) + 1) / 2 * 156 + 100));
     }
     obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
     obj2.material.color.set("rgb(" + rgbValue[3] + ", " + rgbValue[4] + ", " + rgbValue[5] + ")");
     obj3.material.color.set("rgb(" + rgbValue[6] + ", " + rgbValue[7] + ", " + rgbValue[8] + ")");
-    obj4.material.color.set("rgb(" + rgbValue[9] + ", " + rgbValue[10] + ", " + rgbValue[11] + ")");
 
     // render
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
-    renderer.render(scene, camera);
-    setTimeout(function() {
-      requestAnimationFrame(function() {
-        update(scene, camera);
-      })
-    }, 1000 / 60); // refresh rate per second
+    renderer.render (scene, camera);
+    setTimeout( function() { requestAnimationFrame (function() {
+      update(scene, camera);
+    }) }, 1000 / 60 ); // refresh rate per second
   }
   update();
 </script>
@@ -200,5 +175,6 @@
     }
   }
 </script> -->
+</script>
 </body>
 </html>
