@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DORA SPHERE · NORA ZHAO 赵子娴</title>
+  <title>PLANET DORA V1 · NORA ZHAO 赵子娴</title>
 </head>
 
 <body>
@@ -49,24 +49,47 @@
     var mesh = new THREE.Mesh(geometry, material);
     return mesh;
   }
+  function getTorus(a, b, c, d) {
+    var geometry = new THREE.TorusGeometry(a, b, c, d);
+    var material = new THREE.MeshLambertMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.6,
+      side: THREE.DoubleSide
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    return mesh;
+  }
+  function getIcosahedron(e, f) {
+    var geometry = new THREE.IcosahedronGeometry(e, f);
+    var material = new THREE.MeshLambertMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.6,
+    });
+    var mesh = new THREE.Mesh(geometry, material);
+    return mesh;
+  }
 
   // place geometry
   // getSphere(radius, widthSegments, heightSegments)
-  var [obj1, obj2, obj3] = [
-    getSphere(5, 100, 100), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
-    getSphere(3, 100, 100),
-    getSphere(3, 100, 100)
+  // getTorus(radius, tube, radialSegments, tubularSegments)
+  // getIcosahedron(radius, detail)
+  var [obj1, obj2, obj3, obj4, obj5] = [
+    getSphere(5, 200, 200), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
+    getSphere(6.2, 2, 2), 
+    getSphere(7, 2, 2),
+    getTorus(6.5, 0.2, 16, 100),
+    getTorus(7, 0.22, 16, 100)
   ];
-  obj2.position.set(-10, 0, 0);
-  obj3.position.set(10, 0, 0);
   var group = new THREE.Group();
-  group.add(obj1, obj2, obj3);
+  group.add(obj1, obj2, obj3, obj4, obj5);
   group.position.set(0, 0, 0);
   group.scale.set(1, 1, 1);
 
   // value generation
   function getRandom(min, max) {return Math.random() * (max - min) + min;}
-  var rotInitial = Array.from({length: 9}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
+  var rotInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
   var rotSpeed1 = Array.from({length: 3}, () => getRandom(0.0004, 0.0014));
   var rotSpeed2 = Array.from({length: 6}, () => getRandom(0.0014, 0.0034));
   var rotSpeed3 = Array.from({length: 6}, () => getRandom(0.0034, 0.0064)); // bigger -> rotates faster
@@ -77,6 +100,8 @@
   obj1.rotation.set(rotInitial[0], rotInitial[1], rotInitial[2]);
   obj2.rotation.set(rotInitial[3], rotInitial[4], rotInitial[5]);
   obj3.rotation.set(rotInitial[6], rotInitial[7], rotInitial[8]);
+  obj4.rotation.set(rotInitial[9], rotInitial[10], rotInitial[11]);
+  obj5.rotation.set(rotInitial[12], rotInitial[13], rotInitial[14]);
   scene.add(group);
 
   // render
@@ -90,16 +115,20 @@
     obj1.rotation.x += rotSpeed1[0]; obj1.rotation.y += rotSpeed1[1]; obj1.rotation.z -= rotSpeed1[2];
     obj2.rotation.x += rotSpeed2[0]; obj2.rotation.y += rotSpeed2[1]; obj2.rotation.z -= rotSpeed2[2];
     obj3.rotation.x += rotSpeed2[3]; obj3.rotation.y -= rotSpeed2[4]; obj3.rotation.z -= rotSpeed2[5];
+    obj4.rotation.x += rotSpeed3[0]; obj4.rotation.y += rotSpeed3[1]; obj4.rotation.z -= rotSpeed3[2];
+    obj5.rotation.x += rotSpeed3[3]; obj5.rotation.y -= rotSpeed3[4]; obj5.rotation.z -= rotSpeed3[5];
 
     // color change
     var timeElapsed = clock.getElapsedTime();
     var rgbValue = [];
-    for (var i = 0, length = 9; i < length; i++) { // change length value here
+    for (var i = 0, length = 15; i < length; i++) { // change length value here
       rgbValue.push(Math.floor((Math.sin(timeElapsed / colSpeed[i] + colInitial[i]) + 1) / 2 * 156 + 100));
     }
     obj1.material.color.set("rgb(" + rgbValue[0] + ", " + rgbValue[1] + ", " + rgbValue[2] + ")");
     obj2.material.color.set("rgb(" + rgbValue[3] + ", " + rgbValue[4] + ", " + rgbValue[5] + ")");
     obj3.material.color.set("rgb(" + rgbValue[6] + ", " + rgbValue[7] + ", " + rgbValue[8] + ")");
+    obj4.material.color.set("rgb(" + rgbValue[9] + ", " + rgbValue[10] + ", " + rgbValue[11] + ")");
+    obj5.material.color.set("rgb(" + rgbValue[12] + ", " + rgbValue[13] + ", " + rgbValue[14] + ")");
 
     // render
     renderer.setSize(window.innerWidth, window.innerHeight);
