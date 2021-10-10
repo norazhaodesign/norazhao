@@ -18,8 +18,8 @@
   // create scene & camera
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.lookAt(new THREE.Vector3(0, 0, 0));
-  camera.position.set(0, 0, 4);
+  camera.lookAt(new THREE.Vector3(0, 0, 100));
+  camera.position.set(0, 0, 9);
 
   // responsive
   window.addEventListener("resize", onWindowResize, false);
@@ -94,7 +94,7 @@
   // value generation
   function getRandom(min, max) {return Math.random() * (max - min) + min;}
   var rotInitial = Array.from({length: 18}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
-  var rotSpeed = Array.from({length: 18}, () => getRandom(0.001, 0.003)); // bigger -> rotates faster
+  var rotSpeed = Array.from({length: 18}, () => getRandom(0.0006, 0.0008)); // bigger -> rotates faster
   var colInitial = Array.from({length: 18}, () => getRandom(0, 2 * Math.PI)); // random color starting point
   var colSpeed = Array.from({length: 18}, () => getRandom(3, 5)); // bigger -> color changes slower
 
