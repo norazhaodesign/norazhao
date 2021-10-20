@@ -14,7 +14,7 @@
 </style>
 
 <script type="text/javascript">
-  var reflections = 4;
+  var reflections = 3;
 
   var radius = 0;
   var length = 0;
@@ -39,7 +39,7 @@
     for (var i = 0; i < reflections; i++){
       rotate(rot);
       image(g, 0, 0); // top-left corner of the img is at (0, 0)
-      scale(5); // ************ this line made the glitch
+      scale(10); // ************ this line made the glitch
     }
   }
 
@@ -58,8 +58,8 @@
         n = Math.floor(n*20);
 
         if (n%2 == 0){ // n%2 means n can be devided by 2 
-          if (n%4 == 0) g.pixels[pos + 1] = 233; // number for color control
-          if (n%8 == 0) g.pixels[pos + 2] = 255; 
+          if (n%4 == 0) g.pixels[pos + 1] = 0; // number for color control
+          if (n%8 == 0) g.pixels[pos + 2] = 0; 
           g.pixels[pos] = 0;
           g.pixels[pos + 3] = 255;
         }
