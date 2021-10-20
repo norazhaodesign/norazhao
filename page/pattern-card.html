@@ -7,19 +7,20 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: white;
+      background-color: black;
       overflow: hidden;
     }
     img {
       width: 100%;
-      height: 33.33vh;
+      height: 50vh;
       object-fit: cover; /* display pic without stretching */
       image-rendering: pixelated; /* make pic rendered sharp */
     }
     .main {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      grid-gap: 0;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      margin: 2px;
+      grid-gap: 2px;
       overflow: hidden;
     }
     @media screen and (max-width: 760px) {
@@ -27,14 +28,14 @@
         height: 25vh;
       }
       .main {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
       }
     }
     </style>
   </head>
   <body>
     <script type="text/javascript">
-      const n = 16; // number of values needed
+      const n = 12; // number of values needed
       const arr = []; // initial empty array 
       do { 
         const randomNumber = Math.floor(Math.random() * 61) + 1 // generating random integer from 1 to the given number
@@ -57,10 +58,6 @@
         document.write('<img src="/img/cards/' + arr[9] + '.png">');
         document.write('<img src="/img/cards/' + arr[10] + '.png">');
         document.write('<img src="/img/cards/' + arr[11] + '.png">');
-        document.write('<img src="/img/cards/' + arr[12] + '.png">');
-        document.write('<img src="/img/cards/' + arr[13] + '.png">');
-        document.write('<img src="/img/cards/' + arr[14] + '.png">');
-        document.write('<img src="/img/cards/' + arr[15] + '.png">');
       document.write('</div>');
     </script>
   </body>

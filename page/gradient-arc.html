@@ -145,9 +145,9 @@ let material = new THREE.ShaderMaterial({
   // the uniform variables. they update the mesh in real time
   uniforms: {
     u_bg:     {type: 'v3', value: rgb(255, 255, 255)}, // highlight
-    u_bgMain: {type: 'v3', value: rgb(255, 243, 144)}, // left side 
-    u_color1: {type: 'v3', value: rgb(131, 195, 255)}, // main changing colour
-    u_color2: {type: 'v3', value: rgb(165, 140, 216)}, // right side
+    u_bgMain: {type: 'v3', value: rgb(255, 255, 255)}, // left side 
+    u_color1: {type: 'v3', value: rgb(255, 255, 255)}, // main changing colour
+    u_color2: {type: 'v3', value: rgb(255, 255, 255)}, // right side
     u_time:   {type: 'f',  value: 0},
     u_randomisePosition: { type: 'v2', value: randomisePosition }
   },
@@ -169,13 +169,13 @@ mesh.rotation.set(0, 0, rotInitial[2]);
 
 // generate random R, G, B values
 var R = function(x, y, t) {
-  return( Math.floor(192 + 64*Math.cos( (x*x-y*y)/300 + t )) );
+  return( Math.floor(230 + 26*Math.cos( (x*x-y*y)/300 + t )) );
 }
 var G = function(x, y, t) {
-  return( Math.floor(192 + 64*Math.sin( (x*x*Math.cos(t/4)+y*y*Math.sin(t/3))/300 ) ) );
+  return( Math.floor(240 + 16*Math.sin( (x*x*Math.cos(t/4)+y*y*Math.sin(t/3))/300 ) ) );
 }
 var B = function(x, y, t) {
-  return( Math.floor(192 + 64*Math.sin( 5*Math.sin(t/9) + ((x-100)*(x-100)+(y-100)*(y-100))/1100) ) );
+  return( Math.floor(250 + 6*Math.sin( 5*Math.sin(t/9) + ((x-100)*(x-100)+(y-100)*(y-100))/1100) ) );
 }
 
 // two variables to generate the warp of the sheet
