@@ -1,45 +1,45 @@
 <!doctype html>
 <html>
 <head>
-<script src="../js/three.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-<style media="screen">
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden
-}
-.text {
-  font-family: 'Roboto', sans-serif;
-  z-index: 1;
-  position: absolute;
-  bottom: 1vh;
-  left: 0.4vw;
-  right: 0.5vw;
-  text-transform: uppercase;
-  font-size: 1.49vw;
-  text-align: center;
-  margin: auto;
-}
-@media screen and (max-width: 760px) {
-  .text {
-    font-size: calc(1.4vw + 0.4vh);
-  }
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-</style>
-<title>SOUND SENSOR · NORA ZHAO 赵子娴</title>
+  <script src="../js/three.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <style media="screen">
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden
+    }
+    .text {
+      font-family: 'Roboto', sans-serif;
+      z-index: 1;
+      position: absolute;
+      bottom: 1vh;
+      left: 0.4vw;
+      right: 0.5vw;
+      text-transform: uppercase;
+      font-size: 1.49vw;
+      text-align: center;
+      margin: auto;
+    }
+    @media screen and (max-width: 760px) {
+      .text {
+        font-size: calc(1.4vw + 0.4vh);
+      }
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+  <title>SOUND SENSOR · NORA ZHAO 赵子娴</title>
 </head>
 
 <body>
-<div class="text">
-  This model reponds to sound in its sorrounding environment. Please allow microphone access. Design & code by Nora Zhao.
-  <br>
-  该模型可以感应周边音量并即时调节自身颜色，如需体验请开启网站的麦克风使用权限。
-</div>
+  <div class="text">
+    This model reponds to sound in its sorrounding environment. Please allow microphone access. Design & code by Nora Zhao.
+    <br>
+    该模型可以感应周边音量并即时调节自身颜色，如需体验请开启网站的麦克风使用权限。
+  </div>
 <div id = "webgl"></div>
 
 <script>
