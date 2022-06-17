@@ -1,44 +1,39 @@
-name: Deploy docs
+name:deploytoaliyunoss
 
-on:
-  push:
-    branches: [ master ]
+on:[push]
 
 jobs:
-    build-and-deploy:
-    runs-on: ubuntu-latest
-    
+  build:
+
+    runs-on:ubuntu-latest
+
     steps:
-    - name: Checkout # checkout
-      uses: actions/checkout@v2
-    
-    # 如果需要使用Node 先安装Node
-    - name: Setup node
-      uses: actions/setup-node@v1
+    # 切代码到 runner
+    - uses:actions/checkout@v1
       with:
-        node-version: "12.x"
-    
-    # 文档构建
-    - name: Build Docs
-      run: |
-        yarn install
-
-        # 修改为你的packjson文件配置的编译命令
-        yarn run docs:build
-
-    - name: Setup aliyun oss
-      uses: manyuanrong/setup-ossutil@v1.0
+        submodules:true
+    # 下载 git submodule
+    - uses:srt32/git-actions@v0.0.3
       with:
-        # 对应你 oss存储桶endpoint，成都节点如下
-        endpoint: "oss-cn-chengdu.aliyuncs.com" 
-        
-        # 通过secrets隐藏你的阿里云 OSS_ACCESSKEYID
-        access-key-id: ${{ secrets.OSS_KEY_ID }}
-        
-        # 通过secrets隐藏你的阿里云 OSS_ACCESSKEYSECRET
-        access-key-secret: ${{ secrets.OSS_KEY_SECRET }}
-    
-    - name: Deploy docs
-      # 发布文档 
-      # 推送dist的目录文件到对应存储桶，存储桶名字修改为最开始创建时的 `Bucket 名称`
-      run: ossutil cp -rf ./packages/docs/docs/.vuepress/dist/ oss://norazhao/
+        args:gitsubmoduleupdate--init--recursive
+    # 使用 node:10
+    - name:useNode.js10.x
+      uses:actions/setup-node@v1
+      with:
+        node-version:10.x
+    # npm install
+    - name:npminstallandbuild
+      run:|
+        npm install
+        npm run build
+      env:
+        CI:true
+    # 设置阿里云OSS的 id/secret，存储到 github 的 secrets 中
+    - name:setupaliyunoss
+      uses:manyuanrong/setup-ossutil@master
+      with:
+        endpoint:oss-cn-chengdu.aliyuncs.com
+        access-key-id:${{secrets.OSS_KEY_ID}}
+        access-key-secret:${{secrets.OSS_KEY_SECRET}}
+    - name:cpfilestoaliyun
+      run:ossutilcp-rf.vuepress/distoss://norazhao/
