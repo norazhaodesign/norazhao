@@ -1,4 +1,4 @@
-    - name: upload files to OSS
+      name: upload files to OSS
       uses: fangbinwei/aliyun-oss-website-action@v1
       with:
           accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
