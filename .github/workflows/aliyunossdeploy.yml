@@ -1,8 +1,8 @@
-      name: upload files to OSS
+    - name: upload files to OSS
       uses: fangbinwei/aliyun-oss-website-action@v1
       with:
           accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
           accessKeySecret: ${{ secrets.ACCESS_KEY_SECRET }}
           bucket: norazhao
-          endpoint: oss-cn-chengdu.liyuncs.com
+          endpoint: oss-cn-chengdu.aliyuncs.com
           folder: /output
