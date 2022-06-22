@@ -43,14 +43,14 @@
   var myArray = [
     "/page/pattern-cards.html", "/page/pattern-cards.html",
     "/page/colour-cut-float.html",
-    // "/page/planet-dora.html",
+      // "/page/planet-dora.html",
     "/page/soft-gradient.html",
-    // "/page/ring-hug.html",
+      // "/page/ring-hug.html",
     "/page/synsol-gradient.html",
     "/page/gradient-arc.html",
     "/page/sound-sensor.html",
     "/page/pixels.html",
-    // "/page/led-light.html",
+      // "/page/led-light.html",
   ];
   var randomUrl = myArray[Math.floor(Math.random() * myArray.length)];
   document.getElementById('display').src = randomUrl;
@@ -86,6 +86,21 @@
     root.style.setProperty('--top-dis', document.getElementById('firstRow').clientHeight + "px");
   };
 </script>
+
+<div id="footer"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#footer").load("/footer.html");
+  });
+</script>
+
+<style media="screen">
+  footer {
+    background-color: white;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+</style>
 
 </body>
 </html>
