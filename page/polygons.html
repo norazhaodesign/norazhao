@@ -16,36 +16,36 @@
 <div id="webgl"></div>
 <script>
   // the volume: sound
-  var sound;
-  navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-  .then(function(stream) {
-    audioContext = new AudioContext();
-    analyser = audioContext.createAnalyser();
-    microphone = audioContext.createMediaStreamSource(stream);
-    javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+  // var sound;
+  // navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+  // .then(function(stream) {
+  //   audioContext = new AudioContext();
+  //   analyser = audioContext.createAnalyser();
+  //   microphone = audioContext.createMediaStreamSource(stream);
+  //   javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
 
-    analyser.smoothingTimeConstant = 0.8;
-    analyser.fftSize = 1024;
+  //   analyser.smoothingTimeConstant = 0.8;
+  //   analyser.fftSize = 1024;
 
-    microphone.connect(analyser);
-    analyser.connect(javascriptNode);
-    javascriptNode.connect(audioContext.destination);
+  //   microphone.connect(analyser);
+  //   analyser.connect(javascriptNode);
+  //   javascriptNode.connect(audioContext.destination);
 
-    javascriptNode.onaudioprocess = function() {
-        var array = new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(array);
-        var values = 0;
+  //   javascriptNode.onaudioprocess = function() {
+  //       var array = new Uint8Array(analyser.frequencyBinCount);
+  //       analyser.getByteFrequencyData(array);
+  //       var values = 0;
 
-        var length = array.length;
-        for (var i = 0; i < length; i++) {
-          values += (array[i]);
-        }
-        sound = Math.round(values / length);
-      console.log('sound: '+sound);
-    }
-    })
-    .catch(function(err) {
-  })
+  //       var length = array.length;
+  //       for (var i = 0; i < length; i++) {
+  //         values += (array[i]);
+  //       }
+  //       sound = Math.round(values / length);
+  //     console.log('sound: '+sound);
+  //   }
+  //   })
+  //   .catch(function(err) {
+  // })
 
   // scene
   var scene = new THREE.Scene();
@@ -56,8 +56,8 @@
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 
   // define geometry
-  function getSphere() {
-    var geometry = new THREE.IcosahedronGeometry(5, 4);
+  function getGeometry(x, y) {
+    var geometry = new THREE.IcosahedronGeometry(x, y);
     var material = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       transparent: true,
@@ -69,7 +69,7 @@
   }
 
   // place geometry
-  var [obj1, obj2, obj3, obj4] = [getSphere(), getSphere(), getSphere(), getSphere()];
+  var [obj1, obj2, obj3, obj4] = [getGeometry(5, 6), getGeometry(5, 6), getGeometry(5, 6),getGeometry(5, 6)];
 
   var group = new THREE.Group();
   group.add(obj1, obj2, obj3, obj4);
@@ -95,7 +95,7 @@
   // update
   var clock = new THREE.Clock();
 
-  var [n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12] = [Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015, Math.random() * 0.0015];
+  var [n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12] = [Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035, Math.random() * 0.00035];
 
   var randomR1 = (Math.PI * 2) * Math.random();
   var randomG1 = (Math.PI * 2) * Math.random();
@@ -120,127 +120,32 @@
 
     var timeElapsed = clock.getElapsedTime();
 
-    group.rotation.x += 0.004;
-    group.rotation.y -= 0.004; 
-    group.rotation.z += 0.004; 
+    var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *156);
+    var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *156);
+    var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *156);
+    obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
 
-    // have light value decide the color brightness
-    if (sound < 5) {
-      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *156);
-      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *156);
-      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *156);
-      obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
+    var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *156);
+    var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *156);
+    var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *156);
+    obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
 
-      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *156);
-      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *156);
-      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *156);
-      obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
+    var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *156);
+    var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *156);
+    var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *156);
+    obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
 
-      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *156);
-      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *156);
-      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *156);
-      obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
-
-      var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 *156);
-      var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 *156);
-      var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 *156);
-      obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
-
-    } else if (sound < 10) {
-
-      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *156);
-      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *156);
-      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *156);
-      obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
-
-      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *156);
-      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *156);
-      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *156);
-      obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
-
-      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *156);
-      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *156);
-      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *156);
-      obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
-
-      var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 *156 + 100);
-      var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 *156 + 100);
-      var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 *156 + 100);
-      obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
-
-    } else if (sound < 40) {
-
-      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *156);
-      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *156);
-      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *156);
-      obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
-
-      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *156);
-      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *156);
-      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *156);
-      obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
-
-      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *156 + 100);
-      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *156 + 100);
-      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *156 + 100);
-      obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
-
-      var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 *156 + 100);
-      var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 *156 + 100);
-      var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 *156 + 100);
-      obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
-
-    } else if (sound < 70) {
-
-      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *156);
-      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *156);
-      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *156);
-      obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
-
-      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *156 + 100);
-      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *156 + 100);
-      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *156 + 100);
-      obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
-
-      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *156 + 100);
-      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *156 + 100);
-      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *156 + 100);
-      obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
-
-      var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 *156 + 100);
-      var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 *156 + 100);
-      var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 *156 + 100);
-      obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
-
-    } else {
-
-      var r1 = Math.floor((Math.sin(timeElapsed/t1 + randomR1) +1) /2 *156 + 100);
-      var g1 = Math.floor((Math.sin(timeElapsed/t2 + randomG1) +1) /2 *156 + 100);
-      var b1 = Math.floor((Math.sin(timeElapsed/t3 + randomB1) +1) /2 *156 + 100);
-      obj1.material.color.set('rgb('+r1+','+g1+','+b1+')');
-
-      var r2 = Math.floor((Math.sin(timeElapsed/t4 + randomR2) +1) /2 *156 + 100);
-      var g2 = Math.floor((Math.sin(timeElapsed/t5 + randomG2) +1) /2 *156 + 100);
-      var b2 = Math.floor((Math.sin(timeElapsed/t6 + randomB2) +1) /2 *156 + 100);
-      obj2.material.color.set('rgb('+r2+','+g2+','+b2+')');
-
-      var r3 = Math.floor((Math.sin(timeElapsed/t7 + randomR3) +1) /2 *156 + 100);
-      var g3 = Math.floor((Math.sin(timeElapsed/t8 + randomG3) +1) /2 *156 + 100);
-      var b3 = Math.floor((Math.sin(timeElapsed/t9 + randomB3) +1) /2 *156 + 100);
-      obj3.material.color.set('rgb('+r3+','+g3+','+b3+')');
-
-      var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 *156 + 100);
-      var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 *156 + 100);
-      var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 *156 + 100);
-      obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
-    }
+    var r4 = Math.floor((Math.sin(timeElapsed/t10 + randomR4) +1) /2 *156);
+    var g4 = Math.floor((Math.sin(timeElapsed/t11 + randomG4) +1) /2 *156);
+    var b4 = Math.floor((Math.sin(timeElapsed/t12 + randomB4) +1) /2 *156);
+    obj4.material.color.set('rgb('+r4+','+g4+','+b4+')');
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio); // resolution for hd-dpi devices
     renderer.render (scene, camera);
     setTimeout( function() { requestAnimationFrame (function() {
       update(scene, camera);
-    }) }, 1000 / 60);
+    }) }, 1000 / 120);
   }
 
   update();
