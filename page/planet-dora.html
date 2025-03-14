@@ -31,11 +31,7 @@
 
   // add lighting
   const light1 = new THREE.HemisphereLight('rgb(255, 255, 255)', 'rgb(255, 255, 0)', 1.2);
-  const light2 = new THREE.DirectionalLight('rgb(255, 255, 255)', 2);
-  light2.position.set(-2, -10, 2)
-  const light3 = new THREE.DirectionalLight('rgb(255, 0, 0)', 1.5);
-  light3.position.set(10, 2, 8)
-  scene.add(light1, light2, light3);
+  scene.add(light1);
 
   // define geometry
   function getSphere(x, y, z) {
@@ -75,26 +71,32 @@
   // getSphere(radius, widthSegments, heightSegments)
   // getTorus(radius, tube, radialSegments, tubularSegments)
   // getIcosahedron(radius, detail)
-  var [obj1, obj2, obj3, obj4, obj5] = [
-    getSphere(5, 200, 200), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
+  var [obj1, obj2, obj3, obj4, obj5, obj6] = [
     getSphere(6.2, 2, 2), 
-    getSphere(7, 2, 2),
-    getTorus(6.5, 0.2, 16, 100),
-    getTorus(7, 0.22, 16, 100)
+    getSphere(7, 3, 2),
+    getTorus(10, 0.32, 16, 3),
+    getTorus(8, 0.28, 16, 4),
+    getSphere(2, 10, 18), // if wanting to get rid of the many moving lines that show on the sphere sometimes, change this model to icosahedron
+    getSphere(2, 18, 10),
   ];
   var group = new THREE.Group();
-  group.add(obj1, obj2, obj3, obj4, obj5);
+  group.add(obj1, obj2, obj3, obj4);
   group.position.set(0, 0, 0);
   group.scale.set(1, 1, 1);
 
+  obj5.position.set(-13, 0, 0);
+  obj5.scale.set(1, 1, 1);
+  obj6.position.set(13, 0 ,0);
+  obj6.scale.set(1, 1, 1);
+
   // value generation
   function getRandom(min, max) {return Math.random() * (max - min) + min;}
-  var rotInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
-  var rotSpeed1 = Array.from({length: 3}, () => getRandom(0.0004, 0.0014));
+  var rotInitial = Array.from({length: 18}, () => getRandom(0, 2 * Math.PI)); // random initial rotation position
+  var rotSpeed1 = Array.from({length: 6}, () => getRandom(0.0004, 0.0014));
   var rotSpeed2 = Array.from({length: 6}, () => getRandom(0.0014, 0.0034));
   var rotSpeed3 = Array.from({length: 6}, () => getRandom(0.0034, 0.0064)); // bigger -> rotates faster
-  var colInitial = Array.from({length: 15}, () => getRandom(0, 2 * Math.PI)); // random color starting point
-  var colSpeed = Array.from({length: 15}, () => getRandom(3, 5)); // bigger -> color changes slower
+  var colInitial = Array.from({length: 18}, () => getRandom(0, 2 * Math.PI)); // random color starting point
+  var colSpeed = Array.from({length: 18}, () => getRandom(3, 5)); // bigger -> color changes slower
 
   // initial rotation status
   obj1.rotation.set(rotInitial[0], rotInitial[1], rotInitial[2]);
@@ -102,7 +104,9 @@
   obj3.rotation.set(rotInitial[6], rotInitial[7], rotInitial[8]);
   obj4.rotation.set(rotInitial[9], rotInitial[10], rotInitial[11]);
   obj5.rotation.set(rotInitial[12], rotInitial[13], rotInitial[14]);
-  scene.add(group);
+  obj6.rotation.set(rotInitial[15], rotInitial[16], rotInitial[17]);
+
+  scene.add(group, obj5, obj6);
 
   // render
   var renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
@@ -112,11 +116,12 @@
 
   function update() {
     // rotation
-    obj1.rotation.x += rotSpeed1[0]; obj1.rotation.y += rotSpeed1[1]; obj1.rotation.z -= rotSpeed1[2];
-    obj2.rotation.x += rotSpeed2[0]; obj2.rotation.y += rotSpeed2[1]; obj2.rotation.z -= rotSpeed2[2];
-    obj3.rotation.x += rotSpeed2[3]; obj3.rotation.y -= rotSpeed2[4]; obj3.rotation.z -= rotSpeed2[5];
-    obj4.rotation.x += rotSpeed3[0]; obj4.rotation.y += rotSpeed3[1]; obj4.rotation.z -= rotSpeed3[2];
-    obj5.rotation.x += rotSpeed3[3]; obj5.rotation.y -= rotSpeed3[4]; obj5.rotation.z -= rotSpeed3[5];
+    obj1.rotation.x += rotSpeed1[0]; obj1.rotation.y -= rotSpeed2[0]; obj1.rotation.z += rotSpeed3[0];
+    obj2.rotation.x -= rotSpeed1[1]; obj2.rotation.y += rotSpeed2[1]; obj2.rotation.z += rotSpeed3[1];
+    obj3.rotation.x += rotSpeed1[2]; obj3.rotation.y -= rotSpeed2[2]; obj3.rotation.z -= rotSpeed3[2];
+    obj4.rotation.x -= rotSpeed1[3]; obj4.rotation.y += rotSpeed2[3]; obj4.rotation.z -= rotSpeed3[3];
+    obj5.rotation.x += rotSpeed1[4]; obj5.rotation.y -= rotSpeed2[4]; obj5.rotation.z += rotSpeed3[4];
+    obj6.rotation.x -= rotSpeed1[5]; obj6.rotation.y += rotSpeed2[5]; obj6.rotation.z += rotSpeed3[5];
 
     // color change
     var timeElapsed = clock.getElapsedTime();
@@ -129,6 +134,7 @@
     obj3.material.color.set("rgb(" + rgbValue[6] + ", " + rgbValue[7] + ", " + rgbValue[8] + ")");
     obj4.material.color.set("rgb(" + rgbValue[9] + ", " + rgbValue[10] + ", " + rgbValue[11] + ")");
     obj5.material.color.set("rgb(" + rgbValue[12] + ", " + rgbValue[13] + ", " + rgbValue[14] + ")");
+    obj6.material.color.set("rgb(" + rgbValue[15] + ", " + rgbValue[16] + ", " + rgbValue[17] + ")");
 
     // render
     renderer.setSize(window.innerWidth, window.innerHeight);

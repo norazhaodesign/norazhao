@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NORA ZHAO 赵子娴 · ARTIST & DESIGNER 艺术家 & 设计师</title>
+<meta property="og:image" content="https://norazhao.com/img/icon/icon.jpg">
+<meta property="og:title" content="NORA ZHAO">
+<meta property="og:description" content = "生成艺术｜品牌识别｜平面设计">
 
 <meta name="description"
       content="Nora Zhao is an artist and designer practicing across the areas of generative art, brand identity and graphic design. 赵子娴是一名在生成艺术、品牌识别和平面设计等领域进行探索与实践的新媒体艺术家、设计师。">
@@ -30,7 +33,7 @@
       Artist and designer practicing across the areas of generative art, brand identity and graphic design. Refresh for random new visuals.
     </p>
     <p class="zh indent headerText">
-      实践于生成艺术、品牌识别和平面设计等领域的新媒体艺术家和设计师。刷新页面以随机抓取新视效。
+      我是一名实践于生成艺术、品牌识别和平面设计领域的新媒体艺术家 / 设计师。请刷新页面以随机抓取新视效。
     </p>
   </div>
   <div class="secondRow">
@@ -41,13 +44,19 @@
 <script type="text/javascript">
   // list links here
   var myArray = [
-    "/page/colour-cut.html",
+    "/page/pattern-cards.html", "/page/pattern-cards.html",
     "/page/colour-cut-float.html",
-    "/page/edgy-sphere.html",    
-    "/page/planet-dora.html",
-    "/page/ring-hug.html",
-    "/page/ring.html",
+      // "/page/planet-dora.html",
+    "/page/soft-gradient.html",
+      // "/page/ring-hug.html",
     "/page/synsol-gradient.html",
+    "/page/gradient-arc.html",
+    "/page/sound-sensor.html",
+    "/page/pixels.html",
+    "/page/stripes.html",
+    "/page/horizon.html",
+    "/page/polygons.html",
+    // "/page/led-light.html",
   ];
   var randomUrl = myArray[Math.floor(Math.random() * myArray.length)];
   document.getElementById('display').src = randomUrl;
@@ -84,5 +93,19 @@
   };
 </script>
 
+<div id="footer"></div>
+<script type="text/javascript">
+  $(function() {
+    $("#footer").load("/footer.html");
+  });
+</script>
+
+<style media="screen">
+  footer {
+    background-color: white;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+  }
+</style>
 </body>
 </html>
